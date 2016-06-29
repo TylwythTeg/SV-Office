@@ -11,7 +11,6 @@ public class Driver
         try
         {
             Connection Conn = DriverManager.getConnection(url, user, password);
-
             Statement Stmt = Conn.createStatement();
 
             //list all machines
@@ -20,9 +19,7 @@ public class Driver
                                                     "ORDER BY account.account_id ASC");
 
             while(Rs.next())
-            {
                 System.out.println(Rs.getString("account.name") + " " + Rs.getString("machine.brand"));
-            }
         }
         catch (Exception exc)
         {
