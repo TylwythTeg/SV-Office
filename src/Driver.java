@@ -6,7 +6,7 @@ public class Driver
     {
         String url = "jdbc:mysql://localhost:3306/sacramento_vending";
         String user = "root";
-        String password = "lizardking";
+        String password = "rootpurse";
 
         try
         {
