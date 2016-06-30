@@ -46,6 +46,36 @@ public class AccountDAO
 
     }
 
+    public List<Account> searchAccounts(String name) throws Exception
+    {
+        List<Account> list = new ArrayList<>();
+
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+
+        try
+        {
+            name="%"+name;
+            name+="%";
+
+            stmt = connection.prepareStatement("SELECT * FROM account WHERE name LIKE ?");
+            stmt.setString(1,name);
+
+            resultSet = stmt.executeQuery();
+
+            while(resultSet.next())
+            {
+                Account account = rowToAccount(resultSet);
+                list.add(account);
+            }
+            return list;
+        }
+        finally
+        {
+            close(stmt,resultSet);
+        }
+    }
+
     private Account rowToAccount(ResultSet resultSet) throws SQLException
     {
         int id = resultSet.getInt("account_id");

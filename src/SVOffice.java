@@ -10,7 +10,8 @@ public class SVOffice
         {
             AccountDAO dao = new AccountDAO();
 
-            List list = dao.getAllAccounts();
+            //List list = dao.getAllAccounts();
+            List list = dao.searchAccounts("math");
             for(int i=0;i<list.size();i++)
             {
                 System.out.println(list.get(i));
