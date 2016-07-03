@@ -60,8 +60,12 @@ public class AccountSearchApp extends JFrame
                     else
                         accounts = accountDAO.getAllAccounts();
 
-                    for (Account temp : accounts)
-                        System.out.println(temp);
+                    /*for (Account temp : accounts)
+                        System.out.println(temp);*/
+
+                    AccountTableModel accountmodel = new AccountTableModel(accounts);
+                    table1.setModel(accountmodel);
+
                 }
 
                 catch (Exception exc)

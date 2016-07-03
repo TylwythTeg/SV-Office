@@ -44,7 +44,9 @@
         <children>
           <component id="bd3c3" class="javax.swing.JTable" binding="table1" default-binding="true">
             <constraints/>
-            <properties/>
+            <properties>
+              <showVerticalLines value="true"/>
+            </properties>
           </component>
         </children>
       </scrollpane>
