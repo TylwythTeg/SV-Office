@@ -8,14 +8,7 @@ public class AccountDAO
 
     public AccountDAO() throws Exception
     {
-        //Connect to database
-        String url = "jdbc:mysql://localhost:3306/sacramento_vending";
-        String user = "root";
-        String password = "rootpurse";
-
-        connection = DriverManager.getConnection(url,user,password);
-        System.out.println("Database connection to " + url + " successful");
-
+        connectToDatabase();
 
     }
 
@@ -102,5 +95,22 @@ public class AccountDAO
     private void close(Statement stmt, ResultSet resultSet) throws SQLException
     {
         close(null,stmt,resultSet);
+    }
+
+    private void connectToDatabase()
+    {
+        String url = "jdbc:mysql://localhost:3306/sacramento_vending";
+        String user = "root";
+        String password = "rootpurse";
+
+
+        try
+        {
+            connection = DriverManager.getConnection(url, user, password);
+            System.out.println("Database connection to " + url + " successful");
+        } catch (Exception exc)
+        {
+            System.out.println("Database connection to " + url + " unsuccessful");
+        }
     }
 }
