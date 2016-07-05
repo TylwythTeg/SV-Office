@@ -8,11 +8,7 @@ class TablesListModel extends DefaultListModel
 
     public TablesListModel()
     {
-        Table newTable = new Table("Account");
         List<String> tableNames = new ArrayList<>();
-        System.out.println("check");
-        tableNames.add("Account");
-        System.out.println("Table added to table list");
     }
 
     //get Count based on index

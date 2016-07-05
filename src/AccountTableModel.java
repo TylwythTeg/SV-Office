@@ -4,10 +4,12 @@ import javax.swing.table.AbstractTableModel;
 
 class AccountTableModel extends AbstractTableModel
 {
-    private static final int NAME_COL = 0;
-    private static final int ADDRESS_COL = 1;
+    private static final int ID_COL = 0;
+    private static final int NAME_COL = 1;
+    private static final int ADDRESS_COL = 2;
 
-    private String[] columnNames = {"Name", "Address"};
+
+    private String[] columnNames = {"Id", "Name", "Address"};
 
     private List<Account> accounts;
 
@@ -41,6 +43,8 @@ class AccountTableModel extends AbstractTableModel
 
         switch(col)
         {
+            case ID_COL:
+                return account.getId();
             case NAME_COL:
                 return account.getName();
             case ADDRESS_COL:

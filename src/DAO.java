@@ -7,12 +7,20 @@ public class DAO
 
     public DAO() throws Exception
     {
-        //Connect to database
+        connection = connectToDatabase();
+    }
+
+    public Connection connectToDatabase() throws Exception
+    {
         String url = "jdbc:mysql://localhost:3306/sacramento_vending";
         String user = "root";
         String password = "rootpurse";
 
         connection = DriverManager.getConnection(url,user,password);
         System.out.println("Database connection to " + url + " successful");
+        return connection;
+
     }
+
+
 }

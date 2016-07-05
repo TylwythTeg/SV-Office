@@ -39,6 +39,26 @@ public class AccountDAO
 
     }
 
+    public int getRowCount() throws Exception
+    {
+        Statement stmt = null;
+        ResultSet resultSet = null;
+
+        stmt = connection.createStatement();
+        resultSet = stmt.executeQuery("SELECT * FROM account");
+
+        int i = 0;
+
+        while(resultSet.next())
+        {
+            i++;
+        }
+
+        return i;
+
+
+    }
+
     public List<Account> searchAccounts(String name) throws Exception
     {
         List<Account> list = new ArrayList<>();

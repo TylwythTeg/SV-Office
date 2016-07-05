@@ -12,12 +12,21 @@ public class SV_OfficeAccounts extends JFrame
     //more DAOs for other tables
     private MachineDAO machineDAO;
 
+    JFrame frame;
     private JPanel panelhh;
     private JPanel ListPanel;
     private JList ListForSections;
+    private JButton buttonNew;
+    private JButton buttonDelete;
+    private JPanel topButtonPanel;
+    private JTable tableViewTable;
+    private JPanel panelForTable;
+    private JPanel tablePanelEnclosure;
+    private JScrollPane RowListScrollPane;
+    private JPanel TableSubInfo;
 
     private DefaultListModel tablelist;
-    JFrame frame;
+
 
 
     public static void main(String[] args)
@@ -28,36 +37,28 @@ public class SV_OfficeAccounts extends JFrame
         frame.pack();
         frame.setVisible(true);
 
+        frame.setTitle("SV Office Alpha");
+
 
     }
 
-    public void setTableList()
+    public void setTableList() throws Exception
     {
         TablesListModel tablelist = new TablesListModel();
-        //DefaultListModel tablelist = new DefaultListModel();
-        Table newTable = new Table("Account");
-        tablelist.addElement("Account");
+
+       // String accountTableName = "Account";
+        //accountDAO = new AccountDAO();
+
+      // accountTableName += accountDAO.getRowCount();
+
+        tablelist.addElement("Accounts " + "(" + accountDAO.getRowCount() + ")");
         tablelist.addElement("Machine");
         tablelist.addElement("Log");
         tablelist.addElement("Product");
         tablelist.addElement("Route");
         tablelist.addElement("Employee");
-        //ListForSections = new JList(tablelist);
-        //ListForSections.setModel(tablelist);
-
-
-        String tableNames[] =
-                {
-                        "Accounts"
-                };
-
-        System.out.println("whath");
-        //ListForSections = new JList();
-        //frame.getContentPane().add(ListForSections);
-        System.out.println("whatu");
 
        ListForSections.setModel(tablelist);
-        //ListPanel.add( ListForSections);
     }
 
 
@@ -66,27 +67,37 @@ public class SV_OfficeAccounts extends JFrame
         try
         {
             accountDAO = new AccountDAO();
-            //System.out.println("test");
             setTableList();
-            //more DAOs for other tables
         }
         catch(Exception exc)
         {
             System.out.println("Error Creating AccountDAOg");
         }
 
-
-        /*
+        //methodthis set table to accounts
         try
         {
-            machineDAO = new MachineDAO();
+
+            List<Account> accounts = null;
+
+            accounts = accountDAO.getAllAccounts();
+
+            AccountTableModel accountmodel = new AccountTableModel(accounts);
+            tableViewTable.setModel(accountmodel);
+
         }
-        catch(Exception exc)
+
+        catch (Exception exc)
         {
-            System.out.println("Error Creating MachineDAO");
-        }*/
+            System.out.println("Error on search");
+        }
+        //methodthis
+
     }
 
 
-
+    private void createUIComponents()
+    {
+        // TODO: place custom component creation code here
+    }
 }
