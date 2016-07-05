@@ -3,6 +3,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.List;
+import java.util.EventObject;
+import javax.swing.event.*;
 /**
  * Created by Rob on 7/3/2016.
  */
@@ -27,6 +29,8 @@ public class SV_OfficeAccounts extends JFrame
     private JTextField formNameField;
     private JTextField formAddressField;
     private JLabel labelRevenue;
+    private JScrollPane machineScrollPane;
+    private JTable machineTable;
 
     private DefaultListModel tablelist;
 
@@ -41,6 +45,8 @@ public class SV_OfficeAccounts extends JFrame
         frame.setVisible(true);
 
         frame.setTitle("SV Office Alpha");
+
+
 
 
     }
@@ -71,10 +77,11 @@ public class SV_OfficeAccounts extends JFrame
         {
             accountDAO = new AccountDAO();
             setTableList();
+            machineDAO = new MachineDAO();
         }
         catch(Exception exc)
         {
-            System.out.println("Error Creating AccountDAOg");
+            System.out.println("Error Creating AccountDAO");
         }
 
         //methodthis set table to accounts
@@ -96,6 +103,38 @@ public class SV_OfficeAccounts extends JFrame
         }
         //methodthis
 
+
+        tableViewTable.getSelectionModel().addListSelectionListener(new ListSelectionListener()
+        {
+            public void valueChanged(ListSelectionEvent event)
+            {
+                formNameField.setText(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 1).toString());
+                formAddressField.setText(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 2).toString());
+
+                Object accountIdObj = tableViewTable.getValueAt(tableViewTable.getSelectedRow(),0);
+                int account_id =  (int) accountIdObj;
+
+                //select machines by account_id
+
+
+                List<Machine> machines = null;
+                //machines = machineDAO.getAll
+                try
+                {
+                machines = machineDAO.getMachinesFromAccountId(account_id);
+
+                    MachineTableModel machinemodel = new MachineTableModel(machines);
+                    machineTable.setModel(machinemodel);
+
+                }
+                catch(Exception exc)
+                {
+                    System.out.println("Couldn't query machine list");
+                }
+
+            }
+        });
+
     }
 
 
@@ -103,4 +142,6 @@ public class SV_OfficeAccounts extends JFrame
     {
         // TODO: place custom component creation code here
     }
+
+
 }

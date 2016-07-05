@@ -7,13 +7,13 @@ public class Machine
     private String asset;
     private int account_id;
 
-    public Machine(int machine_id, String brand, String type, String model, String asset, int account_id)
+    public Machine(int machine_id,String type, String brand, String model, String asset, int account_id)
     {
         this.machine_id = machine_id;
         this.brand = brand;
         this.type = type;
         this.model = model;
-        this.asset = model;
+        this.asset = asset;
         this.account_id = account_id;
     }
 
@@ -55,6 +55,16 @@ public class Machine
     public void setModel(String address)
     {
         this.model = model;
+    }
+
+    public String getAsset()
+    {
+        return asset;
+    }
+
+    public void setAsset(String asset)
+    {
+        this.asset = asset;
     }
 
     public int getAccountId()
