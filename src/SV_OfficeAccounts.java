@@ -23,6 +23,10 @@ public class SV_OfficeAccounts extends JFrame
     private JPanel panelForTable;
     private JPanel tablePanelEnclosure;
     private JScrollPane RowListScrollPane;
+    private JTextField nameFilter;
+    private JTextField formNameField;
+    private JTextField formAddressField;
+    private JLabel labelRevenue;
 
     private DefaultListModel tablelist;
 
