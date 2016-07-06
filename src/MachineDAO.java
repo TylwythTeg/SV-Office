@@ -2,13 +2,17 @@ import java.util.*;
 import java.sql.*;
 import java.io.*;
 
-public class MachineDAO
+public class MachineDAO extends DAO
 {
-    private Connection connection;
 
     public MachineDAO() throws Exception
     {
+       /* System.out.println("machineDAO1");
+       if(connection == null)
+        {
+            System.out.println("machineDAO2");
             connectToDatabase();
+        }*/
     }
 
     public List<Machine> getAllMachines() throws Exception
@@ -40,6 +44,7 @@ public class MachineDAO
 
     public List<Machine> getMachinesFromAccountId(int accountId) throws Exception
     {
+
         List<Machine> list = new ArrayList<>();
 
         Statement stmt = null;
@@ -48,6 +53,7 @@ public class MachineDAO
 
         try
         {
+
             stmt = connection.createStatement();
             resultSet = stmt.executeQuery("SELECT * FROM machine JOIN account ON machine.account_id = account.account_id WHERE machine.account_id=" + accountId);
 
@@ -95,39 +101,5 @@ public class MachineDAO
         }
 
         return i;
-    }
-
-    private static void close(Connection connection, Statement stmt, ResultSet resultSet) throws SQLException
-    {
-        if(resultSet != null)
-            resultSet.close();
-
-        if(stmt != null)
-            stmt.close();
-
-        if(connection != null)
-            connection.close();
-    }
-
-    private void close(Statement stmt, ResultSet resultSet) throws SQLException
-    {
-        close(null,stmt,resultSet);
-    }
-
-    private void connectToDatabase()
-    {
-        String url = "jdbc:mysql://localhost:3306/sacramento_vending";
-        String user = "root";
-        String password = "rootpurse";
-
-
-        try
-        {
-            connection = DriverManager.getConnection(url, user, password);
-            System.out.println("Database connection to " + url + " successful");
-        } catch (Exception exc)
-        {
-            System.out.println("Database connection to " + url + " unsuccessful");
-        }
     }
 }

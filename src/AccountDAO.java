@@ -1,15 +1,17 @@
 import java.util.*;
 import java.sql.*;
-//import java.io.*;
 
-public class AccountDAO
+public class AccountDAO extends DAO
 {
-    private Connection connection;
 
     public AccountDAO() throws Exception
     {
-        connectToDatabase();
-
+       /* System.out.println("accountDAO1");
+        if(connection == null)
+        {
+            System.out.println("accountDAO2");
+            connectToDatabase();
+        }*/
     }
 
     public List<Account> getAllAccounts() throws Exception
@@ -100,37 +102,7 @@ public class AccountDAO
         return account;
     }
 
-    private static void close(Connection connection, Statement stmt, ResultSet resultSet) throws SQLException
-    {
-        if(resultSet != null)
-            resultSet.close();
-
-        if(stmt != null)
-            stmt.close();
-
-        if(connection != null)
-            connection.close();
-    }
-
-    private void close(Statement stmt, ResultSet resultSet) throws SQLException
-    {
-        close(null,stmt,resultSet);
-    }
-
-    private void connectToDatabase()
-    {
-        String url = "jdbc:mysql://localhost:3306/sacramento_vending";
-        String user = "root";
-        String password = "rootpurse";
 
 
-        try
-        {
-            connection = DriverManager.getConnection(url, user, password);
-            System.out.println("Database connection to " + url + " successful");
-        } catch (Exception exc)
-        {
-            System.out.println("Database connection to " + url + " unsuccessful");
-        }
-    }
+
 }

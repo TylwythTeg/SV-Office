@@ -55,11 +55,6 @@ public class SV_OfficeAccounts extends JFrame
     {
         TablesListModel tablelist = new TablesListModel();
 
-       // String accountTableName = "Account";
-        //accountDAO = new AccountDAO();
-
-      // accountTableName += accountDAO.getRowCount();
-
         tablelist.addElement("Accounts " + "(" + accountDAO.getRowCount() + ")");
         tablelist.addElement("Machine");
         tablelist.addElement("Log");
@@ -76,8 +71,10 @@ public class SV_OfficeAccounts extends JFrame
         try
         {
             accountDAO = new AccountDAO();
+
             setTableList();
-            machineDAO = new MachineDAO();
+
+           machineDAO = new MachineDAO();
         }
         catch(Exception exc)
         {
@@ -114,16 +111,18 @@ public class SV_OfficeAccounts extends JFrame
                 Object accountIdObj = tableViewTable.getValueAt(tableViewTable.getSelectedRow(),0);
                 int account_id =  (int) accountIdObj;
 
-                //select machines by account_id
+
 
 
                 List<Machine> machines = null;
-                //machines = machineDAO.getAll
+
                 try
                 {
-                machines = machineDAO.getMachinesFromAccountId(account_id);
+                    machines = machineDAO.getMachinesFromAccountId(account_id);
+
 
                     MachineTableModel machinemodel = new MachineTableModel(machines);
+
                     machineTable.setModel(machinemodel);
 
                 }
