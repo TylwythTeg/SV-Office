@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="216100fd-a58a-481f-9b57-a2d7313516d0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AccountDAO.java" afterPath="$PROJECT_DIR$/src/AccountDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DAO.java" afterPath="$PROJECT_DIR$/src/DAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MachineDAO.java" afterPath="$PROJECT_DIR$/src/MachineDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SV_OfficeAccounts.java" afterPath="$PROJECT_DIR$/src/SV_OfficeAccounts.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Screenshots/SV Office Alpha 7-5-16.png" />
     </list>
     <ignored path="SV1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -296,6 +292,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Rob\IdeaProjects\SV1\Screenshots" />
       <recent name="C:\Users\Rob\IdeaProjects\SV1\lib" />
     </key>
   </component>
@@ -816,12 +813,12 @@
       <workItem from="1467689031919" duration="3159000" />
       <workItem from="1467708279835" duration="9792000" />
       <workItem from="1467781913534" duration="680000" />
-      <workItem from="1467782913149" duration="3076000" />
+      <workItem from="1467782913149" duration="3572000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59137000" />
+    <option name="totallyTimeSpent" value="59633000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
