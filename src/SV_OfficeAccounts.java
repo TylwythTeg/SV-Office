@@ -55,14 +55,20 @@ public class SV_OfficeAccounts extends JFrame
     {
         TablesListModel tablelist = new TablesListModel();
 
+        //Map<String,String> tables = new Map;
+       // tables["Account"] = "Accounts";
+
         tablelist.addElement("Accounts " + "(" + accountDAO.getRowCount() + ")");
         tablelist.addElement("Machine");
         tablelist.addElement("Log");
         tablelist.addElement("Product");
         tablelist.addElement("Route");
         tablelist.addElement("Employee");
+        //tablelist.setElementAt("Accountable", 0);
 
        ListForSections.setModel(tablelist);
+
+        ListForSections.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
 
@@ -80,6 +86,7 @@ public class SV_OfficeAccounts extends JFrame
         {
             System.out.println("Error Creating AccountDAO");
         }
+        tableViewTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         //methodthis set table to accounts
         try
@@ -134,6 +141,43 @@ public class SV_OfficeAccounts extends JFrame
             }
         });
 
+        ListForSections.addListSelectionListener(new ListSelectionListener()
+        {
+            @Override
+            public void valueChanged(ListSelectionEvent e)
+            {
+                String selection = ListForSections.getSelectedValue().toString();
+
+                if(ListForSections.getValueIsAdjusting())
+                    return;
+
+                if(selection.startsWith("Account"))
+                {
+                    System.out.println("You have Selected Account");
+                }
+                if(selection.startsWith("Machine"))
+                {
+                    System.out.println("You have Selected Machine");
+                }
+                if(selection.startsWith("Log"))
+                {
+                    System.out.println("You have Selected Log");
+                }
+                if(selection.startsWith("Product"))
+                {
+                    System.out.println("You have Selected Product");
+                }
+                if(selection.startsWith("Route"))
+                {
+                    System.out.println("You have Selected Route");
+                }
+                if(selection.startsWith("Employee"))
+                {
+                    System.out.println("You have Selected Employee");
+                }
+
+            }
+        });
     }
 
 
