@@ -10,6 +10,8 @@ import javax.swing.event.*;
  */
 public class SV_OfficeAccounts extends JFrame
 {
+    private svLogic logic;
+
     private AccountDAO accountDAO;
     //more DAOs for other tables
     private MachineDAO machineDAO;
@@ -46,17 +48,11 @@ public class SV_OfficeAccounts extends JFrame
 
         frame.setTitle("SV Office Alpha");
 
-
-
-
     }
 
     public void setTableList() throws Exception
     {
         TablesListModel tablelist = new TablesListModel();
-
-        //Map<String,String> tables = new Map;
-       // tables["Account"] = "Accounts";
 
         tablelist.addElement("Accounts " + "(" + accountDAO.getRowCount() + ")");
         tablelist.addElement("Machine");
@@ -64,10 +60,8 @@ public class SV_OfficeAccounts extends JFrame
         tablelist.addElement("Product");
         tablelist.addElement("Route");
         tablelist.addElement("Employee");
-        //tablelist.setElementAt("Accountable", 0);
 
-       ListForSections.setModel(tablelist);
-
+        ListForSections.setModel(tablelist);
         ListForSections.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
@@ -78,9 +72,12 @@ public class SV_OfficeAccounts extends JFrame
         {
             accountDAO = new AccountDAO();
 
+
             setTableList();
 
            machineDAO = new MachineDAO();
+
+            //logic = new svLogic();
         }
         catch(Exception exc)
         {
@@ -92,12 +89,7 @@ public class SV_OfficeAccounts extends JFrame
         try
         {
 
-            List<Account> accounts = null;
-
-            accounts = accountDAO.getAllAccounts();
-
-            AccountTableModel accountmodel = new AccountTableModel(accounts);
-            tableViewTable.setModel(accountmodel);
+            setAccountTableView();
 
         }
 
@@ -154,6 +146,7 @@ public class SV_OfficeAccounts extends JFrame
                 if(selection.startsWith("Account"))
                 {
                     System.out.println("You have Selected Account");
+                    setAccountTableView();
                 }
                 if(selection.startsWith("Machine"))
                 {
@@ -178,6 +171,21 @@ public class SV_OfficeAccounts extends JFrame
 
             }
         });
+    }
+
+    public void setAccountTableView()
+    {
+        try
+        {
+            List<Account> accounts = null;
+            accounts = accountDAO.getAllAccounts();
+            AccountTableModel accountmodel = new AccountTableModel(accounts);
+            tableViewTable.setModel(accountmodel);
+        }
+        catch(Exception exc)
+        {
+            System.out.println("Table set failed");
+        }
     }
 
 
