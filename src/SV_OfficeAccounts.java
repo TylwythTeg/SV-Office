@@ -10,7 +10,7 @@ import javax.swing.event.*;
  */
 public class SV_OfficeAccounts extends JFrame
 {
-    private svLogic logic;
+    //private svLogic logic;
 
     private AccountDAO accountDAO;
     //more DAOs for other tables
@@ -34,7 +34,8 @@ public class SV_OfficeAccounts extends JFrame
     private JScrollPane machineScrollPane;
     private JTable machineTable;
 
-    private DefaultListModel tablelist;
+    private TablesListModel tablelist;
+    AccountTableModel accountmodel;
 
 
 
@@ -47,39 +48,35 @@ public class SV_OfficeAccounts extends JFrame
         frame.setVisible(true);
 
         frame.setTitle("SV Office Alpha");
+        //System.out.println("hey");
+
 
     }
 
     public void setTableList() throws Exception
     {
         TablesListModel tablelist = new TablesListModel();
-
-        tablelist.addElement("Accounts " + "(" + accountDAO.getRowCount() + ")");
-        tablelist.addElement("Machine");
-        tablelist.addElement("Log");
-        tablelist.addElement("Product");
-        tablelist.addElement("Route");
-        tablelist.addElement("Employee");
+        tablelist.initList(accountDAO.getRowCount());
 
         ListForSections.setModel(tablelist);
-        ListForSections.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+
     }
 
 
     public SV_OfficeAccounts()
     {
+        ListForSections.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         try
         {
             accountDAO = new AccountDAO();
 
-
             setTableList();
 
-           machineDAO = new MachineDAO();
+            machineDAO = new MachineDAO();
 
             //logic = new svLogic();
-        }
-        catch(Exception exc)
+        } catch (Exception exc)
         {
             System.out.println("Error Creating AccountDAO");
         }
@@ -91,9 +88,7 @@ public class SV_OfficeAccounts extends JFrame
 
             setAccountTableView();
 
-        }
-
-        catch (Exception exc)
+        } catch (Exception exc)
         {
             System.out.println("Error on search");
         }
@@ -104,13 +99,16 @@ public class SV_OfficeAccounts extends JFrame
         {
             public void valueChanged(ListSelectionEvent event)
             {
+                //if (tableViewTable.getValueIsAdjusting())
+                    //return;
+
+
+                System.out.println("In the table here");
                 formNameField.setText(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 1).toString());
                 formAddressField.setText(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 2).toString());
 
-                Object accountIdObj = tableViewTable.getValueAt(tableViewTable.getSelectedRow(),0);
-                int account_id =  (int) accountIdObj;
-
-
+                Object accountIdObj = tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 0);
+                int account_id = (int) accountIdObj;
 
 
                 List<Machine> machines = null;
@@ -124,8 +122,7 @@ public class SV_OfficeAccounts extends JFrame
 
                     machineTable.setModel(machinemodel);
 
-                }
-                catch(Exception exc)
+                } catch (Exception exc)
                 {
                     System.out.println("Couldn't query machine list");
                 }
@@ -138,55 +135,175 @@ public class SV_OfficeAccounts extends JFrame
             @Override
             public void valueChanged(ListSelectionEvent e)
             {
-                String selection = ListForSections.getSelectedValue().toString();
+                System.out.println("In list response");
 
-                if(ListForSections.getValueIsAdjusting())
+                if (ListForSections.getValueIsAdjusting())
                     return;
 
-                if(selection.startsWith("Account"))
+
+                String selection = ListForSections.getSelectedValue().toString();
+
+
+                if (selection.startsWith("Account"))
                 {
                     System.out.println("You have Selected Account");
-                    setAccountTableView();
+                    updateAccountTableView();
                 }
-                if(selection.startsWith("Machine"))
+                if (selection.startsWith("Machine"))
                 {
                     System.out.println("You have Selected Machine");
                 }
-                if(selection.startsWith("Log"))
+                if (selection.startsWith("Log"))
                 {
                     System.out.println("You have Selected Log");
                 }
-                if(selection.startsWith("Product"))
+                if (selection.startsWith("Product"))
                 {
                     System.out.println("You have Selected Product");
                 }
-                if(selection.startsWith("Route"))
+                if (selection.startsWith("Route"))
                 {
                     System.out.println("You have Selected Route");
                 }
-                if(selection.startsWith("Employee"))
+                if (selection.startsWith("Employee"))
                 {
                     System.out.println("You have Selected Employee");
                 }
 
             }
         });
+
+        buttonNew.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                try
+                {
+                    //account = new Account();
+                    //accountDAO.newAccount();
+                    Account account = accountDAO.newAccount();
+                    //tableViewTable.clearSelection();
+                   // setAccountTableView();
+                    accountmodel.addRow(account);
+                    updateAccountTableView();
+                } catch (Exception esc)
+                {
+                    System.out.println("psh");
+                }
+            }
+
+        });
+        buttonDelete.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                System.out.println("selected row is " + tableViewTable.getSelectedRow());
+                System.out.println("test1");
+
+                try{
+
+
+                    int account_id = Integer.parseInt(tableViewTable.getModel().getValueAt(tableViewTable.getSelectedRow(),0).toString());
+                    accountDAO.deleteAccount(account_id);
+                    System.out.println("test2");
+                    //tableViewTable.clearSelection();
+                    System.out.println("test3");
+                   // setAccountTableView();
+
+                    System.out.println("test4");
+                   accountmodel.removeRow(tableViewTable.getSelectedRow()-1);
+                    //tableViewTable.clearSelection();
+                    System.out.println("test5");
+                    updateAccountTableView();
+                    System.out.println("test6");
+                    //tableViewTable.repaint();
+                }
+                catch(Exception esc)
+                {
+                    System.out.println("Del Exception" + esc);
+                }
+            }
+        });
     }
+
+
 
     public void setAccountTableView()
     {
         try
         {
-            List<Account> accounts = null;
+            List<Account> accounts;
+            System.out.println("few1");
             accounts = accountDAO.getAllAccounts();
-            AccountTableModel accountmodel = new AccountTableModel(accounts);
+            System.out.println("few2");
+            accountmodel = new AccountTableModel(accounts);
+            System.out.println("few3");
+            //tablelist.initList(accountDAO.getRowCount());
             tableViewTable.setModel(accountmodel);
+            System.out.println("few4");
+
+
+
+            //
+            //if(accounts == null)
+            //{
+
+            //    AccountTableModel accountmodel = new AccountTableModel(accounts);
+             //   tableViewTable.setModel(accountmodel);
+           // }
+           // else
+           // {
+//
+            //}
+
+
         }
         catch(Exception exc)
         {
-            System.out.println("Table set failed");
+            System.out.println(exc);
         }
     }
+
+    public void updateAccountTableView()
+    {
+        try
+        {
+            List<Account> accounts;
+            System.out.println("ufew1");
+            accounts = accountDAO.getAllAccounts();
+            System.out.println("ufew2");
+            System.out.println("ufew3");
+            accountmodel = new AccountTableModel(accounts);
+            System.out.println("ufew4");
+            //tableViewTable = new JTable(accountmodel);
+            accountmodel.fireTableDataChanged();
+           tableViewTable.setModel(accountmodel);
+            System.out.println("ufew5");
+
+
+
+            //
+            //if(accounts == null)
+            //{
+
+            //    AccountTableModel accountmodel = new AccountTableModel(accounts);
+            //   tableViewTable.setModel(accountmodel);
+            // }
+            // else
+            // {
+//
+            //}
+
+
+        }
+        catch(Exception exc)
+        {
+            System.out.println("this is exception:" + exc);
+        }
+    }
+
 
 
     private void createUIComponents()

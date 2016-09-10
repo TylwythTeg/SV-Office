@@ -7,12 +7,6 @@ public class MachineDAO extends DAO
 
     public MachineDAO() throws Exception
     {
-       /* System.out.println("machineDAO1");
-       if(connection == null)
-        {
-            System.out.println("machineDAO2");
-            connectToDatabase();
-        }*/
     }
 
     public List<Machine> getAllMachines() throws Exception

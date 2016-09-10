@@ -55,9 +55,20 @@ class AccountTableModel extends AbstractTableModel
         }
     }
 
+    public void removeRow(int row) {
+        // remove a row from your internal data structure
+        fireTableRowsDeleted(row, row);
+    }
+
     @Override
     public Class getColumnClass(int c)
     {
         return getValueAt(0,c).getClass();
+    }
+
+    public void addRow(Account account)
+    {
+        accounts.add(account);
+        fireTableRowsInserted(accounts.size() - 1, accounts.size() - 1);
     }
 }

@@ -6,12 +6,6 @@ public class AccountDAO extends DAO
 
     public AccountDAO() throws Exception
     {
-       /* System.out.println("accountDAO1");
-        if(connection == null)
-        {
-            System.out.println("accountDAO2");
-            connectToDatabase();
-        }*/
     }
 
     public List<Account> getAllAccounts() throws Exception
@@ -25,7 +19,7 @@ public class AccountDAO extends DAO
         try
         {
             stmt = connection.createStatement();
-            resultSet = stmt.executeQuery("SELECT * FROM account");
+            resultSet = stmt.executeQuery("SELECT * FROM accounts");
 
             while (resultSet.next())
             {
@@ -47,7 +41,7 @@ public class AccountDAO extends DAO
         ResultSet resultSet = null;
 
         stmt = connection.createStatement();
-        resultSet = stmt.executeQuery("SELECT * FROM account");
+        resultSet = stmt.executeQuery("SELECT * FROM accounts");
 
         int i = 0;
 
@@ -57,6 +51,54 @@ public class AccountDAO extends DAO
         }
 
         return i;
+
+
+    }
+
+    public Account newAccount()
+    {
+        Statement stmt = null;
+        ResultSet resultSet = null;
+
+        try
+        {
+            stmt = connection.createStatement();
+            System.out.println("ehey");
+            //String query = "INSERT INTO account ("
+            stmt.execute("INSERT INTO accounts (name, address) VALUES ('New Account','New Address')");
+
+
+            resultSet = stmt.executeQuery("SELECT * FROM accounts WHERE account_id=(SELECT max(account_id) FROM accounts)");
+            Account account = rowToAccount(resultSet);
+            return account;
+
+        }
+        catch(Exception exc)
+        {
+            System.out.println("hey");
+
+        }
+        Account account = null;
+        return account;
+
+    }
+
+    public void deleteAccount(int account_id)
+    {
+        Statement stmt = null;
+
+        try
+        {
+            stmt = connection.createStatement();
+            stmt.execute("DELETE FROM accounts WHERE account_id=" + account_id);
+            System.out.println("Account Deleted in DATABASE");
+
+
+        }
+        catch(Exception exc)
+        {
+            System.out.println("failure in deleting accoutn in accountDAO");
+        }
 
 
     }
@@ -98,6 +140,7 @@ public class AccountDAO extends DAO
         String address = resultSet.getString("address");
 
         Account account = new Account(id,name,address);
+        System.out.println("Account:" + resultSet.getInt("account_id"));
 
         return account;
     }
