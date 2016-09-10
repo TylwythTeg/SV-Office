@@ -74,8 +74,6 @@ public class SV_OfficeAccounts extends JFrame
             setTableList();
 
             machineDAO = new MachineDAO();
-
-            //logic = new svLogic();
         } catch (Exception exc)
         {
             System.out.println("Error Creating AccountDAO");
@@ -103,7 +101,7 @@ public class SV_OfficeAccounts extends JFrame
                     //return;
 
 
-                System.out.println("In the table here");
+                System.out.println("The next line will fail the second trigger (Why trigger twice for Table?");
                 formNameField.setText(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 1).toString());
                 formAddressField.setText(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 2).toString());
 
@@ -180,11 +178,8 @@ public class SV_OfficeAccounts extends JFrame
             {
                 try
                 {
-                    //account = new Account();
-                    //accountDAO.newAccount();
                     Account account = accountDAO.newAccount();
-                    //tableViewTable.clearSelection();
-                   // setAccountTableView();
+
                     accountmodel.addRow(account);
                     updateAccountTableView();
                 } catch (Exception esc)
@@ -207,18 +202,10 @@ public class SV_OfficeAccounts extends JFrame
 
                     int account_id = Integer.parseInt(tableViewTable.getModel().getValueAt(tableViewTable.getSelectedRow(),0).toString());
                     accountDAO.deleteAccount(account_id);
-                    System.out.println("test2");
-                    //tableViewTable.clearSelection();
-                    System.out.println("test3");
-                   // setAccountTableView();
 
-                    System.out.println("test4");
+
                    accountmodel.removeRow(tableViewTable.getSelectedRow()-1);
-                    //tableViewTable.clearSelection();
-                    System.out.println("test5");
                     updateAccountTableView();
-                    System.out.println("test6");
-                    //tableViewTable.repaint();
                 }
                 catch(Exception esc)
                 {
@@ -235,28 +222,12 @@ public class SV_OfficeAccounts extends JFrame
         try
         {
             List<Account> accounts;
-            System.out.println("few1");
+
             accounts = accountDAO.getAllAccounts();
-            System.out.println("few2");
+
             accountmodel = new AccountTableModel(accounts);
-            System.out.println("few3");
-            //tablelist.initList(accountDAO.getRowCount());
+
             tableViewTable.setModel(accountmodel);
-            System.out.println("few4");
-
-
-
-            //
-            //if(accounts == null)
-            //{
-
-            //    AccountTableModel accountmodel = new AccountTableModel(accounts);
-             //   tableViewTable.setModel(accountmodel);
-           // }
-           // else
-           // {
-//
-            //}
 
 
         }
@@ -270,31 +241,21 @@ public class SV_OfficeAccounts extends JFrame
     {
         try
         {
+            
             List<Account> accounts;
-            System.out.println("ufew1");
+
+
             accounts = accountDAO.getAllAccounts();
-            System.out.println("ufew2");
-            System.out.println("ufew3");
+
+
             accountmodel = new AccountTableModel(accounts);
-            System.out.println("ufew4");
-            //tableViewTable = new JTable(accountmodel);
+
+
             accountmodel.fireTableDataChanged();
-           tableViewTable.setModel(accountmodel);
-            System.out.println("ufew5");
+            //System.out.println("hereeee4e");
+           tableViewTable.setModel(accountmodel); //This line throws the exception below...but is absolute necessary???
+           // System.out.println("hereeee");
 
-
-
-            //
-            //if(accounts == null)
-            //{
-
-            //    AccountTableModel accountmodel = new AccountTableModel(accounts);
-            //   tableViewTable.setModel(accountmodel);
-            // }
-            // else
-            // {
-//
-            //}
 
 
         }
