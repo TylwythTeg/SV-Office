@@ -260,8 +260,11 @@ public class SV_OfficeAccounts extends JFrame
             //System.out.println("hereeee4e");
             System.out.println(tableViewTable.getRowCount());
             System.out.println(accountmodel.getRowCount());
+            setTableList();
            tableViewTable.setModel(accountmodel); //This line throws the exception below...but is absolute necessary???
            // System.out.println("hereeee");
+
+           // setTableList();
 
 
 
