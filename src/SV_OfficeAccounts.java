@@ -10,7 +10,7 @@ import javax.swing.event.*;
  */
 public class SV_OfficeAccounts extends JFrame
 {
-    //private svLogic logic;
+    //CHECK JTABLE MAX SIZE, WHY IS IT LIMITED???
 
     private AccountDAO accountDAO;
     //more DAOs for other tables
@@ -78,6 +78,7 @@ public class SV_OfficeAccounts extends JFrame
         {
             System.out.println("Error Creating AccountDAO");
         }
+       //tableViewTable.set
         tableViewTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         //methodthis set table to accounts
@@ -173,6 +174,7 @@ public class SV_OfficeAccounts extends JFrame
 
         buttonNew.addActionListener(new ActionListener()
         {
+            //note, update Accounts # in JList!
             @Override
             public void actionPerformed(ActionEvent e)
             {
@@ -191,6 +193,7 @@ public class SV_OfficeAccounts extends JFrame
         });
         buttonDelete.addActionListener(new ActionListener()
         {
+            //note, update Accounts # in JList!
             @Override
             public void actionPerformed(ActionEvent e)
             {
@@ -224,8 +227,10 @@ public class SV_OfficeAccounts extends JFrame
             List<Account> accounts;
 
             accounts = accountDAO.getAllAccounts();
-
+            //accountmodel.
+            //tableViewTable.setPreferredScrollableViewportSize(tableViewTable.getPreferredSize());
             accountmodel = new AccountTableModel(accounts);
+            //accountmodel.set
 
             tableViewTable.setModel(accountmodel);
 
@@ -241,7 +246,7 @@ public class SV_OfficeAccounts extends JFrame
     {
         try
         {
-            
+
             List<Account> accounts;
 
 
@@ -253,6 +258,8 @@ public class SV_OfficeAccounts extends JFrame
 
             accountmodel.fireTableDataChanged();
             //System.out.println("hereeee4e");
+            System.out.println(tableViewTable.getRowCount());
+            System.out.println(accountmodel.getRowCount());
            tableViewTable.setModel(accountmodel); //This line throws the exception below...but is absolute necessary???
            // System.out.println("hereeee");
 
