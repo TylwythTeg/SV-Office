@@ -33,6 +33,12 @@ public class SV_OfficeAccounts extends JFrame
     private JLabel labelRevenue;
     private JScrollPane machineScrollPane;
     private JTable machineTable;
+    private JButton buttonSave;
+    private JButton buttonRevert;
+    private JPanel Deletecheck;
+    private DeleteCheck delchk;
+
+    JFrame deleteCheck;
 
     private TablesListModel tablelist;
     AccountTableModel accountmodel;
@@ -66,6 +72,8 @@ public class SV_OfficeAccounts extends JFrame
 
     public SV_OfficeAccounts()
     {
+
+        delchk = new DeleteCheck();
         ListForSections.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         try
         {
@@ -199,6 +207,21 @@ public class SV_OfficeAccounts extends JFrame
             {
                 System.out.println("selected row is " + tableViewTable.getSelectedRow());
                 System.out.println("test1");
+
+
+               /* JFrame deleteCheck = new JFrame("DeleteCheck");
+                deleteCheck.setContentPane(delchk.getJPanel());
+                //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                deleteCheck.pack();
+                deleteCheck.setLocationRelativeTo(frame);
+
+                deleteCheck.setVisible(true);
+
+
+
+                deleteCheck.setTitle("SV Office Alpha");
+                frame.setFocusable(false);*/
+
 
                 try{
 
