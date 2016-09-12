@@ -1,33 +1,29 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
 import java.util.List;
-import java.util.EventObject;
 import javax.swing.event.*;
 /**
  * Created by Rob on 7/3/2016.
  */
 public class SV_OfficeAccounts extends JFrame
 {
-    //CHECK JTABLE MAX SIZE, WHY IS IT LIMITED???
-
+    //DAOs
     private AccountDAO accountDAO;
-    //more DAOs for other tables
     private MachineDAO machineDAO;
 
     JFrame frame;
-    private JPanel panelhh;
-    private JPanel ListPanel;
-    private JList ListForSections;
+    private JPanel window;
+    private JPanel listPanel;
+    private JList listForSections;
     private JButton buttonNew;
     private JButton buttonDelete;
-    private JPanel topButtonPanel;
+    private JPanel tableButtonPanel;
     private JTable tableViewTable;
     private JPanel panelForTable;
     private JPanel tablePanelEnclosure;
-    private JScrollPane RowListScrollPane;
-    private JTextField nameFilter;
+    private JScrollPane rowListScrollPane;
+    private JTextField nameFilterTextArea;
     private JTextField formNameField;
     private JTextField formAddressField;
     private JLabel labelRevenue;
@@ -35,46 +31,38 @@ public class SV_OfficeAccounts extends JFrame
     private JTable machineTable;
     private JButton buttonSave;
     private JButton buttonRevert;
-    private JPanel Deletecheck;
-    private DeleteCheck delchk;
 
-    JFrame deleteCheck;
-
-    private TablesListModel tablelist;
-    AccountTableModel accountmodel;
+    private TablesListModel tableList;
+    AccountTableModel accountModel;
 
 
 
     public static void main(String[] args)
     {
         JFrame frame = new JFrame("SV_OfficeAccounts");
-        frame.setContentPane(new SV_OfficeAccounts().panelhh);
+        frame.setContentPane(new SV_OfficeAccounts().window);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
 
         frame.setTitle("SV Office Alpha");
-        //System.out.println("hey");
-
-
     }
 
     public void setTableList() throws Exception
     {
-        TablesListModel tablelist = new TablesListModel();
-        tablelist.initList(accountDAO.getRowCount());
+        //Will want to edit list elements rather than creating entirely new Objects when updating
+        TablesListModel tableList = new TablesListModel();
+        tableList.initList(accountDAO.getRowCount());
 
-        ListForSections.setModel(tablelist);
-
-
+        listForSections.setModel(tableList);    //This may throw a nullpointer Exception. Why???;
     }
 
 
     public SV_OfficeAccounts()
     {
+        listForSections.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        tableViewTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        delchk = new DeleteCheck();
-        ListForSections.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         try
         {
             accountDAO = new AccountDAO();
@@ -86,8 +74,7 @@ public class SV_OfficeAccounts extends JFrame
         {
             System.out.println("Error Creating AccountDAO");
         }
-       //tableViewTable.set
-        tableViewTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
 
         //methodthis set table to accounts
         try
@@ -108,6 +95,15 @@ public class SV_OfficeAccounts extends JFrame
             {
                 //if (tableViewTable.getValueIsAdjusting())
                     //return;
+
+                System.out.println("Selected Row == " + tableViewTable.getSelectedRow());
+                if(tableViewTable.getSelectedRow() == -1)
+                {
+                    formNameField.setText("");
+                    formAddressField.setText("");
+                    return;
+                }
+
 
 
                 System.out.println("The next line will fail the second trigger (Why trigger twice for Table?");
@@ -137,18 +133,22 @@ public class SV_OfficeAccounts extends JFrame
             }
         });
 
-        ListForSections.addListSelectionListener(new ListSelectionListener()
+        listForSections.addListSelectionListener(new ListSelectionListener()
         {
             @Override
             public void valueChanged(ListSelectionEvent e)
             {
                 System.out.println("In list response");
 
-                if (ListForSections.getValueIsAdjusting())
+                if (listForSections.getValueIsAdjusting() || listForSections.getSelectedValue() == null)
                     return;
 
+                if(tableViewTable.getSelectedRow() != -1)
+                    tableViewTable.clearSelection();
 
-                String selection = ListForSections.getSelectedValue().toString();
+
+
+                String selection = listForSections.getSelectedValue().toString();
 
 
                 if (selection.startsWith("Account"))
@@ -182,15 +182,15 @@ public class SV_OfficeAccounts extends JFrame
 
         buttonNew.addActionListener(new ActionListener()
         {
-            //note, update Accounts # in JList!
             @Override
             public void actionPerformed(ActionEvent e)
             {
+
                 try
                 {
                     Account account = accountDAO.newAccount();
 
-                    accountmodel.addRow(account);
+                    accountModel.addRow(account);
                     updateAccountTableView();
                 } catch (Exception esc)
                 {
@@ -201,27 +201,15 @@ public class SV_OfficeAccounts extends JFrame
         });
         buttonDelete.addActionListener(new ActionListener()
         {
-            //note, update Accounts # in JList!
             @Override
             public void actionPerformed(ActionEvent e)
             {
                 System.out.println("selected row is " + tableViewTable.getSelectedRow());
+
+                if(tableViewTable.getSelectedRow() == -1)
+                    return;
+
                 System.out.println("test1");
-
-
-               /* JFrame deleteCheck = new JFrame("DeleteCheck");
-                deleteCheck.setContentPane(delchk.getJPanel());
-                //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                deleteCheck.pack();
-                deleteCheck.setLocationRelativeTo(frame);
-
-                deleteCheck.setVisible(true);
-
-
-
-                deleteCheck.setTitle("SV Office Alpha");
-                frame.setFocusable(false);*/
-
 
                 try{
 
@@ -230,13 +218,63 @@ public class SV_OfficeAccounts extends JFrame
                     accountDAO.deleteAccount(account_id);
 
 
-                   accountmodel.removeRow(tableViewTable.getSelectedRow()-1);
+                   accountModel.removeRow(tableViewTable.getSelectedRow()-1);
                     updateAccountTableView();
                 }
                 catch(Exception esc)
                 {
                     System.out.println("Del Exception" + esc);
+                    esc.printStackTrace();
                 }
+            }
+        });
+
+        buttonSave.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                //check if selection row
+                if(tableViewTable.getSelectedRow() == -1)
+                {
+                    System.out.println("No row selected");
+                    return;
+                }
+
+                //for Account
+                //pull text from fields
+                String accountName;
+                String accountAddress;
+                accountName = formNameField.getText();
+                accountAddress = formAddressField.getText();
+                System.out.println(accountName);
+                System.out.println(accountAddress);
+
+                //use fields to change info in database for row selection
+
+
+            }
+        });
+        buttonRevert.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                //check if selection row
+                if(tableViewTable.getSelectedRow() == -1)
+                {
+                    System.out.println("No row selected");
+                    return;
+                }
+
+                //for Account
+                //pull fields from database
+                String accountName;
+                String accountAddress;
+
+                //set textfields to new strings
+
+                System.out.println("Reverted");
             }
         });
     }
@@ -250,12 +288,9 @@ public class SV_OfficeAccounts extends JFrame
             List<Account> accounts;
 
             accounts = accountDAO.getAllAccounts();
-            //accountmodel.
-            //tableViewTable.setPreferredScrollableViewportSize(tableViewTable.getPreferredSize());
-            accountmodel = new AccountTableModel(accounts);
-            //accountmodel.set
+            accountModel = new AccountTableModel(accounts);
 
-            tableViewTable.setModel(accountmodel);
+            tableViewTable.setModel(accountModel);
 
 
         }
@@ -271,31 +306,21 @@ public class SV_OfficeAccounts extends JFrame
         {
 
             List<Account> accounts;
-
-
             accounts = accountDAO.getAllAccounts();
+            accountModel = new AccountTableModel(accounts);
+            accountModel.fireTableDataChanged();
 
-
-            accountmodel = new AccountTableModel(accounts);
-
-
-            accountmodel.fireTableDataChanged();
-            //System.out.println("hereeee4e");
             System.out.println(tableViewTable.getRowCount());
-            System.out.println(accountmodel.getRowCount());
+            System.out.println(accountModel.getRowCount());
             setTableList();
-           tableViewTable.setModel(accountmodel); //This line throws the exception below...but is absolute necessary???
-           // System.out.println("hereeee");
-
-           // setTableList();
-
-
 
         }
         catch(Exception exc)
         {
             System.out.println("this is exception:" + exc);
+
         }
+        tableViewTable.setModel(accountModel);
     }
 
 

@@ -17,27 +17,23 @@ public class Account
     {
         return account_id;
     }
-
-    public void setId(int id)
-    {
-        this.account_id = id;
-    }
-
     public String getName()
     {
         return name;
     }
-
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
     public String getAddress()
     {
         return address;
     }
 
+    public void setId(int id)
+    {
+        this.account_id = id;
+    }
+    public void setName(String name)
+    {
+        this.name = name;
+    }
     public void setAddress(String address)
     {
         this.address = address;
