@@ -6,6 +6,7 @@ public class AccountDAO extends DAO
 
     public AccountDAO() throws Exception
     {
+        //System.out.println(connection.getAutoCommit());
     }
 
     public List<Account> getAllAccounts() throws Exception
@@ -143,6 +144,40 @@ public class AccountDAO extends DAO
         System.out.println("Account:" + resultSet.getInt("account_id"));
 
         return account;
+    }
+
+    public void updateAccount(int accountID, String accountName, String accountAddress) throws SQLException
+    {
+
+        String updateString =
+               "UPDATE accounts "
+                       + "set name = ?, address= ? where account_id = ?";
+        PreparedStatement update = null;
+        update = connection.prepareStatement(updateString);
+        update.setString(1,accountName);
+        update.setString(2,accountAddress);
+        update.setInt(3,accountID);
+        update.executeUpdate();
+
+    }
+
+    public String getColumn(int accountID, String column) throws SQLException
+    {
+        //String value = null;
+
+        Statement stmt = null;
+        ResultSet resultSet = null;
+
+        stmt = connection.createStatement();
+        resultSet = stmt.executeQuery("SELECT " + column + " FROM accounts WHERE account_id=" + accountID);
+        //Account account = rowToAccount(resultSet);
+        resultSet.next();
+        String value = resultSet.getString(column);
+
+
+
+
+        return value;
     }
 
 

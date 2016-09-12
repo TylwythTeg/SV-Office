@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.event.*;
+import java.sql.*;
 /**
  * Created by Rob on 7/3/2016.
  */
@@ -235,7 +236,7 @@ public class SV_OfficeAccounts extends JFrame
             public void actionPerformed(ActionEvent e)
             {
                 //check if selection row
-                if(tableViewTable.getSelectedRow() == -1)
+                if (tableViewTable.getSelectedRow() == -1)
                 {
                     System.out.println("No row selected");
                     return;
@@ -251,6 +252,15 @@ public class SV_OfficeAccounts extends JFrame
                 System.out.println(accountAddress);
 
                 //use fields to change info in database for row selection
+                int accountID = Integer.parseInt(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 0).toString());
+                try
+                {
+                    accountDAO.updateAccount(accountID, accountName, accountAddress);
+                } catch (SQLException exc)
+                {
+                    System.out.println("Unable to update account in database " + exc);
+                }
+                updateAccountTableView();
 
 
             }
@@ -261,7 +271,7 @@ public class SV_OfficeAccounts extends JFrame
             public void actionPerformed(ActionEvent e)
             {
                 //check if selection row
-                if(tableViewTable.getSelectedRow() == -1)
+                if (tableViewTable.getSelectedRow() == -1)
                 {
                     System.out.println("No row selected");
                     return;
@@ -269,10 +279,24 @@ public class SV_OfficeAccounts extends JFrame
 
                 //for Account
                 //pull fields from database
+                int accountID = Integer.parseInt(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 0).toString());
                 String accountName;
                 String accountAddress;
+                try
+                {
+                    accountName = accountDAO.getColumn(accountID, "name"); //query name from id
+                    accountAddress = accountDAO.getColumn(accountID, "address"); //query address from id
+                } catch (SQLException exc)
+                {
+                    System.out.println("Unable to retrieve account in database " + exc);
+                    return;
+                }
 
                 //set textfields to new strings
+                System.out.println("Account= " + accountName + " Address= " + accountAddress + " ID:" + accountID);
+                formNameField.setText(accountName);
+                formAddressField.setText(accountAddress);
+
 
                 System.out.println("Reverted");
             }
