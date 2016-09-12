@@ -163,14 +163,12 @@ public class AccountDAO extends DAO
 
     public String getColumn(int accountID, String column) throws SQLException
     {
-        //String value = null;
 
         Statement stmt = null;
         ResultSet resultSet = null;
 
         stmt = connection.createStatement();
         resultSet = stmt.executeQuery("SELECT " + column + " FROM accounts WHERE account_id=" + accountID);
-        //Account account = rowToAccount(resultSet);
         resultSet.next();
         String value = resultSet.getString(column);
 
