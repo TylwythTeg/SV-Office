@@ -54,7 +54,7 @@ public class SV_OfficeAccounts extends JFrame
 
     public static void main(String[] args)
     {
-       /* JFrame frame = new JFrame("SV_OfficeAccounts");
+        JFrame frame = new JFrame("SV_OfficeAccounts");
 
         frame.setContentPane(new SV_OfficeAccounts().outerMain);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,9 +62,9 @@ public class SV_OfficeAccounts extends JFrame
 
         frame.setVisible(true);
 
-        frame.setTitle("SV Office Alpha");*/
+        frame.setTitle("SV Office Alpha");
 
-        altogetherWindow = new SV_Office();
+        /*altogetherWindow = new SV_Office();
         JFrame frame = new JFrame("SV_O");
         frame.setContentPane(new SV_OfficeAccounts().altogetherWindow.cardContainer);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -79,7 +79,7 @@ public class SV_OfficeAccounts extends JFrame
         altogetherWindow.cardContainer.add(delCheck,"sdf");
         CardLayout cl = (CardLayout)(altogetherWindow.cardContainer.getLayout());
         cl.show(altogetherWindow.cardContainer,"sdf");
-        frame.pack();
+        frame.pack();*/
 
 
 

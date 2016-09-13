@@ -1,22 +1,16 @@
 import javax.swing.*;
 import java.awt.CardLayout;
 
-import java.util.concurrent.TimeUnit;
 
-/**
- * Created by Rob on 9/12/2016.
- */
 public class SV_Office
 {
     private static JFrame frame;
-    protected JPanel cardContainer; //protected so old SV_OfficeAccounts.java can access
+    private JPanel cardContainer;
     private static JPanel cardAccountPage;
     private static JPanel cardMachinePage;
 
     private static CardLayout cardLayout;
 
-    //cards
-    //private static CardAccountPage cardAccountPage;
 
 
     public static void main(String[] args)
@@ -28,24 +22,11 @@ public class SV_Office
         frame.pack();
         frame.setVisible(true);
 
-
-
-
-
-
     }
 
     public SV_Office()
     {
         setCards();
-
-
-
-
-
-
-
-
     }
 
     public void setCards()
@@ -55,7 +36,7 @@ public class SV_Office
 
         //cards setup, get Jpanels
         //because java passes objects by reference(?) we can pass cardLayout and cardContainer so listeners on those panels
-        //can change between eachother
+        //can change between eachother. Or maybe that's not the reason at all, but it works
         cardAccountPage = new CardAccountPage(cardLayout, cardContainer).window;
         cardMachinePage = new CardMachinePage().window;
 
@@ -64,16 +45,7 @@ public class SV_Office
         cardContainer.add(cardMachinePage, "Machine");
 
 
-
         //first layout view is Accounts
         cardLayout.show(cardContainer, "Account");
-        try
-        {
-            TimeUnit.SECONDS.sleep(10);
-        } catch (Exception exc)
-        {
-            System.out.println("error");
-        }
-        //cardLayout.show(cardContainer,"Machine");
     }
 }

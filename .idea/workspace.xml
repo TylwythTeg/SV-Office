@@ -2,22 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="216100fd-a58a-481f-9b57-a2d7313516d0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SV_Office.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SV1/AccountDAO.class" afterPath="$PROJECT_DIR$/out/production/SV1/AccountDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SV1/DeleteCheck.class" afterPath="$PROJECT_DIR$/out/production/SV1/DeleteCheck.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SV1/SV_OfficeAccounts$1.class" afterPath="$PROJECT_DIR$/out/production/SV1/SV_OfficeAccounts$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SV1/SV_OfficeAccounts$2.class" afterPath="$PROJECT_DIR$/out/production/SV1/SV_OfficeAccounts$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SV1/SV_OfficeAccounts$3.class" afterPath="$PROJECT_DIR$/out/production/SV1/SV_OfficeAccounts$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SV1/SV_OfficeAccounts$4.class" afterPath="$PROJECT_DIR$/out/production/SV1/SV_OfficeAccounts$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SV1/SV_OfficeAccounts$5.class" afterPath="$PROJECT_DIR$/out/production/SV1/SV_OfficeAccounts$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SV1/SV_OfficeAccounts$6.class" afterPath="$PROJECT_DIR$/out/production/SV1/SV_OfficeAccounts$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SV1/CardAccountPage$1.class" afterPath="$PROJECT_DIR$/out/production/SV1/CardAccountPage$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SV1/CardAccountPage.class" afterPath="$PROJECT_DIR$/out/production/SV1/CardAccountPage.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SV1/SV_Office.class" afterPath="$PROJECT_DIR$/out/production/SV1/SV_Office.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SV1/SV_OfficeAccounts.class" afterPath="$PROJECT_DIR$/out/production/SV1/SV_OfficeAccounts.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AccountDAO.java" afterPath="$PROJECT_DIR$/src/AccountDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DeleteCheck.form" afterPath="$PROJECT_DIR$/src/DeleteCheck.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DeleteCheck.java" afterPath="$PROJECT_DIR$/src/DeleteCheck.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SV_OfficeAccounts.form" afterPath="$PROJECT_DIR$/src/SV_OfficeAccounts.form" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SV_Office.java" afterPath="$PROJECT_DIR$/src/SV_Office.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SV_OfficeAccounts.java" afterPath="$PROJECT_DIR$/src/SV_OfficeAccounts.java" />
     </list>
     <ignored path="SV1.iws" />
@@ -71,8 +61,8 @@
       <file leaf-file-name="SV_OfficeAccounts.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SV_OfficeAccounts.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="21" selection-end-column="34" />
+            <state relative-caret-position="272">
+              <caret line="64" column="42" selection-start-line="64" selection-start-column="42" selection-end-line="64" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -104,8 +94,6 @@
               <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="9" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1019#1020#0" expanded="true" />
-                <element signature="e#1071#1072#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -128,10 +116,12 @@
       <file leaf-file-name="SV_Office.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SV_Office.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="56" column="53" selection-start-line="56" selection-start-column="53" selection-end-line="56" selection-end-column="53" />
+            <state relative-caret-position="-328">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#621#622#0" expanded="true" />
+                <element signature="e#647#648#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -147,7 +137,7 @@
       <file leaf-file-name="CardAccountPage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CardAccountPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
+            <state relative-caret-position="250">
               <caret line="96" column="18" selection-start-line="96" selection-start-column="18" selection-end-line="96" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -199,10 +189,10 @@
         <option value="$PROJECT_DIR$/src/SV_OfficeAccounts.form" />
         <option value="$PROJECT_DIR$/src/SV_O.java" />
         <option value="$PROJECT_DIR$/src/SV_Office.form" />
-        <option value="$PROJECT_DIR$/src/SV_OfficeAccounts.java" />
         <option value="$PROJECT_DIR$/src/formAccount.form" />
         <option value="$PROJECT_DIR$/src/formMachine.form" />
         <option value="$PROJECT_DIR$/src/CardMachinePage.java" />
+        <option value="$PROJECT_DIR$/src/SV_OfficeAccounts.java" />
         <option value="$PROJECT_DIR$/src/CardAccountPage.java" />
         <option value="$PROJECT_DIR$/src/SV_Office.java" />
       </list>
@@ -297,8 +287,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -333,7 +323,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -920,12 +910,13 @@
       <workItem from="1473485379379" duration="10652000" />
       <workItem from="1473551600965" duration="9164000" />
       <workItem from="1473643181611" duration="17598000" />
-      <workItem from="1473705469690" duration="17982000" />
+      <workItem from="1473705469690" duration="19609000" />
+      <workItem from="1473740830560" duration="1114000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137581000" />
+    <option name="totallyTimeSpent" value="140322000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
@@ -945,7 +936,6 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22291666" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -957,6 +947,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08888889" sideWeight="0.51302934" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1175,13 +1166,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="MarkdownFxPreviewEditor">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="15" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
         </state>
+      </provider>
+      <provider editor-type-id="MarkdownFxPreviewEditor">
+        <state />
       </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="FIRST">
@@ -1196,7 +1187,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1261,31 +1251,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/formAccount.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/DAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="21" column="31" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="31" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SV_Office.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SV_OfficeAccounts.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="21" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1302,10 +1272,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CardAccountPage.java">
+    <entry file="file://$PROJECT_DIR$/src/formAccount.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SV_OfficeAccounts.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="96" column="18" selection-start-line="96" selection-start-column="18" selection-end-line="96" selection-end-column="18" />
+        <state relative-caret-position="272">
+          <caret line="64" column="42" selection-start-line="64" selection-start-column="42" selection-end-line="64" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1329,18 +1304,33 @@
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="9" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1019#1020#0" expanded="true" />
-            <element signature="e#1071#1072#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SV_Office.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CardAccountPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="96" column="18" selection-start-line="96" selection-start-column="18" selection-end-line="96" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SV_Office.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="56" column="53" selection-start-line="56" selection-start-column="53" selection-end-line="56" selection-end-column="53" />
+        <state relative-caret-position="-328">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#621#622#0" expanded="true" />
+            <element signature="e#647#648#0" expanded="true" />
           </folding>
         </state>
       </provider>
