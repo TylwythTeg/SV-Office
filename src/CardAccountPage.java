@@ -1,38 +1,32 @@
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.awt.*;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
-import javax.swing.event.*;
-import java.sql.*;
-import javax.swing.JTextArea;
-import javax.swing.JLabel;
+import java.sql.SQLException;
 import java.awt.CardLayout;
-import java.awt.Container;
+import java.util.*;
 
 /**
- * Created by Rob on 7/3/2016.
+ * Created by Rob on 9/12/2016.
  */
-public class SV_OfficeAccounts extends JFrame
+public class CardAccountPage
 {
-
-    //will need to clear machine table when rows are deselected in account table
-
-    //DAOs
-    private AccountDAO accountDAO;
-    private MachineDAO machineDAO;
-
-    JFrame frame;
-    private JPanel window;
+    private JPanel outerMain;
+    protected JPanel window; //allow use in SV_Office
     private JPanel listPanel;
     private JList listForSections;
-    private JButton buttonNew;
-    private JButton buttonDelete;
-    private JPanel tableButtonPanel;
-    private JTable tableViewTable;
-    private JPanel panelForTable;
     private JPanel tablePanelEnclosure;
+    private JPanel tableButtonPanel;
+    private JButton buttonDelete;
+    private JButton buttonNew;
+    private JPanel panelForTable;
     private JScrollPane rowListScrollPane;
+    private JTable tableViewTable;
     private JTextField nameFilterTextArea;
+    private JPanel tableFieldsPanel;
     private JTextField formNameField;
     private JTextField formAddressField;
     private JLabel labelRevenue;
@@ -40,51 +34,10 @@ public class SV_OfficeAccounts extends JFrame
     private JTable machineTable;
     private JButton buttonSave;
     private JButton buttonRevert;
-    private JPanel tableFieldsPanel;
-    private JPanel outerMain;
-
-    private TablesListModel tableList;
     AccountTableModel accountModel;
+    private AccountDAO accountDAO;
+    private MachineDAO machineDAO;
 
-    //private JTextArea newtet;
-    private JPanel deleteCheck;
-    private static SV_Office altogetherWindow;
-    private static DeleteCheck delcheck;
-
-
-    public static void main(String[] args)
-    {
-       /* JFrame frame = new JFrame("SV_OfficeAccounts");
-
-        frame.setContentPane(new SV_OfficeAccounts().outerMain);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-
-        frame.setVisible(true);
-
-        frame.setTitle("SV Office Alpha");*/
-
-        altogetherWindow = new SV_Office();
-        JFrame frame = new JFrame("SV_O");
-        frame.setContentPane(new SV_OfficeAccounts().altogetherWindow.cardContainer);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-
-        frame.setTitle("SV Office Alpha");
-
-        JPanel card1 = new SV_OfficeAccounts().window;
-        JPanel delCheck = new DeleteCheck().deleteCheck;
-        altogetherWindow.cardContainer.add(card1,"card1");
-        altogetherWindow.cardContainer.add(delCheck,"sdf");
-        CardLayout cl = (CardLayout)(altogetherWindow.cardContainer.getLayout());
-        cl.show(altogetherWindow.cardContainer,"sdf");
-        frame.pack();
-
-
-
-
-    }
 
     public void setTableList() throws Exception
     {
@@ -96,7 +49,7 @@ public class SV_OfficeAccounts extends JFrame
     }
 
 
-    public SV_OfficeAccounts()
+    public CardAccountPage(CardLayout cardLayout, JPanel cardContainer)
     {
         listForSections.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tableViewTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -126,20 +79,13 @@ public class SV_OfficeAccounts extends JFrame
         }
         //methodthis
 
-        outerMain.setLayout(new CardLayout());
-       deleteCheck = new DeleteCheck().deleteCheck;
-       outerMain.add(deleteCheck);
-        //outerMain.deleteCheck;
-        //outerMain
-       // outerMain.show(deleteCheck);
-
 
         tableViewTable.getSelectionModel().addListSelectionListener(new ListSelectionListener()
         {
             public void valueChanged(ListSelectionEvent event)
             {
                 //if (tableViewTable.getValueIsAdjusting())
-                    //return;
+                //return;
 
                 System.out.println("Selected Row == " + tableViewTable.getSelectedRow());
                 if(tableViewTable.getSelectedRow() == -1)
@@ -148,6 +94,7 @@ public class SV_OfficeAccounts extends JFrame
                     formAddressField.setText("");
                     return;
                 }
+                //cardLayout.show(cardContainer,"Machine");
 
 
                 System.out.println("The next line will fail the second trigger (Why trigger twice for Table?");
@@ -158,7 +105,7 @@ public class SV_OfficeAccounts extends JFrame
                 int account_id = (int) accountIdObj;
 
 
-                List<Machine> machines = null;
+                java.util.List<Machine> machines = null;
 
                 try
                 {
@@ -262,7 +209,7 @@ public class SV_OfficeAccounts extends JFrame
                     accountDAO.deleteAccount(account_id);
 
 
-                   accountModel.removeRow(tableViewTable.getSelectedRow()-1);
+                    accountModel.removeRow(tableViewTable.getSelectedRow()-1);
                     updateAccountTableView();
                 }
                 catch(Exception esc)
@@ -352,7 +299,7 @@ public class SV_OfficeAccounts extends JFrame
     {
         try
         {
-            List<Account> accounts;
+            java.util.List<Account> accounts;
 
             accounts = accountDAO.getAllAccounts();
             accountModel = new AccountTableModel(accounts);
@@ -376,7 +323,7 @@ public class SV_OfficeAccounts extends JFrame
         try
         {
 
-            List<Account> accounts;
+            java.util.List<Account> accounts;
             accounts = accountDAO.getAllAccounts();
             accountModel = new AccountTableModel(accounts);
             accountModel.fireTableDataChanged();
@@ -394,13 +341,4 @@ public class SV_OfficeAccounts extends JFrame
         tableViewTable.setModel(accountModel);
 
     }
-
-
-
-    private void createUIComponents()
-    {
-        // TODO: place custom component creation code here
-    }
-
-
 }

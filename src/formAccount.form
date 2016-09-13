@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="SV_OfficeAccounts">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="CardAccountPage">
   <grid id="6ce6e" binding="outerMain" layout-manager="GridBagLayout">
     <constraints>
-	  <card name="Card1"/>
+      <xy x="0" y="0" width="827" height="483"/>
     </constraints>
     <properties/>
     <border type="none"/>

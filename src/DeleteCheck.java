@@ -16,6 +16,8 @@ public class DeleteCheck
     private JPanel DeleteCheck;
     private JButton buttonYesDelete;
     private JButton buttonNoDelete;
+    public JPanel deleteCheck;
+    private JPanel sfffef;
 
     public static void main(String[] args)
     {

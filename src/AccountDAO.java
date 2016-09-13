@@ -172,9 +172,6 @@ public class AccountDAO extends DAO
         resultSet.next();
         String value = resultSet.getString(column);
 
-
-
-
         return value;
     }
 
