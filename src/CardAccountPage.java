@@ -150,6 +150,7 @@ public class CardAccountPage
                 if (selection.startsWith("Machine"))
                 {
                     System.out.println("You have Selected Machine");
+                    cardLayout.show(cardContainer,"Machine");
                 }
                 if (selection.startsWith("Log"))
                 {

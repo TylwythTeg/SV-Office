@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.util.List;
 
 public class CardMachinePage
 {
@@ -22,9 +23,34 @@ public class CardMachinePage
     private JButton buttonRevert;
     private JTextField formAssetField;
     private JTextField formModelField;
+    private MachineDAO machineDAO;
 
     public CardMachinePage()
     {
+
+        setMachineTableView();
+    }
+
+    public void setMachineTableView()
+    {
+        try
+        {
+            List<Machine> machines;
+
+            machineDAO = new MachineDAO();
+            machines = machineDAO.getAllMachines();
+            MachineTableModel machineModel = new MachineTableModel(machines);
+
+            tableViewTable.setModel(machineModel);
+            System.out.println("gotmachines");
+
+        }
+        catch(Exception exc)
+        {
+            System.out.println("this " + exc);
+            exc.printStackTrace();
+        }
+
 
     }
 }
