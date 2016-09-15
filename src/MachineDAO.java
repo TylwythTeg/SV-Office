@@ -96,4 +96,51 @@ public class MachineDAO extends DAO
 
         return i;
     }
+
+    public Machine newMachine()
+    {
+        Statement stmt = null;
+        ResultSet resultSet = null;
+
+        try
+        {
+            stmt = connection.createStatement();
+            System.out.println("ehey");
+            stmt.execute("INSERT INTO machines (type, brand) VALUES ('New Machine','New Brand')");
+
+
+            resultSet = stmt.executeQuery("SELECT * FROM accounts WHERE account_id=(SELECT max(account_id) FROM accounts)");
+            Machine machine = rowToMachine(resultSet);
+            return machine;
+
+        }
+        catch(Exception exc)
+        {
+            System.out.println("hey");
+
+        }
+        Machine machine = null;
+        return machine;
+
+    }
+
+    public void deleteMachine(int machine_id)
+    {
+        Statement stmt = null;
+
+        try
+        {
+            stmt = connection.createStatement();
+            stmt.execute("DELETE FROM machines WHERE machine_id=" + machine_id);
+            System.out.println("Machine Deleted in DATABASE");
+
+
+        }
+        catch(Exception exc)
+        {
+            System.out.println("failure in deleting accoutn in MachineDAO");
+        }
+
+
+    }
 }

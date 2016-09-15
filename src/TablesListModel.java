@@ -11,10 +11,10 @@ class TablesListModel extends DefaultListModel
        //List<String> tableNames = new ArrayList<>();
     }
 
-    public void initList(int accountRows)
+    public void initList(int accountRows, int machineRows)
     {
         this.addElement("Accounts " + "(" + accountRows + ")");
-        this.addElement("Machine");
+        this.addElement("Machines " + "(" + machineRows + ")");
         this.addElement("Log");
         this.addElement("Product");
         this.addElement("Route");

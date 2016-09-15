@@ -71,4 +71,14 @@ class MachineTableModel extends AbstractTableModel
         return (value==null?Object.class:value.getClass());
         //return getValueAt(0,c).getClass();
     }
+
+    public void addRow(Machine machine)
+    {
+        machines.add(machine);
+        fireTableRowsInserted(machines.size() - 1, machines.size() - 1);
+    }
+    public void removeRow(int row) {
+        // remove a row from your internal data structure
+        fireTableRowsDeleted(row, row);
+    }
 }

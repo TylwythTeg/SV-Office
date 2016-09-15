@@ -90,7 +90,7 @@ public class SV_OfficeAccounts extends JFrame
     {
         //Will want to edit list elements rather than creating entirely new Objects when updating
         TablesListModel tableList = new TablesListModel();
-        tableList.initList(accountDAO.getRowCount());
+        //tableList.initList(accountDAO.getRowCount());
 
         listForSections.setModel(tableList);    //This may throw a nullpointer Exception. Why???;
     }
@@ -236,6 +236,7 @@ public class SV_OfficeAccounts extends JFrame
 
                     accountModel.addRow(account);
                     updateAccountTableView();
+
                 } catch (Exception esc)
                 {
                     System.out.println("psh");

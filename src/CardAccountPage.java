@@ -2,7 +2,7 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.List;
+import java.awt.List.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -34,31 +34,24 @@ public class CardAccountPage
     private JTable machineTable;
     private JButton buttonSave;
     private JButton buttonRevert;
+    protected JPanel accountPanel;
     AccountTableModel accountModel;
     private AccountDAO accountDAO;
     private MachineDAO machineDAO;
 
 
-    public void setTableList() throws Exception
+
+
+    public CardAccountPage(TablesListModel tableList)
     {
-        //Will want to edit list elements rather than creating entirely new Objects when updating
-        TablesListModel tableList = new TablesListModel();
-        tableList.initList(accountDAO.getRowCount());
-
-        listForSections.setModel(tableList);    //This may throw a nullpointer Exception. Why???;
-    }
-
-
-    public CardAccountPage(CardLayout cardLayout, JPanel cardContainer)
-    {
-        listForSections.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        //listForSections.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tableViewTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //System.out.println(frame);
         try
         {
             accountDAO = new AccountDAO();
 
-            setTableList();
+
 
             machineDAO = new MachineDAO();
         } catch (Exception exc)
@@ -94,8 +87,6 @@ public class CardAccountPage
                     formAddressField.setText("");
                     return;
                 }
-                //cardLayout.show(cardContainer,"Machine");
-
 
                 System.out.println("The next line will fail the second trigger (Why trigger twice for Table?");
                 formNameField.setText(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 1).toString());
@@ -124,53 +115,7 @@ public class CardAccountPage
             }
         });
 
-        listForSections.addListSelectionListener(new ListSelectionListener()
-        {
-            @Override
-            public void valueChanged(ListSelectionEvent e)
-            {
-                System.out.println("In list response");
 
-                if (listForSections.getValueIsAdjusting() || listForSections.getSelectedValue() == null)
-                    return;
-
-                if(tableViewTable.getSelectedRow() != -1)
-                    tableViewTable.clearSelection();
-
-
-
-                String selection = listForSections.getSelectedValue().toString();
-
-
-                if (selection.startsWith("Account"))
-                {
-                    System.out.println("You have Selected Account");
-                    updateAccountTableView();
-                }
-                if (selection.startsWith("Machine"))
-                {
-                    System.out.println("You have Selected Machine");
-                    cardLayout.show(cardContainer,"Machine");
-                }
-                if (selection.startsWith("Log"))
-                {
-                    System.out.println("You have Selected Log");
-                }
-                if (selection.startsWith("Product"))
-                {
-                    System.out.println("You have Selected Product");
-                }
-                if (selection.startsWith("Route"))
-                {
-                    System.out.println("You have Selected Route");
-                }
-                if (selection.startsWith("Employee"))
-                {
-                    System.out.println("You have Selected Employee");
-                }
-
-            }
-        });
 
         buttonNew.addActionListener(new ActionListener()
         {
@@ -184,6 +129,8 @@ public class CardAccountPage
 
                     accountModel.addRow(account);
                     updateAccountTableView();
+                    tableList.setElementAt("Accounts (" + accountDAO.getRowCount() + ")",0);
+
                 } catch (Exception esc)
                 {
                     System.out.println("psh");
@@ -212,6 +159,7 @@ public class CardAccountPage
 
                     accountModel.removeRow(tableViewTable.getSelectedRow()-1);
                     updateAccountTableView();
+                    tableList.setElementAt("Accounts (" + accountDAO.getRowCount() + ")",0);
                 }
                 catch(Exception esc)
                 {
@@ -331,7 +279,7 @@ public class CardAccountPage
 
             System.out.println(tableViewTable.getRowCount());
             System.out.println(accountModel.getRowCount());
-            setTableList();
+
 
         }
         catch(Exception exc)
