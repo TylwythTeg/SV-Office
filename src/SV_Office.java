@@ -11,8 +11,8 @@ public class SV_Office
     private JPanel cardContainer;
     private static JPanel cardAccountPage;
     private static JPanel cardMachinePage;
-    private static CardAccountPage accountPage; //remove card from these class names
-    private static CardMachinePage machinePage;
+    private static AccountPage accountPage; //remove card from these class names
+    private static MachinePage machinePage;
 
     private static SimpleCardLayout cardLayout;
 
@@ -101,8 +101,8 @@ public class SV_Office
         System.out.println(cardLayout);
         System.out.println(cardContainer.getLayout());
 
-        accountPage = new CardAccountPage(tableList);
-        machinePage = new CardMachinePage(tableList);
+        accountPage = new AccountPage(tableList);
+        machinePage = new MachinePage(tableList);
         cardAccountPage = accountPage.getCard();
         cardMachinePage = machinePage.getCard();
 

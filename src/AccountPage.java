@@ -12,7 +12,7 @@ import java.util.*;
 /**
  * Created by Rob on 9/12/2016.
  */
-public class CardAccountPage
+public class AccountPage
 {
     private JPanel outerMain;
     private JPanel window;
@@ -42,7 +42,7 @@ public class CardAccountPage
 
 
 
-    public CardAccountPage(TablesListModel tableList)
+    public AccountPage(TablesListModel tableList)
     {
         //listForSections.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tableViewTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

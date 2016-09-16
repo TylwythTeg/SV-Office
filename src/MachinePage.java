@@ -3,7 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class CardMachinePage
+public class MachinePage
 {
     private JPanel outerMain;
     private JPanel window;
@@ -29,7 +29,7 @@ public class CardMachinePage
     private MachineDAO machineDAO;
     MachineTableModel machineModel;
 
-    public CardMachinePage(TablesListModel tableList)
+    public MachinePage(TablesListModel tableList)
     {
         tableViewTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         setMachineTableView();
