@@ -15,7 +15,7 @@ import java.util.*;
 public class CardAccountPage
 {
     private JPanel outerMain;
-    protected JPanel window; //allow use in SV_Office
+    private JPanel window;
     private JPanel listPanel;
     private JList listForSections;
     private JPanel tablePanelEnclosure;
@@ -34,7 +34,7 @@ public class CardAccountPage
     private JTable machineTable;
     private JButton buttonSave;
     private JButton buttonRevert;
-    protected JPanel accountPanel;
+    private JPanel accountPanel;
     AccountTableModel accountModel;
     private AccountDAO accountDAO;
     private MachineDAO machineDAO;
@@ -289,5 +289,10 @@ public class CardAccountPage
         }
         tableViewTable.setModel(accountModel);
 
+    }
+
+    public JPanel getCard()
+    {
+        return accountPanel;
     }
 }

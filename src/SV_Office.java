@@ -1,7 +1,6 @@
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import java.awt.CardLayout;
 
 
 public class SV_Office
@@ -12,8 +11,10 @@ public class SV_Office
     private JPanel cardContainer;
     private static JPanel cardAccountPage;
     private static JPanel cardMachinePage;
+    private static CardAccountPage accountPage; //remove card from these class names
+    private static CardMachinePage machinePage;
 
-    private static CardLayout cardLayout;
+    private static SimpleCardLayout cardLayout;
 
     private AccountDAO accountDAO;
     private MachineDAO machineDAO;
@@ -45,6 +46,7 @@ public class SV_Office
 
                 if (listForSections.getValueIsAdjusting() || listForSections.getSelectedValue() == null)
                     return;
+                //listForSections.getSource
 
                 String selection = listForSections.getSelectedValue().toString();
 
@@ -86,29 +88,47 @@ public class SV_Office
         try
         {
             setTableList();
-        }
-        catch (Exception exc)
+        } catch (Exception exc)
         {
 
         }
 
         //set card layout
-        cardLayout = (CardLayout) (cardContainer.getLayout());
+        //cardLayout = (CardLayout) (cardContainer.getLayout());
+        cardContainer.setLayout(new SimpleCardLayout());
+        cardLayout = (SimpleCardLayout) (cardContainer.getLayout());
+        //SimpleCardLayout cardLayout1 = (SimpleCardLayout) (cardContainer.getLayout());
+        System.out.println(cardLayout);
+        System.out.println(cardContainer.getLayout());
 
+        accountPage = new CardAccountPage(tableList);
+        machinePage = new CardMachinePage(tableList);
+        cardAccountPage = accountPage.getCard();
+        cardMachinePage = machinePage.getCard();
 
-        cardAccountPage = new CardAccountPage(tableList).accountPanel;
-        cardMachinePage = new CardMachinePage(tableList).machinePanel;
 
         //cards add/ add Jpanels to cardContainer
         cardContainer.add(cardAccountPage, "Account");
         cardContainer.add(cardMachinePage, "Machine");
 
+        System.out.println(cardContainer.getComponents());
+
 
         //first layout view is Accounts
         cardLayout.show(cardContainer, "Account");
+        cardLayout.setVisible("Account");
 
 
+        EventHandler event = new EventHandler(cardLayout, cardContainer);
+        machinePage.buttonRevert.addActionListener(event);
+        //machinePage.tableViewTable.addActionListener(event);
+        //machinePage.buttonRevert.addActionListener(event);
+        //event.findVisibleCard(cardContainer);
     }
+
+
+
+
 
     public void setTableList() throws Exception
     {

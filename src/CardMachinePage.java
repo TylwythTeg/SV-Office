@@ -22,10 +22,10 @@ public class CardMachinePage
     private JTextField formBrandField;
     private JLabel labelRevenue;
     private JButton buttonSave;
-    private JButton buttonRevert;
+    public JButton buttonRevert; ///////////////
     private JTextField formAssetField;
     private JTextField formModelField;
-    protected JPanel machinePanel;
+    private JPanel machinePanel;
     private MachineDAO machineDAO;
     MachineTableModel machineModel;
 
@@ -89,6 +89,10 @@ public class CardMachinePage
             }
         });
     }
+    public JButton getButtonRevert()
+    {
+        return buttonRevert;
+    }
 
     public void setMachineTableView()
     {
@@ -133,5 +137,10 @@ public class CardMachinePage
         }
         tableViewTable.setModel(machineModel);
 
+    }
+
+    public JPanel getCard()
+    {
+        return machinePanel;
     }
 }
