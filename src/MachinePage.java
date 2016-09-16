@@ -22,7 +22,7 @@ public class MachinePage
     private JTextField formBrandField;
     private JLabel labelRevenue;
     private JButton buttonSave;
-    public JButton buttonRevert; ///////////////
+    private JButton buttonRevert; ///////////////
     private JTextField formAssetField;
     private JTextField formModelField;
     private JPanel machinePanel;
@@ -142,5 +142,13 @@ public class MachinePage
     public JPanel getCard()
     {
         return machinePanel;
+    }
+    public JButton getRevertButton()
+    {
+        return buttonRevert;
+    }
+    public JTable getMachineTable()
+    {
+        return tableViewTable;
     }
 }

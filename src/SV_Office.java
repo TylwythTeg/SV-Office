@@ -1,6 +1,9 @@
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
 
 public class SV_Office
@@ -119,12 +122,32 @@ public class SV_Office
         cardLayout.setVisible("Account");
 
 
-        EventHandler event = new EventHandler(cardLayout, cardContainer);
-        machinePage.buttonRevert.addActionListener(event);
-        //machinePage.tableViewTable.addActionListener(event);
+        //MyActionListener event = new MyActionListener(cardLayout, cardContainer);
         //machinePage.buttonRevert.addActionListener(event);
-        //event.findVisibleCard(cardContainer);
+
+        //just do here
+
+        ActionListener actionListener = new ActionListener()
+        {
+
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                switch(e.getActionCommand())
+                {
+                    case "Revert": revert();
+                        break;
+                }
+            }
+        };
+
+        accountPage.getRevertButton().addActionListener(actionListener);
+        machinePage.getRevertButton().addActionListener(actionListener);
+
+
+
     }
+
 
 
 
@@ -142,4 +165,49 @@ public class SV_Office
         //tableList.setElementAt("hey",0); //I just need to inject the tableListModel to client codes
         //tableListModel would have methods such as tableList.setAccountsNum() tableList.setMachinesNum()
     }
+
+
+
+    public void revert()
+    {
+        System.out.println("check" + cardLayout.getVisible());
+        switch(cardLayout.getVisible())
+        {
+            case "Account":
+                System.out.println("Accoun345345345t");
+                //check if selection row
+                if (accountPage.getAccountTable().getSelectedRow() == -1)
+                {
+                    System.out.println("No row selected");
+                    return;
+                }
+
+                //for Account
+                //pull fields from database
+                int accountID = Integer.parseInt(accountPage.getAccountTable().getValueAt(accountPage.getAccountTable().getSelectedRow(), 0).toString());
+                String accountName;
+                String accountAddress;
+                try
+                {
+                    accountName = accountDAO.getColumn(accountID, "name"); //query name from id
+                    accountAddress = accountDAO.getColumn(accountID, "address"); //query address from id
+                } catch (SQLException exc)
+                {
+                    System.out.println("Unable to retrieve account in database " + exc);
+                    return;
+                }
+
+                //set textfields to new strings
+                System.out.println("Account= " + accountName + " Address= " + accountAddress + " ID:" + accountID);
+                accountPage.getNameField().setText(accountName);
+                accountPage.getAddressField().setText(accountAddress);
+
+
+                System.out.println("Reverted");
+                break;
+            case "Machine": System.out.println("Machine");
+        }
+    }
+
+
 }

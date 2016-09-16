@@ -204,7 +204,7 @@ public class AccountPage
 
             }
         });
-        buttonRevert.addActionListener(new ActionListener()
+       /* buttonRevert.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
@@ -239,7 +239,7 @@ public class AccountPage
 
                 System.out.println("Reverted");
             }
-        });
+        });*/
     }
 
 
@@ -294,5 +294,21 @@ public class AccountPage
     public JPanel getCard()
     {
         return accountPanel;
+    }
+    public JTable getAccountTable()
+    {
+        return tableViewTable;
+    }
+    public JTextField getNameField()
+    {
+        return formNameField;
+    }
+    public JTextField getAddressField()
+    {
+        return formAddressField;
+    }
+    public JButton getRevertButton()
+    {
+        return buttonRevert;
     }
 }
