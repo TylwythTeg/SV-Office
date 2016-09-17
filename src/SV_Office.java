@@ -133,16 +133,54 @@ public class SV_Office
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                System.out.println(e.getActionCommand());
                 switch(e.getActionCommand())
                 {
-                    case "Revert": revert();
+                    case "New...":
+                        newEntry();
+                        break;
+                    case "Delete":
+                        delete();
+                        break;
+                    case "Revert":
+                        revert();
+                        break;
+                    case "Save":
+                        save();
                         break;
                 }
             }
         };
 
+        ListSelectionListener listSelectionListener = new ListSelectionListener()
+        {
+            public void valueChanged(ListSelectionEvent e)
+            {
+                switch(cardLayout.getVisible())
+                {
+                    case "Account":
+                        //
+                        break;
+
+                }
+                
+            }
+
+        };
+
+        accountPage.getNewButton().addActionListener(actionListener);
+        accountPage.getDeleteButton().addActionListener(actionListener);
+        accountPage.getSaveButton().addActionListener(actionListener);
         accountPage.getRevertButton().addActionListener(actionListener);
+
+
+        machinePage.getNewButton().addActionListener(actionListener);
+        machinePage.getDeleteButton().addActionListener(actionListener);
+        machinePage.getSaveButton().addActionListener(actionListener);
         machinePage.getRevertButton().addActionListener(actionListener);
+
+        accountPage.getAccountTable().getSelectionModel().addListSelectionListener(listSelectionListener);
+        machinePage.getMachineTable().getSelectionModel().addListSelectionListener(listSelectionListener);
 
 
 
@@ -166,6 +204,34 @@ public class SV_Office
         //tableListModel would have methods such as tableList.setAccountsNum() tableList.setMachinesNum()
     }
 
+    public void newEntry()
+    {
+        System.out.println("check" + cardLayout.getVisible());
+        switch(cardLayout.getVisible())
+        {
+            case "Account":
+                accountPage.newAccount(tableList);
+                break;
+            case "Machine":
+                machinePage.newMachine(tableList);
+                break;
+        }
+    }
+
+    public void delete()
+    {
+        System.out.println("check" + cardLayout.getVisible());
+        switch(cardLayout.getVisible())
+        {
+            case "Account":
+                accountPage.delete(tableList);
+                break;
+            case "Machine":
+                machinePage.delete(tableList);
+                break;
+        }
+    }
+
 
 
     public void revert()
@@ -174,38 +240,25 @@ public class SV_Office
         switch(cardLayout.getVisible())
         {
             case "Account":
-                System.out.println("Accoun345345345t");
-                //check if selection row
-                if (accountPage.getAccountTable().getSelectedRow() == -1)
-                {
-                    System.out.println("No row selected");
-                    return;
-                }
-
-                //for Account
-                //pull fields from database
-                int accountID = Integer.parseInt(accountPage.getAccountTable().getValueAt(accountPage.getAccountTable().getSelectedRow(), 0).toString());
-                String accountName;
-                String accountAddress;
-                try
-                {
-                    accountName = accountDAO.getColumn(accountID, "name"); //query name from id
-                    accountAddress = accountDAO.getColumn(accountID, "address"); //query address from id
-                } catch (SQLException exc)
-                {
-                    System.out.println("Unable to retrieve account in database " + exc);
-                    return;
-                }
-
-                //set textfields to new strings
-                System.out.println("Account= " + accountName + " Address= " + accountAddress + " ID:" + accountID);
-                accountPage.getNameField().setText(accountName);
-                accountPage.getAddressField().setText(accountAddress);
-
-
-                System.out.println("Reverted");
+                accountPage.revert();
                 break;
-            case "Machine": System.out.println("Machine");
+            case "Machine":
+                machinePage.revert();
+                break;
+        }
+    }
+
+    public void save()
+    {
+        System.out.println("check" + cardLayout.getVisible());
+        switch(cardLayout.getVisible())
+        {
+            case "Account":
+                accountPage.save();
+                break;
+            case "Machine":
+                machinePage.save();
+                break;
         }
     }
 

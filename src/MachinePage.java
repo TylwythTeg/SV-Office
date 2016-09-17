@@ -35,7 +35,7 @@ public class MachinePage
         setMachineTableView();
 
 
-        buttonNew.addActionListener(new ActionListener()
+       /* buttonNew.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
@@ -56,9 +56,9 @@ public class MachinePage
                     esc.printStackTrace();
                 }
             }
-        });
+        });*/
 
-        buttonDelete.addActionListener(new ActionListener()
+        /*buttonDelete.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
@@ -87,7 +87,7 @@ public class MachinePage
                     esc.printStackTrace();
                 }
             }
-        });
+        });*/
     }
     public JButton getButtonRevert()
     {
@@ -139,6 +139,61 @@ public class MachinePage
 
     }
 
+    public void newMachine(TablesListModel tableList)
+    {
+        try
+        {
+            Machine machine = machineDAO.newMachine();
+            System.out.println("ge1");
+            machineModel.addRow(machine);
+            System.out.println("ge2");
+            updateMachineTableView();
+            System.out.println("ge3");
+            tableList.setElementAt("Machines (" + machineDAO.getRowCount() + ")",1);
+
+        } catch (Exception esc)
+        {
+            System.out.println("thi " + esc);
+            esc.printStackTrace();
+        }
+    }
+
+    public void delete(TablesListModel tableList)
+    {
+        System.out.println("selected row is " + tableViewTable.getSelectedRow());
+
+        if(tableViewTable.getSelectedRow() == -1)
+            return;
+
+        System.out.println("test1");
+
+        try{
+
+
+            int machine_id = Integer.parseInt(tableViewTable.getModel().getValueAt(tableViewTable.getSelectedRow(),0).toString());
+            machineDAO.deleteMachine(machine_id);
+
+
+            machineModel.removeRow(tableViewTable.getSelectedRow()-1);
+            updateMachineTableView();
+            tableList.setElementAt("Machines (" + machineDAO.getRowCount() + ")",1);
+        }
+        catch(Exception esc)
+        {
+            System.out.println("Del Exception" + esc);
+            esc.printStackTrace();
+        }
+    }
+
+    public void save()
+    {
+
+    }
+    public void revert()
+    {
+
+    }
+
     public JPanel getCard()
     {
         return machinePanel;
@@ -146,6 +201,18 @@ public class MachinePage
     public JButton getRevertButton()
     {
         return buttonRevert;
+    }
+    public JButton getSaveButton()
+    {
+        return buttonSave;
+    }
+    public JButton getNewButton()
+    {
+        return buttonNew;
+    }
+    public JButton getDeleteButton()
+    {
+        return buttonDelete;
     }
     public JTable getMachineTable()
     {

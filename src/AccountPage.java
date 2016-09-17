@@ -117,7 +117,7 @@ public class AccountPage
 
 
 
-        buttonNew.addActionListener(new ActionListener()
+       /* buttonNew.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
@@ -137,8 +137,8 @@ public class AccountPage
                 }
             }
 
-        });
-        buttonDelete.addActionListener(new ActionListener()
+        });*/
+        /*buttonDelete.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
@@ -167,9 +167,9 @@ public class AccountPage
                     esc.printStackTrace();
                 }
             }
-        });
+        });*/
 
-        buttonSave.addActionListener(new ActionListener()
+        /*buttonSave.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
@@ -203,7 +203,7 @@ public class AccountPage
 
 
             }
-        });
+        });*/
        /* buttonRevert.addActionListener(new ActionListener()
         {
             @Override
@@ -291,6 +291,111 @@ public class AccountPage
 
     }
 
+    public void newAccount(TablesListModel tableList)
+    {
+        try
+        {
+            Account account = accountDAO.newAccount();
+
+            accountModel.addRow(account);
+            updateAccountTableView();
+            tableList.setElementAt("Accounts (" + accountDAO.getRowCount() + ")",0);
+
+        } catch (Exception esc)
+        {
+            System.out.println("psh");
+        }
+    }
+    public void delete(TablesListModel tableList)
+    {
+        System.out.println("selected row is " + tableViewTable.getSelectedRow());
+
+        if(tableViewTable.getSelectedRow() == -1)
+            return;
+
+        System.out.println("test1");
+
+        try{
+
+
+            int account_id = Integer.parseInt(tableViewTable.getModel().getValueAt(tableViewTable.getSelectedRow(),0).toString());
+            accountDAO.deleteAccount(account_id);
+
+
+            accountModel.removeRow(tableViewTable.getSelectedRow()-1);
+            updateAccountTableView();
+            tableList.setElementAt("Accounts (" + accountDAO.getRowCount() + ")",0);
+        }
+        catch(Exception esc)
+        {
+            System.out.println("Del Exception" + esc);
+            esc.printStackTrace();
+        }
+    }
+
+    public void revert()
+    {
+        System.out.println("Accoun345345345t");
+        //check if selection row
+        if (tableViewTable.getSelectedRow() == -1)
+        {
+            System.out.println("No row selected");
+            return;
+        }
+
+        //for Account
+        //pull fields from database
+        int accountID = Integer.parseInt(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 0).toString());
+        String accountName;
+        String accountAddress;
+        try
+        {
+            accountName = accountDAO.getColumn(accountID, "name"); //query name from id
+            accountAddress = accountDAO.getColumn(accountID, "address"); //query address from id
+        } catch (SQLException exc)
+        {
+            System.out.println("Unable to retrieve account in database " + exc);
+            return;
+        }
+
+        //set textfields to new strings
+        System.out.println("Account= " + accountName + " Address= " + accountAddress + " ID:" + accountID);
+        formNameField.setText(accountName);
+        formAddressField.setText(accountAddress);
+
+
+        System.out.println("Reverted");
+    }
+
+    public void save()
+    {
+        if (tableViewTable.getSelectedRow() == -1)
+        {
+            System.out.println("No row selected");
+            return;
+        }
+
+        //for Account
+        //pull text from fields
+        String accountName;
+        String accountAddress;
+        accountName = formNameField.getText();
+        accountAddress = formAddressField.getText();
+        System.out.println(accountName);
+        System.out.println(accountAddress);
+
+        //use fields to change info in database for row selection
+        int accountID = Integer.parseInt(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 0).toString());
+        try
+        {
+            accountDAO.updateAccount(accountID, accountName, accountAddress);
+        } catch (SQLException exc)
+        {
+            System.out.println("Unable to update account in database " + exc);
+        }
+        updateAccountTableView();
+    }
+
     public JPanel getCard()
     {
         return accountPanel;
@@ -311,4 +416,18 @@ public class AccountPage
     {
         return buttonRevert;
     }
+    public JButton getSaveButton()
+    {
+        return buttonSave;
+    }
+    public JButton getNewButton()
+    {
+        return buttonNew;
+    }
+    public JButton getDeleteButton()
+    {
+        return buttonDelete;
+    }
+
+
 }
