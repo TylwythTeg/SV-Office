@@ -58,11 +58,13 @@ public class SV_Office
                 {
                     System.out.println("You have Selected Account");
                     cardLayout.show(cardContainer, "Account");
+                    cardLayout.setVisible("Account");
                 }
                 if (selection.startsWith("Machine"))
                 {
                     System.out.println("You have Selected Machine");
                     cardLayout.show(cardContainer, "Machine");
+                    cardLayout.setVisible("Machine");
                 }
                 if (selection.startsWith("Log"))
                 {
@@ -152,18 +154,25 @@ public class SV_Office
             }
         };
 
+
+        //will the subTables need a new listener? otherwise how will I be able to tell what they are?
         ListSelectionListener listSelectionListener = new ListSelectionListener()
         {
             public void valueChanged(ListSelectionEvent e)
             {
+                //if(listSelectionListener.getV)
+
                 switch(cardLayout.getVisible())
                 {
                     case "Account":
-                        //
+                        accountPage.setTextFields();
+                        break;
+                    case "Machine":
+                        machinePage.setTextFields();
                         break;
 
                 }
-                
+
             }
 
         };

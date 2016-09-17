@@ -73,7 +73,7 @@ public class AccountPage
         //methodthis
 
 
-        tableViewTable.getSelectionModel().addListSelectionListener(new ListSelectionListener()
+        /*tableViewTable.getSelectionModel().addListSelectionListener(new ListSelectionListener()
         {
             public void valueChanged(ListSelectionEvent event)
             {
@@ -113,7 +113,7 @@ public class AccountPage
                 }
 
             }
-        });
+        });*/
 
 
 
@@ -394,6 +394,41 @@ public class AccountPage
             System.out.println("Unable to update account in database " + exc);
         }
         updateAccountTableView();
+    }
+
+    public void setTextFields()
+    {
+        System.out.println("METHOD Selected Row == " + tableViewTable.getSelectedRow());
+        if(tableViewTable.getSelectedRow() == -1)
+        {
+            formNameField.setText("");
+            formAddressField.setText("");
+            return;
+        }
+
+        System.out.println("The next line will fail the second trigger (Why trigger twice for Table?");
+        formNameField.setText(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 1).toString());
+        formAddressField.setText(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 2).toString());
+
+        Object accountIdObj = tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 0);
+        int account_id = (int) accountIdObj;
+
+
+        java.util.List<Machine> machines = null;
+
+        try
+        {
+            machines = machineDAO.getMachinesFromAccountId(account_id);
+
+
+            MachineTableModel machinemodel = new MachineTableModel(machines);
+
+            machineTable.setModel(machinemodel);
+
+        } catch (Exception exc)
+        {
+            System.out.println("Couldn't query machine list");
+        }
     }
 
     public JPanel getCard()
