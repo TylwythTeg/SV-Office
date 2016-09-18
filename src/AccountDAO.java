@@ -36,6 +36,43 @@ public class AccountDAO extends DAO
 
     }
 
+    public List<String> getAllAccountNames() throws Exception
+    {
+        List<String> list = new ArrayList<>();
+
+        //Statement stmt = null;
+        ResultSet resultSet = null;
+
+        try
+        {
+
+
+            resultSet = selectAllAccounts();
+
+            while (resultSet.next())
+            {
+                Account account = rowToAccount(resultSet);
+                list.add(account.getName());
+            }
+            return list;
+        }
+        finally
+        {
+            close(resultSet);
+        }
+
+    }
+
+    public ResultSet selectAllAccounts() throws Exception
+    {
+        Statement stmt = null;
+        ResultSet resultSet = null;
+        stmt = connection.createStatement();
+        resultSet = stmt.executeQuery("SELECT * FROM accounts");
+        //close(stmt,resultSet);
+        return resultSet;
+    }
+
     public int getRowCount() throws Exception
     {
         Statement stmt = null;

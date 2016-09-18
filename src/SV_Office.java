@@ -46,6 +46,7 @@ public class SV_Office
             @Override
             public void valueChanged(ListSelectionEvent e)
             {
+                System.out.println(e.getSource().getClass());
 
                 if (listForSections.getValueIsAdjusting() || listForSections.getSelectedValue() == null)
                     return;
@@ -161,6 +162,8 @@ public class SV_Office
             public void valueChanged(ListSelectionEvent e)
             {
                 //if(listSelectionListener.getV)
+                //listSelectionListener.get
+                //if(accountPage.getAccountTable().getValueIs)
 
                 switch(cardLayout.getVisible())
                 {
@@ -169,6 +172,7 @@ public class SV_Office
                         break;
                     case "Machine":
                         machinePage.setTextFields();
+                        machinePage.setDropDown();
                         break;
 
                 }
@@ -190,6 +194,8 @@ public class SV_Office
 
         accountPage.getAccountTable().getSelectionModel().addListSelectionListener(listSelectionListener);
         machinePage.getMachineTable().getSelectionModel().addListSelectionListener(listSelectionListener);
+
+        machinePage.getDropDown().addActionListener(actionListener);
 
 
 

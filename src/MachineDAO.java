@@ -65,7 +65,7 @@ public class MachineDAO extends DAO
 
     }
 
-    private Machine rowToMachine(ResultSet resultSet) throws SQLException
+    protected Machine rowToMachine(ResultSet resultSet) throws SQLException
     {
         int id = resultSet.getInt("machine_id");
         String type = resultSet.getString("type");
@@ -173,5 +173,52 @@ public class MachineDAO extends DAO
         String value = resultSet.getString(column);
 
         return value;
+    }
+
+    public String getAccountName(Machine machine)
+    {
+        Statement stmt = null;
+        ResultSet resultSet = null;
+        String accountName = "";
+
+        try
+        {
+            stmt = connection.createStatement();
+            resultSet = stmt.executeQuery("SELECT name FROM accounts WHERE account_id=" + machine.getAccountId());
+            resultSet.next();
+            accountName = resultSet.getString("name");
+        }
+        catch(Exception exc)
+        {
+
+        }
+        return accountName;
+
+    }
+
+    public Machine getMachine(int machineID) throws Exception
+    {
+        Statement stmt = null;
+        ResultSet resultSet = null;
+        String accountName = "";
+        Machine machine;
+
+        //try
+       // {
+            stmt = connection.createStatement();
+            resultSet = stmt.executeQuery("SELECT * FROM machines WHERE machine_id=" + machineID);
+            //resultSet.next();
+            //accountName = resultSet.getString("name");
+            resultSet.next();
+            machine = rowToMachine(resultSet);
+            return machine;
+
+        //}
+        //catch(Exception exc)
+        //{
+
+       // }
+
+
     }
 }

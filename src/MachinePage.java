@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MachinePage
@@ -27,69 +28,38 @@ public class MachinePage
     private JTextField formAssetField;
     private JTextField formModelField;
     private JPanel machinePanel;
+    private JComboBox locationDropDown;
     private MachineDAO machineDAO;
     MachineTableModel machineModel;
+
+    private AccountDAO accountDAO;
 
     public MachinePage(TablesListModel tableList)
     {
         tableViewTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         setMachineTableView();
+        populateDropDown();
 
-
-       /* buttonNew.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                try
-                {
-                    Machine machine = machineDAO.newMachine();
-                    System.out.println("ge1");
-                    machineModel.addRow(machine);
-                    System.out.println("ge2");
-                    updateMachineTableView();
-                    System.out.println("ge3");
-                    tableList.setElementAt("Machines (" + machineDAO.getRowCount() + ")",1);
-
-                } catch (Exception esc)
-                {
-                    System.out.println("thi " + esc);
-                    esc.printStackTrace();
-                }
-            }
-        });*/
-
-        /*buttonDelete.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                System.out.println("selected row is " + tableViewTable.getSelectedRow());
-
-                if(tableViewTable.getSelectedRow() == -1)
-                    return;
-
-                System.out.println("test1");
-
-                try{
-
-
-                    int machine_id = Integer.parseInt(tableViewTable.getModel().getValueAt(tableViewTable.getSelectedRow(),0).toString());
-                    machineDAO.deleteMachine(machine_id);
-
-
-                    machineModel.removeRow(tableViewTable.getSelectedRow()-1);
-                    updateMachineTableView();
-                    tableList.setElementAt("Machines (" + machineDAO.getRowCount() + ")",1);
-                }
-                catch(Exception esc)
-                {
-                    System.out.println("Del Exception" + esc);
-                    esc.printStackTrace();
-                }
-            }
-        });*/
     }
+
+    public void populateDropDown()
+    {
+        List<String> list = new ArrayList<>();
+
+        try
+        {
+            accountDAO = new AccountDAO();
+            list = accountDAO.getAllAccountNames();
+        }
+        catch(Exception exc)
+        {
+            System.out.println(exc);
+        }
+
+        list.add(0, "");
+        locationDropDown.setModel(new DefaultComboBoxModel(list.toArray()));
+    }
+
     public JButton getButtonRevert()
     {
         return buttonRevert;
@@ -235,15 +205,20 @@ public class MachinePage
         String machineBrand;
         String machineModel;
         String machineAsset;
+        String accountName;
         try
         {
+            Machine machine = machineDAO.getMachine(machineID);
+
             machineType = machineDAO.getColumn(machineID, "type"); //query from id
             machineBrand = machineDAO.getColumn(machineID, "brand"); //query from id
             machineModel = machineDAO.getColumn(machineID, "model"); //query from id
             machineAsset = machineDAO.getColumn(machineID, "asset"); //query from id
-        } catch (SQLException exc)
+            accountName = machineDAO.getAccountName(machine);
+        } catch (Exception exc)
         {
             System.out.println("Unable to retrieve machine in database " + exc);
+            exc.printStackTrace();
             return;
         }
 
@@ -253,6 +228,7 @@ public class MachinePage
         formBrandField.setText(machineBrand);
         formModelField.setText(machineModel);
         formAssetField.setText(machineAsset);
+        locationDropDown.setSelectedItem(accountName);
 
 
         System.out.println("Reverted");
@@ -287,6 +263,10 @@ public class MachinePage
         else
             formAssetField.setText("");
 
+
+
+
+
         /*Object accountIdObj = tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 0);
         int account_id = (int) accountIdObj;
 
@@ -306,6 +286,20 @@ public class MachinePage
         {
             System.out.println("Couldn't query machine list");
         }*/
+    }
+
+    public void setDropDown()
+    {
+        if(tableViewTable.getValueAt(tableViewTable.getSelectedRow(),5) == null)
+        {
+            locationDropDown.setSelectedIndex(0);
+            return;
+        }
+
+        locationDropDown.setSelectedItem(tableViewTable.getValueAt(tableViewTable.getSelectedRow(),5));
+
+
+
     }
 
     public JPanel getCard()
@@ -332,4 +326,5 @@ public class MachinePage
     {
         return tableViewTable;
     }
+    public JComboBox getDropDown() { return locationDropDown; }
 }

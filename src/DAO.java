@@ -44,6 +44,14 @@ public class DAO
     {
         close(null,stmt,resultSet);
     }
+    protected void close(Statement stmt) throws SQLException
+    {
+        close(null,stmt,null);
+    }
+    protected void close(ResultSet resultSet) throws SQLException
+    {
+        close(null,null,resultSet);
+    }
 
 
 }

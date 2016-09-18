@@ -49,7 +49,7 @@ public class SV_OfficeAccounts extends JFrame
     //private JTextArea newtet;
     private JPanel deleteCheck;
     private static SV_Office altogetherWindow;
-    private static DeleteCheck delcheck;
+   // private static DeleteCheck delcheck;
 
 
     public static void main(String[] args)
@@ -126,9 +126,9 @@ public class SV_OfficeAccounts extends JFrame
         }
         //methodthis
 
-        outerMain.setLayout(new CardLayout());
-       deleteCheck = new DeleteCheck().deleteCheck;
-       outerMain.add(deleteCheck);
+        //outerMain.setLayout(new CardLayout());
+       //deleteCheck = new DeleteCheck().deleteCheck;
+       //outerMain.add(deleteCheck);
         //outerMain.deleteCheck;
         //outerMain
        // outerMain.show(deleteCheck);

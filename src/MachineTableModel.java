@@ -10,14 +10,24 @@ class MachineTableModel extends AbstractTableModel
     private static final int MODEL_COL = 3;
     private static final int ASSET_COL = 4;
     private static final int ACCOUNT_ID_COL = 5;
+    private static MachineDAO machineDAO;
 
 
-    private String[] columnNames = {"Id", "Type", "Brand", "Model", "Asset"};
+    private String[] columnNames = {"Id", "Type", "Brand", "Model", "Asset", "Location"};
 
     private List<Machine> machines;
 
     public MachineTableModel(List<Machine> machines)
     {
+        try
+        {
+            machineDAO = new MachineDAO();
+        }
+        catch(Exception exc)
+        {
+            System.out.println(exc);
+        }
+
         this.machines = machines;
     }
 
@@ -57,7 +67,8 @@ class MachineTableModel extends AbstractTableModel
             case ASSET_COL:
                 return machine.getAsset();
             case ACCOUNT_ID_COL:
-                return machine.getAccountId();
+                //return machine.getAccountId();
+                return machineDAO.getAccountName(machine);
             default:
                 System.out.println("Unobtainable column");
                 return machine.getBrand();
