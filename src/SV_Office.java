@@ -20,7 +20,7 @@ public class SV_Office
     private static SimpleCardLayout cardLayout;
 
     private AccountDAO accountDAO;
-    private MachineDAO machineDAO;
+    private MachineDAO machineDAO; //
 
     private TablesListModel tableList;
 
