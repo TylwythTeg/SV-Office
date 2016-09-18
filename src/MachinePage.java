@@ -269,6 +269,7 @@ public class MachinePage
             formBrandField.setText("");
             formModelField.setText("");
             formAssetField.setText("");
+            locationDropDown.setSelectedIndex(0);
             return;
         }
 
@@ -322,6 +323,7 @@ public class MachinePage
             formBrandField.setText("");
             formModelField.setText("");
             formAssetField.setText("");
+            locationDropDown.setSelectedIndex(0);
             return;
         }
 

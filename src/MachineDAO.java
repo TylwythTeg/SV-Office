@@ -161,8 +161,10 @@ public class MachineDAO extends DAO
 
     }
 
-    public void updateMachine(int machineID, String machineType, String machineBrand, String machineModel, String machineAsset, int accountID) throws SQLException
+    public void updateMachine(int machineID, String machineType, String machineBrand, String machineModel, String machineAsset, Integer accountID) throws SQLException
     {
+
+
 
         String updateString =
                 "UPDATE machines "
@@ -173,7 +175,11 @@ public class MachineDAO extends DAO
         update.setString(2,machineBrand);
         update.setString(3,machineModel);
         update.setString(4,machineAsset);
-        update.setInt(5,accountID);
+        if(accountID != null)
+            update.setInt(5,accountID);
+        else
+            update.setNull(5,Types.NULL);
+
         update.setInt(6,machineID);
         update.executeUpdate();
 
