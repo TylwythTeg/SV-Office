@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="216100fd-a58a-481f-9b57-a2d7313516d0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SV_Office.java" afterPath="$PROJECT_DIR$/src/SV_Office.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Screenshots/SV Office Alpha 9-17-16.png" />
     </list>
     <ignored path="SV1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -149,8 +148,8 @@
       <file leaf-file-name="SV_Office.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SV_Office.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+            <state relative-caret-position="408">
+              <caret line="33" column="42" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -387,15 +386,15 @@
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE" value="ToolWindow" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Rob\IdeaProjects\SV1\src" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Rob\IdeaProjects\SV1\Screenshots" />
+      <recent name="C:\Users\Rob\IdeaProjects\SV1\lib" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Rob\IdeaProjects\SV1\Screenshots" />
-      <recent name="C:\Users\Rob\IdeaProjects\SV1\lib" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Rob\IdeaProjects\SV1\src" />
     </key>
   </component>
   <component name="RunManager" selected="Application.SV_Office">
@@ -967,12 +966,12 @@
       <workItem from="1473983879656" duration="19125000" />
       <workItem from="1474071459349" duration="4176000" />
       <workItem from="1474107071890" duration="5821000" />
-      <workItem from="1474161045150" duration="15397000" />
+      <workItem from="1474161045150" duration="15646000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201631000" />
+    <option name="totallyTimeSpent" value="201880000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
@@ -1386,8 +1385,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SV_Office.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+        <state relative-caret-position="408">
+          <caret line="33" column="42" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
