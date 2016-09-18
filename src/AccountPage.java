@@ -145,6 +145,7 @@ public class AccountPage
 
 
             int account_id = Integer.parseInt(tableViewTable.getModel().getValueAt(tableViewTable.getSelectedRow(),0).toString());
+            System.out.println("accountid:" + account_id);
             accountDAO.deleteAccount(account_id);
 
 
@@ -236,8 +237,23 @@ public class AccountPage
         formNameField.setText(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 1).toString());
         formAddressField.setText(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 2).toString());
 
+
+
+        setMachineTable();
+
+    }
+
+    public void setMachineTable()
+    {
+        if (tableViewTable.getSelectedRow() == -1)
+        {
+            System.out.println("No row selected");
+            return;
+        }
+
         Object accountIdObj = tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 0);
         int account_id = (int) accountIdObj;
+
 
 
         java.util.List<Machine> machines = null;

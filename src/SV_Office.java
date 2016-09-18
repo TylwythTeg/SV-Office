@@ -239,6 +239,7 @@ public class SV_Office
         switch(cardLayout.getVisible())
         {
             case "Account":
+                System.out.println("Going to delete");
                 accountPage.delete(tableList);
                 break;
             case "Machine":
@@ -270,9 +271,12 @@ public class SV_Office
         {
             case "Account":
                 accountPage.save();
+                machinePage.populateDropDown();
+                machinePage.setDropDown();
                 break;
             case "Machine":
                 machinePage.save();
+                accountPage.setMachineTable();
                 break;
         }
     }

@@ -136,6 +136,8 @@ public class AccountDAO extends DAO
         catch(Exception exc)
         {
             System.out.println("failure in deleting accoutn in accountDAO");
+            System.out.println(exc);
+
         }
 
 
