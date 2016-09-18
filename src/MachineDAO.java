@@ -161,6 +161,24 @@ public class MachineDAO extends DAO
 
     }
 
+    public void updateMachine(int machineID, String machineType, String machineBrand, String machineModel, String machineAsset, int accountID) throws SQLException
+    {
+
+        String updateString =
+                "UPDATE machines "
+                        + "set type = ?, brand= ?, model=?, asset=?, account_id=? where machine_id = ?";
+        PreparedStatement update = null;
+        update = connection.prepareStatement(updateString);
+        update.setString(1,machineType);
+        update.setString(2,machineBrand);
+        update.setString(3,machineModel);
+        update.setString(4,machineAsset);
+        update.setInt(5,accountID);
+        update.setInt(6,machineID);
+        update.executeUpdate();
+
+    }
+
     public String getColumn(int machineID, String column) throws SQLException
     {
 
@@ -185,12 +203,13 @@ public class MachineDAO extends DAO
         {
             stmt = connection.createStatement();
             resultSet = stmt.executeQuery("SELECT name FROM accounts WHERE account_id=" + machine.getAccountId());
-            resultSet.next();
-            accountName = resultSet.getString("name");
+            //resultSet.next();
+            if(resultSet.next())
+                accountName = resultSet.getString("name");
         }
         catch(Exception exc)
         {
-
+            exc.printStackTrace();
         }
         return accountName;
 

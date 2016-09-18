@@ -5,7 +5,7 @@ public class Machine
     private String type;
     private String model;
     private String asset;
-    private int account_id;
+    private int account_id = -1;
 
     public Machine(int machine_id,String type, String brand, String model, String asset, int account_id)
     {

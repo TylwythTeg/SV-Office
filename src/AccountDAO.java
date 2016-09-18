@@ -212,6 +212,25 @@ public class AccountDAO extends DAO
         return value;
     }
 
+    public int getIdFromName(String accountName) throws SQLException
+    {
+        System.out.println("hereeeeeeeeeeeeeee0");
+        Statement stmt = null;
+        ResultSet resultSet = null;
+        int accountID;
+        System.out.println("ACCOUNTNAME IS " + accountName);
+
+        stmt = connection.createStatement();
+        System.out.println("hereeeeeeeeeeeeeee1");
+        resultSet = stmt.executeQuery("SELECT account_id FROM accounts WHERE name=\'" + accountName +"\'");
+        System.out.println("hereeeeeeeeeeeeeee1.2");
+        resultSet.next();
+        System.out.println("hereeeeeeeeeeeeeee1.3");
+        accountID = resultSet.getInt("account_id");
+        System.out.println("hereeeeeeeeeeeeeee2");
+        return accountID;
+    }
+
 
 
 

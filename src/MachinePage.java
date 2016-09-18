@@ -170,10 +170,25 @@ public class MachinePage
         String machineBrand;
         String machineModel;
         String machineAsset;
+        String accountName;
+        int accountID = -1;
         machineType = formTypeField.getText();
         machineBrand = formBrandField.getText();
         machineModel = formModelField.getText();
         machineAsset = formAssetField.getText();
+        //note, don't have two accounts with the same name. But that's a bad idea anyway.
+        accountName = (String)locationDropDown.getSelectedItem();
+        System.out.println("Class is: " + accountName.getClass());
+        try
+        {
+            if(!accountName.isEmpty())
+                accountID = accountDAO.getIdFromName(accountName);
+        }
+        catch(Exception exc)
+        {
+            System.out.println(exc);
+        }
+
         System.out.println(machineType);
         System.out.println(machineBrand);
 
@@ -181,7 +196,17 @@ public class MachinePage
         int machineID = Integer.parseInt(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 0).toString());
         try
         {
-            machineDAO.updateMachine(machineID,machineType, machineBrand, machineModel, machineAsset);
+            //if(accountName.isEmpty())
+            //    machineDAO.updateMachine(machineID,machineType, machineBrand, machineModel, machineAsset);
+            if(accountName.isEmpty())
+            {
+                //make account_id for this machine row set to null
+                machineDAO.updateMachine(machineID,machineType,machineBrand,machineModel,machineAsset, null);
+            }
+            else
+                machineDAO.updateMachine(machineID,machineType, machineBrand, machineModel, machineAsset, accountID);
+
+
         } catch (SQLException exc)
         {
             System.out.println("Unable to update machine in database " + exc);
@@ -208,6 +233,7 @@ public class MachinePage
         String accountName;
         try
         {
+            //Queries database. Would it be more efficient to check values in table?
             Machine machine = machineDAO.getMachine(machineID);
 
             machineType = machineDAO.getColumn(machineID, "type"); //query from id
@@ -290,12 +316,24 @@ public class MachinePage
 
     public void setDropDown()
     {
-        if(tableViewTable.getValueAt(tableViewTable.getSelectedRow(),5) == null)
+        if(tableViewTable.getSelectedRow() == -1)
         {
-            locationDropDown.setSelectedIndex(0);
+            formTypeField.setText("");
+            formBrandField.setText("");
+            formModelField.setText("");
+            formAssetField.setText("");
             return;
         }
 
+        System.out.println("I setDropDown0");
+        System.out.println("setDropDown selectedRow is " + tableViewTable.getSelectedRow());
+        if(tableViewTable.getValueAt(tableViewTable.getSelectedRow(),5) == null)
+        {
+            System.out.println("I setDropDown1");
+            locationDropDown.setSelectedIndex(0);
+            return;
+        }
+        System.out.println("I setDropDown2");
         locationDropDown.setSelectedItem(tableViewTable.getValueAt(tableViewTable.getSelectedRow(),5));
 
 
