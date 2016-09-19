@@ -37,6 +37,7 @@ public class AccountPage
     AccountTableModel accountModel;
     private AccountDAO accountDAO;
     private MachineDAO machineDAO;
+    MachineTableModel machinemodel;
 
 
 
@@ -44,6 +45,7 @@ public class AccountPage
     public AccountPage(TablesListModel tableList)
     {
         tableViewTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        //machinemodel = new MachineTableModel();
         try
         {
             accountDAO = new AccountDAO();
@@ -222,6 +224,14 @@ public class AccountPage
         updateAccountTableView();
     }
 
+    public void setPanel()
+    {
+        setTextFields();
+        setMachineTable();
+    }
+
+
+
     public void setTextFields()
     {
         System.out.println("METHOD Selected Row == " + tableViewTable.getSelectedRow());
@@ -229,6 +239,8 @@ public class AccountPage
         {
             formNameField.setText("");
             formAddressField.setText("");
+            tableFieldsPanel.setBorder(new TitledBorder("Account"));
+            setMachineTable();
             return;
         }
 
@@ -236,9 +248,7 @@ public class AccountPage
         formNameField.setText(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 1).toString());
         formAddressField.setText(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 2).toString());
 
-
-
-        setMachineTable();
+        tableFieldsPanel.setBorder(new TitledBorder(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 1).toString()));
 
     }
 
@@ -247,6 +257,9 @@ public class AccountPage
         if (tableViewTable.getSelectedRow() == -1)
         {
             System.out.println("No row selected");
+            java.util.List<Machine> machines = null;
+            MachineTableModel machinemodel = new MachineTableModel(machines);
+            machineTable.setModel(machinemodel);
             return;
         }
 
@@ -270,11 +283,6 @@ public class AccountPage
         {
             System.out.println("Couldn't query machine list");
         }
-    }
-
-    public void setPanelName()
-    {
-        tableFieldsPanel.setBorder(new TitledBorder(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 1).toString()));
     }
 
     public JPanel getCard()

@@ -40,6 +40,10 @@ class MachineTableModel extends AbstractTableModel
     @Override
     public int getRowCount()
     {
+        //Is this bad form?
+        if(machines==null)
+            return 0;
+
         return machines.size();
     }
 

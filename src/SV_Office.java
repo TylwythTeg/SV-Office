@@ -157,8 +157,7 @@ public class SV_Office
                 switch(cardLayout.getVisible())
                 {
                     case "Account":
-                        accountPage.setTextFields();
-                        accountPage.setPanelName();
+                        accountPage.setPanel();
                         break;
                     case "Machine":
                         machinePage.setTextFields();
