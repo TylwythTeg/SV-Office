@@ -8,10 +8,9 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.CardLayout;
 import java.util.*;
+import javax.swing.border.*;
 
-/**
- * Created by Rob on 9/12/2016.
- */
+
 public class AccountPage
 {
     private JPanel outerMain;
@@ -271,6 +270,11 @@ public class AccountPage
         {
             System.out.println("Couldn't query machine list");
         }
+    }
+
+    public void setPanelName()
+    {
+        tableFieldsPanel.setBorder(new TitledBorder(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 1).toString()));
     }
 
     public JPanel getCard()

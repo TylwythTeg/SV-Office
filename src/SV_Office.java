@@ -14,7 +14,7 @@ public class SV_Office
     private JPanel cardContainer;
     private static JPanel cardAccountPage;
     private static JPanel cardMachinePage;
-    private static AccountPage accountPage; //remove card from these class names
+    private static AccountPage accountPage;
     private static MachinePage machinePage;
 
     private static SimpleCardLayout cardLayout;
@@ -90,20 +90,17 @@ public class SV_Office
 
     public void setCards()
     {
-        //may have to pull from origin unless I can figure out how to deal with class interconnectivity
         try
         {
             setTableList();
         } catch (Exception exc)
         {
-
+            System.out.println(exc);
         }
 
-        //set card layout
-        //cardLayout = (CardLayout) (cardContainer.getLayout());
         cardContainer.setLayout(new SimpleCardLayout());
         cardLayout = (SimpleCardLayout) (cardContainer.getLayout());
-        //SimpleCardLayout cardLayout1 = (SimpleCardLayout) (cardContainer.getLayout());
+
         System.out.println(cardLayout);
         System.out.println(cardContainer.getLayout());
 
@@ -113,7 +110,7 @@ public class SV_Office
         cardMachinePage = machinePage.getCard();
 
 
-        //cards add/ add Jpanels to cardContainer
+        //add JPanel pages to cardContainer JPanel
         cardContainer.add(cardAccountPage, "Account");
         cardContainer.add(cardMachinePage, "Machine");
 
@@ -123,12 +120,6 @@ public class SV_Office
         //first layout view is Accounts
         cardLayout.show(cardContainer, "Account");
         cardLayout.setVisible("Account");
-
-
-        //MyActionListener event = new MyActionListener(cardLayout, cardContainer);
-        //machinePage.buttonRevert.addActionListener(event);
-
-        //just do here
 
         ActionListener actionListener = new ActionListener()
         {
@@ -157,18 +148,17 @@ public class SV_Office
 
 
         //will the subTables need a new listener? otherwise how will I be able to tell what they are?
+        //This is for the main table (tableViewTable)
         ListSelectionListener listSelectionListener = new ListSelectionListener()
         {
             public void valueChanged(ListSelectionEvent e)
             {
-                //if(listSelectionListener.getV)
-                //listSelectionListener.get
-                //if(accountPage.getAccountTable().getValueIs)
 
                 switch(cardLayout.getVisible())
                 {
                     case "Account":
                         accountPage.setTextFields();
+                        accountPage.setPanelName();
                         break;
                     case "Machine":
                         machinePage.setTextFields();

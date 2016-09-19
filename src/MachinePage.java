@@ -290,29 +290,6 @@ public class MachinePage
         else
             formAssetField.setText("");
 
-
-
-
-
-        /*Object accountIdObj = tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 0);
-        int account_id = (int) accountIdObj;
-
-
-        java.util.List<Machine> machines = null;
-
-        try
-        {
-            machines = machineDAO.getMachinesFromAccountId(account_id);
-
-
-            MachineTableModel machinemodel = new MachineTableModel(machines);
-
-            machineTable.setModel(machinemodel);
-
-        } catch (Exception exc)
-        {
-            System.out.println("Couldn't query machine list");
-        }*/
     }
 
     public void setDropDown()
