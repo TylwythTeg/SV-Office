@@ -35,6 +35,8 @@ public class SV_Office
         frame.pack();
         frame.setVisible(true);
 
+
+
     }
 
     public SV_Office()
@@ -148,7 +150,7 @@ public class SV_Office
 
 
         //will the subTables need a new listener? otherwise how will I be able to tell what they are?
-        //This is for the main table (tableViewTable)
+        //This is for the main table (tableViewTable) for each cardpanel
         ListSelectionListener listSelectionListener = new ListSelectionListener()
         {
             public void valueChanged(ListSelectionEvent e)

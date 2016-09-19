@@ -157,6 +157,7 @@ public class MachineDAO extends DAO
         update.setString(3,machineModel);
         update.setString(4,machineAsset);
         update.setInt(5,machineID);
+
         update.executeUpdate();
 
     }
@@ -179,8 +180,8 @@ public class MachineDAO extends DAO
             update.setInt(5,accountID);
         else
             update.setNull(5,Types.NULL);
-
         update.setInt(6,machineID);
+
         update.executeUpdate();
 
     }
@@ -209,7 +210,6 @@ public class MachineDAO extends DAO
         {
             stmt = connection.createStatement();
             resultSet = stmt.executeQuery("SELECT name FROM accounts WHERE account_id=" + machine.getAccountId());
-            //resultSet.next();
             if(resultSet.next())
                 accountName = resultSet.getString("name");
         }
@@ -228,21 +228,13 @@ public class MachineDAO extends DAO
         String accountName = "";
         Machine machine;
 
-        //try
-       // {
-            stmt = connection.createStatement();
-            resultSet = stmt.executeQuery("SELECT * FROM machines WHERE machine_id=" + machineID);
-            //resultSet.next();
-            //accountName = resultSet.getString("name");
-            resultSet.next();
-            machine = rowToMachine(resultSet);
-            return machine;
 
-        //}
-        //catch(Exception exc)
-        //{
+        stmt = connection.createStatement();
+        resultSet = stmt.executeQuery("SELECT * FROM machines WHERE machine_id=" + machineID);
 
-       // }
+        resultSet.next();
+        machine = rowToMachine(resultSet);
+        return machine;
 
 
     }
