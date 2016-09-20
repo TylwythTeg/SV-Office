@@ -135,6 +135,7 @@ public class AccountDAO extends DAO
             update.setString(1,accountName);
             update.setString(2,accountAddress);
             update.setInt(3,accountID);
+
             update.executeUpdate();
         }
     }

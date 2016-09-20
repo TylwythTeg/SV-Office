@@ -104,98 +104,76 @@ public class MachineDAO extends DAO
         }
     }
 
-    public void updateMachine(int machineID, String machineType, String machineBrand, String machineModel, String machineAsset) throws SQLException
-    {
-
-        String updateString =
-                "UPDATE machines "
-                        + "set type = ?, brand= ?, model=?, asset=? where machine_id = ?";
-        PreparedStatement update = null;
-        update = connection.prepareStatement(updateString);
-        update.setString(1,machineType);
-        update.setString(2,machineBrand);
-        update.setString(3,machineModel);
-        update.setString(4,machineAsset);
-        update.setInt(5,machineID);
-
-        update.executeUpdate();
-
-    }
-
     public void updateMachine(int machineID, String machineType, String machineBrand, String machineModel, String machineAsset, Integer accountID) throws SQLException
     {
-
-
-
         String updateString =
                 "UPDATE machines "
                         + "set type = ?, brand= ?, model=?, asset=?, account_id=? where machine_id = ?";
-        PreparedStatement update = null;
-        update = connection.prepareStatement(updateString);
-        update.setString(1,machineType);
-        update.setString(2,machineBrand);
-        update.setString(3,machineModel);
-        update.setString(4,machineAsset);
-        if(accountID != null)
-            update.setInt(5,accountID);
-        else
-            update.setNull(5,Types.NULL);
-        update.setInt(6,machineID);
 
-        update.executeUpdate();
+        try(PreparedStatement update = connection.prepareStatement(updateString))
+        {
+            update.setString(1,machineType);
+            update.setString(2,machineBrand);
+            update.setString(3,machineModel);
+            update.setString(4,machineAsset);
+            if(accountID != null)
+                update.setInt(5,accountID);
+            else
+                update.setNull(5,Types.NULL);
+            update.setInt(6,machineID);
+
+            update.executeUpdate();
+        }
 
     }
 
     public String getColumn(int machineID, String column) throws SQLException
     {
+        try(Statement stmt = connection.createStatement();
+        ResultSet resultSet = stmt.executeQuery("SELECT " + column + " FROM machines WHERE machine_id=" + machineID))
+        {
+            resultSet.next();
+            String value = resultSet.getString(column);
 
-        Statement stmt = null;
-        ResultSet resultSet = null;
-
-        stmt = connection.createStatement();
-        resultSet = stmt.executeQuery("SELECT " + column + " FROM machines WHERE machine_id=" + machineID);
-        resultSet.next();
-        String value = resultSet.getString(column);
-
-        return value;
+            return value;
+        }
     }
 
-    public String getAccountName(Machine machine)
+    //Can't throw SQLException because MachineTableModel.getValueAt uses the method and that method can't
+    //throw it because its interface doesn't. I could store the accountName in the machine class but I don't know how
+    //I feel about the (in)elegance of that
+    public String getAccountName(Machine machine) //throws SQLException
     {
-        Statement stmt = null;
-        ResultSet resultSet = null;
+
         String accountName = "";
 
-        try
+        try(Statement stmt = connection.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT name FROM accounts WHERE account_id=" + machine.getAccountId()))
         {
-            stmt = connection.createStatement();
-            resultSet = stmt.executeQuery("SELECT name FROM accounts WHERE account_id=" + machine.getAccountId());
             if(resultSet.next())
                 accountName = resultSet.getString("name");
+
+            return accountName;
         }
-        catch(Exception exc)
+        catch(SQLException exc)
         {
+            System.out.println(exc);
             exc.printStackTrace();
         }
         return accountName;
 
     }
 
-    public Machine getMachine(int machineID) throws Exception
+    public Machine getMachine(int machineID) throws SQLException
     {
-        Statement stmt = null;
-        ResultSet resultSet = null;
         String accountName = "";
-        Machine machine;
 
-
-        stmt = connection.createStatement();
-        resultSet = stmt.executeQuery("SELECT * FROM machines WHERE machine_id=" + machineID);
-
-        resultSet.next();
-        machine = rowToMachine(resultSet);
-        return machine;
-
-
+        try(Statement stmt = connection.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM machines WHERE machine_id=" + machineID))
+        {
+            resultSet.next();
+            Machine machine = rowToMachine(resultSet);
+            return machine;
+        }
     }
 }
