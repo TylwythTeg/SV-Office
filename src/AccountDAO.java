@@ -126,17 +126,17 @@ public class AccountDAO extends DAO
 
     public void updateAccount(int accountID, String accountName, String accountAddress) throws SQLException
     {
-
         String updateString =
                "UPDATE accounts "
                        + "set name = ?, address= ? where account_id = ?";
-        PreparedStatement update = null;
-        update = connection.prepareStatement(updateString);
-        update.setString(1,accountName);
-        update.setString(2,accountAddress);
-        update.setInt(3,accountID);
-        update.executeUpdate();
 
+        try(PreparedStatement update = connection.prepareStatement(updateString))
+        {
+            update.setString(1,accountName);
+            update.setString(2,accountAddress);
+            update.setInt(3,accountID);
+            update.executeUpdate();
+        }
     }
 
     public String getColumn(int accountID, String column) throws SQLException

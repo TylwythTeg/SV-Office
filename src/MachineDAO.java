@@ -9,58 +9,37 @@ public class MachineDAO extends DAO
     {
     }
 
-    public List<Machine> getAllMachines() throws Exception
+    public List<Machine> getAllMachines() throws SQLException
     {
         List<Machine> list = new ArrayList<>();
 
-        Statement stmt = null;
-        ResultSet resultSet = null;
-
-
-        try
+        try(Statement stmt = connection.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM machine"))
         {
-            stmt = connection.createStatement();
-            resultSet = stmt.executeQuery("SELECT * FROM machine");
-
-            while (resultSet.next())
+            while(resultSet.next())
             {
                 Machine machine = rowToMachine(resultSet);
                 list.add(machine);
             }
             return list;
-        }
-        finally
-        {
-            close(stmt,resultSet);
         }
 
     }
 
-    public List<Machine> getMachinesFromAccountId(int accountId) throws Exception
+    public List<Machine> getMachinesFromAccountId(int accountId) throws SQLException
     {
 
         List<Machine> list = new ArrayList<>();
 
-        Statement stmt = null;
-        ResultSet resultSet = null;
-
-
-        try
+        try(Statement stmt = connection.createStatement();
+        ResultSet resultSet = stmt.executeQuery("SELECT * FROM machine JOIN account ON machine.account_id = account.account_id WHERE machine.account_id=" + accountId))
         {
-
-            stmt = connection.createStatement();
-            resultSet = stmt.executeQuery("SELECT * FROM machine JOIN account ON machine.account_id = account.account_id WHERE machine.account_id=" + accountId);
-
-            while (resultSet.next())
+            while(resultSet.next())
             {
                 Machine machine = rowToMachine(resultSet);
                 list.add(machine);
             }
             return list;
-        }
-        finally
-        {
-            close(stmt,resultSet);
         }
 
     }
@@ -79,69 +58,50 @@ public class MachineDAO extends DAO
         return machine;
     }
 
-    public int getRowCount() throws Exception
+    public int getRowCount() throws SQLException
     {
-        Statement stmt = null;
-        ResultSet resultSet = null;
-
-        stmt = connection.createStatement();
-        resultSet = stmt.executeQuery("SELECT * FROM machine");
-
-        int i = 0;
-
-        while(resultSet.next())
+        try(Statement stmt = connection.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM machine"))
         {
-            i++;
+            int i = 0;
+            while(resultSet.next())
+            {
+                i++;
+            }
+            return i;
         }
-
-        return i;
     }
 
-    public Machine newMachine()
+    //Creates new machine and retrieves it
+    public Machine newMachine() throws SQLException
     {
-        Statement stmt = null;
-        ResultSet resultSet = null;
-
-        try
+        try(Statement stmt = connection.createStatement())
         {
-            stmt = connection.createStatement();
-            System.out.println("ehey");
             stmt.execute("INSERT INTO machines (type, brand) VALUES ('New Machine','New Brand')");
+            Machine machine = getNewMachine();
+            return machine;
+        }
+    }
 
-
-            resultSet = stmt.executeQuery("SELECT * FROM accounts WHERE account_id=(SELECT max(account_id) FROM accounts)");
+    //Retrieves newest machine
+    public Machine getNewMachine() throws SQLException
+    {
+        try(Statement stmt = connection.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM machines WHERE machine_id=(SELECT max(machine_id) FROM machines)"))
+        {
+            resultSet.next();
             Machine machine = rowToMachine(resultSet);
             return machine;
-
         }
-        catch(Exception exc)
-        {
-            System.out.println("hey");
-
-        }
-        Machine machine = null;
-        return machine;
-
     }
 
-    public void deleteMachine(int machine_id)
+    public void deleteMachine(int machine_id) throws SQLException
     {
-        Statement stmt = null;
-
-        try
+        try(Statement stmt = connection.createStatement())
         {
-            stmt = connection.createStatement();
             stmt.execute("DELETE FROM machines WHERE machine_id=" + machine_id);
             System.out.println("Machine Deleted in DATABASE");
-
-
         }
-        catch(Exception exc)
-        {
-            System.out.println("failure in deleting accoutn in MachineDAO");
-        }
-
-
     }
 
     public void updateMachine(int machineID, String machineType, String machineBrand, String machineModel, String machineAsset) throws SQLException

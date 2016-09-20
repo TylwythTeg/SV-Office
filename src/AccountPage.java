@@ -284,6 +284,7 @@ public class AccountPage
         } catch (Exception exc)
         {
             System.out.println("Couldn't query machine list");
+            System.out.println(exc);
         }
     }
 
