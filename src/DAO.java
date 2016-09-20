@@ -4,28 +4,19 @@ public class DAO
 {
     protected static Connection connection = null;
 
-   public DAO() throws Exception
+   public DAO() throws SQLException
     {
         if(connection == null)
             connectToDatabase();
     }
 
-    public void connectToDatabase() throws Exception
+    public void connectToDatabase() throws SQLException
     {
         String url = "jdbc:mysql://localhost:3306/sacramento_vending";
         String user = "root";
         String password = "rootpurse";
 
-
-        try
-        {
-            connection = DriverManager.getConnection(url, user, password);
-            System.out.println("Database connection to " + url + " successful");
-        } catch (Exception exc)
-        {
-            System.out.println("Database connection to " + url + " unsuccessful");
-        }
-
+        connection = DriverManager.getConnection(url, user, password);
     }
 
     protected static void close(Connection connection, Statement stmt, ResultSet resultSet) throws SQLException

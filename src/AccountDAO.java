@@ -4,167 +4,106 @@ import java.sql.*;
 public class AccountDAO extends DAO
 {
 
-    public AccountDAO() throws Exception
+    public AccountDAO() throws SQLException
     {
-        //System.out.println(connection.getAutoCommit());
+
     }
 
-    public List<Account> getAllAccounts() throws Exception
+    public List<Account> getAllAccounts() throws SQLException
     {
         List<Account> list = new ArrayList<>();
 
-        Statement stmt = null;
-        ResultSet resultSet = null;
-
-
-        try
+        try (Statement stmt = connection.createStatement();
+        ResultSet resultSet = stmt.executeQuery("SELECT * FROM accounts"))
         {
-            stmt = connection.createStatement();
-            resultSet = stmt.executeQuery("SELECT * FROM accounts");
-
-            while (resultSet.next())
-            {
-                Account account = rowToAccount(resultSet);
-                list.add(account);
-            }
-            return list;
-        }
-        finally
-        {
-            close(stmt,resultSet);
-        }
-
-    }
-
-    public List<String> getAllAccountNames() throws Exception
-    {
-        List<String> list = new ArrayList<>();
-
-        //Statement stmt = null;
-        ResultSet resultSet = null;
-
-        try
-        {
-
-
-            resultSet = selectAllAccounts();
-
-            while (resultSet.next())
-            {
-                Account account = rowToAccount(resultSet);
-                list.add(account.getName());
-            }
-            return list;
-        }
-        finally
-        {
-            close(resultSet);
-        }
-
-    }
-
-    public ResultSet selectAllAccounts() throws Exception
-    {
-        Statement stmt = null;
-        ResultSet resultSet = null;
-        stmt = connection.createStatement();
-        resultSet = stmt.executeQuery("SELECT * FROM accounts");
-        //close(stmt,resultSet);
-        return resultSet;
-    }
-
-    public int getRowCount() throws Exception
-    {
-        Statement stmt = null;
-        ResultSet resultSet = null;
-
-        stmt = connection.createStatement();
-        resultSet = stmt.executeQuery("SELECT * FROM accounts");
-
-        int i = 0;
-
-        while(resultSet.next())
-        {
-            i++;
-        }
-
-        return i;
-
-
-    }
-
-    public Account newAccount()
-    {
-        Statement stmt = null;
-        ResultSet resultSet = null;
-
-        try
-        {
-            stmt = connection.createStatement();
-            System.out.println("ehey");
-            //String query = "INSERT INTO account ("
-            stmt.execute("INSERT INTO accounts (name, address) VALUES ('New Account','New Address')");
-
-
-            resultSet = stmt.executeQuery("SELECT * FROM accounts WHERE account_id=(SELECT max(account_id) FROM accounts)");
-            Account account = rowToAccount(resultSet);
-            return account;
-
-        }
-        catch(Exception exc)
-        {
-            System.out.println("hey");
-
-        }
-        Account account = null;
-        return account;
-
-    }
-
-    public void deleteAccount(int account_id)
-    {
-        Statement stmt = null;
-
-        try
-        {
-            stmt = connection.createStatement();
-            stmt.execute("DELETE FROM accounts WHERE account_id=" + account_id);
-            System.out.println("Account Deleted in DATABASE");
-
-
-        }
-        catch(Exception exc)
-        {
-            System.out.println("failure in deleting accoutn in accountDAO");
-            System.out.println(exc);
-
-        }
-
-
-    }
-
-    public List<Account> searchAccounts(String name) throws Exception
-    {
-        List<Account> list = new ArrayList<>();
-
-        PreparedStatement stmt = null;
-        ResultSet resultSet = null;
-
-        try
-        {
-            name="%"+name;
-            name+="%";
-
-            stmt = connection.prepareStatement("SELECT * FROM account WHERE name LIKE ?");
-            stmt.setString(1,name);
-
-            resultSet = stmt.executeQuery();
-
             while(resultSet.next())
             {
                 Account account = rowToAccount(resultSet);
                 list.add(account);
             }
+            return list;
+        }
+
+    }
+
+    public List<String> getAllAccountNames() throws SQLException
+    {
+        List<Account> accounts = getAllAccounts();
+        List<String> names = new ArrayList<>();
+
+        for(Account account : accounts)
+        {
+            names.add(account.getName());
+        }
+
+        return names;
+
+    }
+
+    public int getRowCount() throws SQLException
+    {
+        try(Statement stmt = connection.createStatement();
+        ResultSet resultSet = stmt.executeQuery("SELECT * FROM accounts"))
+        {
+            int i = 0;
+            while(resultSet.next())
+            {
+                i++;
+            }
+            return i;
+        }
+    }
+
+    public Account newAccount() throws SQLException
+    {
+        try(Statement stmt = connection.createStatement())
+        {
+            stmt.execute("INSERT INTO accounts (name, address) VALUES ('New Account','New Address')");
+            Account account = getNewAccount();
+            return account;
+        }
+    }
+
+    public Account getNewAccount() throws SQLException
+    {
+        try(Statement stmt = connection.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM accounts WHERE account_id=(SELECT max(account_id) FROM accounts)"))
+        {
+            resultSet.next();
+            Account account = rowToAccount(resultSet);
+            return account;
+        }
+    }
+
+    public void deleteAccount(int account_id) throws SQLException
+    {
+        try(Statement stmt = connection.createStatement())
+        {
+            stmt.execute("DELETE FROM accounts WHERE account_id=" + account_id);
+            System.out.println("Account Deleted in DATABASE");
+        }
+    }
+
+    public List<Account> searchAccounts(String name) throws SQLException
+    {
+        List<Account> list = new ArrayList<>();
+
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+        name="%"+name;
+        name+="%";
+
+        try
+        {
+            stmt = connection.prepareStatement("SELECT * FROM account WHERE name LIKE ?");
+            stmt.setString(1,name);
+            resultSet = stmt.executeQuery();
+            while(resultSet.next())
+            {
+                Account account = rowToAccount(resultSet);
+                list.add(account);
+            }
+            close(resultSet);
             return list;
         }
         finally
@@ -202,38 +141,30 @@ public class AccountDAO extends DAO
 
     public String getColumn(int accountID, String column) throws SQLException
     {
+        try(Statement stmt = connection.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT " + column + " FROM accounts WHERE account_id=" + accountID))
+        {
+            resultSet.next();
+            String value = resultSet.getString(column);
 
-        Statement stmt = null;
-        ResultSet resultSet = null;
-
-        stmt = connection.createStatement();
-        resultSet = stmt.executeQuery("SELECT " + column + " FROM accounts WHERE account_id=" + accountID);
-        resultSet.next();
-        String value = resultSet.getString(column);
-
-        return value;
+            return value;
+        }
     }
 
     public int getIdFromName(String accountName) throws SQLException
     {
-        System.out.println("hereeeeeeeeeeeeeee0");
-        Statement stmt = null;
-        ResultSet resultSet = null;
-        int accountID;
         System.out.println("ACCOUNTNAME IS " + accountName);
 
-        stmt = connection.createStatement();
-        System.out.println("hereeeeeeeeeeeeeee1");
-        resultSet = stmt.executeQuery("SELECT account_id FROM accounts WHERE name=\'" + accountName +"\'");
-        System.out.println("hereeeeeeeeeeeeeee1.2");
-        resultSet.next();
-        System.out.println("hereeeeeeeeeeeeeee1.3");
-        accountID = resultSet.getInt("account_id");
-        System.out.println("hereeeeeeeeeeeeeee2");
-        return accountID;
+        try(Statement stmt = connection.createStatement();
+        ResultSet resultSet = stmt.executeQuery("SELECT account_id FROM accounts WHERE name=\'" + accountName +"\'"))
+        {
+            resultSet.next();
+            int accountID = resultSet.getInt("account_id");
+            System.out.println("ACCOUNTID IS " + accountID);
+            return accountID;
+        }
+
     }
-
-
 
 
 }

@@ -131,6 +131,8 @@ public class AccountPage
         } catch (Exception esc)
         {
             System.out.println("psh");
+            System.out.println(esc);
+            esc.printStackTrace();
         }
     }
     public void delete(TablesListModel tableList)
