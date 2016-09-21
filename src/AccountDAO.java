@@ -59,12 +59,12 @@ public class AccountDAO extends DAO
         try(Statement stmt = connection.createStatement())
         {
             stmt.execute("INSERT INTO accounts (name, address) VALUES ('New Account','New Address')");
-            Account account = getNewAccount();
+            Account account = getNewestAccount();
             return account;
         }
     }
 
-    public Account getNewAccount() throws SQLException
+    public Account getNewestAccount() throws SQLException
     {
         try(Statement stmt = connection.createStatement();
             ResultSet resultSet = stmt.executeQuery("SELECT * FROM accounts WHERE account_id=(SELECT max(account_id) FROM accounts)"))

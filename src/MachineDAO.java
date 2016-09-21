@@ -5,7 +5,7 @@ import java.io.*;
 public class MachineDAO extends DAO
 {
 
-    public MachineDAO() throws Exception
+    public MachineDAO() throws SQLException
     {
     }
 

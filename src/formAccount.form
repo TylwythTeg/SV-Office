@@ -126,7 +126,7 @@
                           <font/>
                         </border>
                         <children>
-                          <component id="64263" class="javax.swing.JTable" binding="tableViewTable">
+                          <component id="64263" class="javax.swing.JTable" binding="mainTable">
                             <constraints/>
                             <properties>
                               <fillsViewportHeight value="false"/>

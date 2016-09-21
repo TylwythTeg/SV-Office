@@ -106,7 +106,7 @@ public class SV_Office
         System.out.println(cardLayout);
         System.out.println(cardContainer.getLayout());
 
-        accountPage = new AccountPage(tableList);
+        accountPage = new AccountPage();
         machinePage = new MachinePage(tableList);
         cardAccountPage = accountPage.getCard();
         cardMachinePage = machinePage.getCard();
