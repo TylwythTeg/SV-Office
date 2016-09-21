@@ -1,6 +1,4 @@
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +15,7 @@ public class MachinePage
     private JButton buttonNew;
     private JPanel panelForTable;
     private JScrollPane rowListScrollPane;
-    private JTable tableViewTable;
+    private JTable mainTable;
     private JTextField nameFilterTextArea;
     private JPanel tableFieldsPanel;
     private JTextField formTypeField;
@@ -30,13 +28,27 @@ public class MachinePage
     private JPanel machinePanel;
     private JComboBox locationDropDown;
     private MachineDAO machineDAO;
+    private AccountDAO accountDAO;
     MachineTableModel machineModel;
 
-    private AccountDAO accountDAO;
 
-    public MachinePage(TablesListModel tableList)
+
+    public MachinePage()
     {
-        tableViewTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        mainTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        try
+        {
+            accountDAO = new AccountDAO();
+            machineDAO = new MachineDAO();
+        }
+        catch(SQLException exc)
+        {
+            System.err.println("Error Creating Data Access Objects");
+            System.err.println(exc);
+        }
+
+
         setMachineTableView();
         populateDropDown();
 
@@ -48,65 +60,34 @@ public class MachinePage
 
         try
         {
-            accountDAO = new AccountDAO();
             list = accountDAO.getAllAccountNames();
         }
-        catch(Exception exc)
+        catch(SQLException exc)
         {
-            System.out.println(exc);
+            System.err.println("Error Populating dropdown");
+            System.err.println(exc);
         }
 
         list.add(0, "");
         locationDropDown.setModel(new DefaultComboBoxModel(list.toArray()));
     }
 
-    public JButton getButtonRevert()
-    {
-        return buttonRevert;
-    }
+
 
     public void setMachineTableView()
     {
+        List<Machine> machines;
         try
         {
-            java.util.List<Machine> machines;
-            machineDAO = new MachineDAO();
             machines = machineDAO.getAllMachines();
             machineModel = new MachineTableModel(machines);
-
-            tableViewTable.setModel(machineModel);
-
         }
-        catch(Exception exc)
+        catch(SQLException exc)
         {
-            System.out.println(exc);
+            System.err.println("Error Setting/Updating Main Machine Table");
+            System.err.println(exc);
         }
-
-
-    }
-
-    public void updateMachineTableView()
-    {
-
-        try
-        {
-
-            java.util.List<Machine> machines;
-            machines = machineDAO.getAllMachines();
-            machineModel = new MachineTableModel(machines);
-            machineModel.fireTableDataChanged();
-
-            System.out.println(tableViewTable.getRowCount());
-            System.out.println(machineModel.getRowCount());
-
-
-        }
-        catch(Exception exc)
-        {
-            System.out.println("this is exception:" + exc);
-
-        }
-        tableViewTable.setModel(machineModel);
+        mainTable.setModel(machineModel);
 
     }
 
@@ -115,109 +96,85 @@ public class MachinePage
         try
         {
             Machine machine = machineDAO.newMachine();
-            System.out.println("ge1");
             machineModel.addRow(machine);
-            System.out.println("ge2");
-            updateMachineTableView();
-            System.out.println("ge3");
+            setMachineTableView();
+
             tableList.setElementAt("Machines (" + machineDAO.getRowCount() + ")",1);
 
-        } catch (Exception esc)
+        }
+        catch (SQLException exc)
         {
-            System.out.println("thi " + esc);
-            esc.printStackTrace();
+            System.err.println("Error creating new machine " + exc);
+            exc.printStackTrace();
         }
     }
 
     public void delete(TablesListModel tableList)
     {
-        System.out.println("selected row is " + tableViewTable.getSelectedRow());
+        System.out.println("selected row is " + mainTable.getSelectedRow());
 
-        if(tableViewTable.getSelectedRow() == -1)
+        if(mainTable.getSelectedRow() == -1)
             return;
 
-        System.out.println("test1");
+        int machineID = Integer.parseInt(mainTable.getModel().getValueAt(mainTable.getSelectedRow(),0).toString());
+        try
+        {
+            machineDAO.deleteMachine(machineID);
 
-        try{
-
-
-            int machine_id = Integer.parseInt(tableViewTable.getModel().getValueAt(tableViewTable.getSelectedRow(),0).toString());
-            machineDAO.deleteMachine(machine_id);
-
-
-            machineModel.removeRow(tableViewTable.getSelectedRow()-1);
-            updateMachineTableView();
+            machineModel.removeRow(mainTable.getSelectedRow()-1);
+            setMachineTableView();
             tableList.setElementAt("Machines (" + machineDAO.getRowCount() + ")",1);
         }
-        catch(Exception esc)
+        catch(SQLException exc)
         {
-            System.out.println("Del Exception" + esc);
-            esc.printStackTrace();
+            System.err.println("Del Exception " + exc);
+            exc.printStackTrace();
         }
     }
 
     public void save()
     {
-        if (tableViewTable.getSelectedRow() == -1)
+        if (mainTable.getSelectedRow() == -1)
         {
             System.out.println("No row selected");
             return;
         }
 
         //for Machine
-        //pull text from fields
-        String machineType;
-        String machineBrand;
-        String machineModel;
-        String machineAsset;
-        String accountName;
+        //pull text from fields and update in database
         int accountID = -1;
-        machineType = formTypeField.getText();
-        machineBrand = formBrandField.getText();
-        machineModel = formModelField.getText();
-        machineAsset = formAssetField.getText();
-        //note, don't have two accounts with the same name. But that's a bad idea anyway.
-        accountName = (String)locationDropDown.getSelectedItem();
-        System.out.println("Class is: " + accountName.getClass());
+
+        int machineID = Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 0).toString());
+        String machineType = formTypeField.getText();
+        String machineBrand = formBrandField.getText();
+        String machineModel = formModelField.getText();
+        String machineAsset = formAssetField.getText();
+
+        String accountName = (String)locationDropDown.getSelectedItem(); //note, don't have two accounts with the same name. But that's a bad idea anyway.
         try
         {
             if(!accountName.isEmpty())
-                accountID = accountDAO.getIdFromName(accountName);
-        }
-        catch(Exception exc)
-        {
-            System.out.println(exc);
-        }
-
-        System.out.println(machineType);
-        System.out.println(machineBrand);
-
-        //use fields to change info in database for row selection
-        int machineID = Integer.parseInt(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 0).toString());
-        try
-        {
-            //if(accountName.isEmpty())
-            //    machineDAO.updateMachine(machineID,machineType, machineBrand, machineModel, machineAsset);
-            if(accountName.isEmpty())
             {
-                //make account_id for this machine row set to null
-                machineDAO.updateMachine(machineID,machineType,machineBrand,machineModel,machineAsset, null);
+                accountID = accountDAO.getIdFromName(accountName);
+                machineDAO.updateMachine(machineID,machineType, machineBrand, machineModel, machineAsset, accountID);
             }
             else
-                machineDAO.updateMachine(machineID,machineType, machineBrand, machineModel, machineAsset, accountID);
-
-
-        } catch (SQLException exc)
-        {
-            System.out.println("Unable to update machine in database " + exc);
+                machineDAO.updateMachine(machineID,machineType,machineBrand,machineModel,machineAsset, null);
         }
-        updateMachineTableView();
+        catch(SQLException exc)
+        {
+            System.err.println("Unable to update Machine in database");
+            System.err.println(exc);
+            exc.printStackTrace();
+        }
+
+        setMachineTableView();
     }
+
     public void revert()
     {
-        System.out.println("Machine345345345t");
         //check if selection row
-        if (tableViewTable.getSelectedRow() == -1)
+        if (mainTable.getSelectedRow() == -1)
         {
             System.out.println("No row selected");
             return;
@@ -225,7 +182,7 @@ public class MachinePage
 
         //for Machine
         //pull fields from database
-        int machineID = Integer.parseInt(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 0).toString());
+        int machineID = Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 0).toString());
         String machineType;
         String machineBrand;
         String machineModel;
@@ -241,15 +198,17 @@ public class MachinePage
             machineModel = machineDAO.getColumn(machineID, "model"); //query from id
             machineAsset = machineDAO.getColumn(machineID, "asset"); //query from id
             accountName = machineDAO.getAccountName(machine);
-        } catch (Exception exc)
+        }
+        catch (SQLException exc)
         {
             System.out.println("Unable to retrieve machine in database " + exc);
             exc.printStackTrace();
             return;
         }
 
-        //set textfields to new strings
+
         System.out.println("machine= " + machineType + " Brand= " + machineBrand + " ID:" + machineID);
+        //set textfields to new strings
         formTypeField.setText(machineType);
         formBrandField.setText(machineBrand);
         formModelField.setText(machineModel);
@@ -262,8 +221,9 @@ public class MachinePage
 
     public void setTextFields()
     {
-        System.out.println("METHODMACHINE Selected Row == " + tableViewTable.getSelectedRow());
-        if(tableViewTable.getSelectedRow() == -1)
+        System.out.println("METHODMACHINE Selected Row == " + mainTable.getSelectedRow());
+
+        if(mainTable.getSelectedRow() == -1)
         {
             formTypeField.setText("");
             formBrandField.setText("");
@@ -276,17 +236,16 @@ public class MachinePage
         System.out.println("The next line will fail the second trigger (Why trigger twice for Table?");
         //check nulls
 
-        formTypeField.setText(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 1).toString());
-        formBrandField.setText(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 2).toString());
-        //System.out.println("/// +" + tableViewTable.getValueAt(tableViewTable.getSelectedRow(),2));
-        //System.out.println("/// +" + tableViewTable.getValueAt(tableViewTable.getSelectedRow(),3));
-        if(tableViewTable.getValueAt(tableViewTable.getSelectedRow(),3) != null)
-            formModelField.setText(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 3).toString());
+        formTypeField.setText(mainTable.getValueAt(mainTable.getSelectedRow(), 1).toString());
+        formBrandField.setText(mainTable.getValueAt(mainTable.getSelectedRow(), 2).toString());
+
+        if(mainTable.getValueAt(mainTable.getSelectedRow(),3) != null)
+            formModelField.setText(mainTable.getValueAt(mainTable.getSelectedRow(), 3).toString());
         else
             formModelField.setText("");
-        //if(tableViewTable.getValueAt(tableViewTable.getSelectedRow(),4).toString().isEmpty())
-        if(tableViewTable.getValueAt(tableViewTable.getSelectedRow(),4) != null)
-            formAssetField.setText(tableViewTable.getValueAt(tableViewTable.getSelectedRow(), 4).toString());
+
+        if(mainTable.getValueAt(mainTable.getSelectedRow(),4) != null)
+            formAssetField.setText(mainTable.getValueAt(mainTable.getSelectedRow(), 4).toString());
         else
             formAssetField.setText("");
 
@@ -294,7 +253,7 @@ public class MachinePage
 
     public void setDropDown()
     {
-        if(tableViewTable.getSelectedRow() == -1)
+        if(mainTable.getSelectedRow() == -1)
         {
             formTypeField.setText("");
             formBrandField.setText("");
@@ -304,18 +263,14 @@ public class MachinePage
             return;
         }
 
-        System.out.println("I setDropDown0");
-        System.out.println("setDropDown selectedRow is " + tableViewTable.getSelectedRow());
-        if(tableViewTable.getValueAt(tableViewTable.getSelectedRow(),5) == null)
+        System.out.println("setDropDown selectedRow is " + mainTable.getSelectedRow());
+
+        if(mainTable.getValueAt(mainTable.getSelectedRow(),5) == null)
         {
-            System.out.println("I setDropDown1");
             locationDropDown.setSelectedIndex(0);
             return;
         }
-        System.out.println("I setDropDown2");
-        locationDropDown.setSelectedItem(tableViewTable.getValueAt(tableViewTable.getSelectedRow(),5));
-
-
+        locationDropDown.setSelectedItem(mainTable.getValueAt(mainTable.getSelectedRow(),5));
 
     }
 
@@ -341,7 +296,7 @@ public class MachinePage
     }
     public JTable getMachineTable()
     {
-        return tableViewTable;
+        return mainTable;
     }
     public JComboBox getDropDown() { return locationDropDown; }
 }

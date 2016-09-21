@@ -60,7 +60,6 @@ public class AccountPage
     public void setAccountTableView()
     {
             List<Account> accounts;
-
             try
             {
                 accounts = accountDAO.getAllAccounts();
@@ -137,16 +136,18 @@ public class AccountPage
             accountName = accountDAO.getColumn(accountID, "name"); //query name from id
             accountAddress = accountDAO.getColumn(accountID, "address"); //query address from id
 
-        } catch (SQLException exc)
+        }
+        catch (SQLException exc)
         {
             System.err.println("Unable to retrieve account in database " + exc);
             exc.printStackTrace();
             return;
         }
 
-        //set textfields to new strings
+
         System.out.println("Account= " + accountName + " Address= " + accountAddress + " ID:" + accountID);
 
+        //set textfields to new strings
         formNameField.setText(accountName);
         formAddressField.setText(accountAddress);
 
@@ -191,7 +192,6 @@ public class AccountPage
     }
 
 
-
     public void setTextFields()
     {
         System.out.println("Selected Row == " + mainTable.getSelectedRow());
@@ -201,7 +201,6 @@ public class AccountPage
             formNameField.setText("");
             formAddressField.setText("");
             tableFieldsPanel.setBorder(new TitledBorder("Account"));
-            setMachineTable();
             return;
         }
 
