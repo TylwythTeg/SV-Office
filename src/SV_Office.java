@@ -30,14 +30,14 @@ public class SV_Office
 
     public static void main(String[] args)
     {
-        try{
+        /*try{
             UIManager.setLookAndFeel(
                     UIManager.getSystemLookAndFeelClassName());
         }
         catch(Exception exc)
         {
 
-        }
+        }*/
         frame = new JFrame("SV_Office");
         frame.setContentPane(new SV_Office().window);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,9 +76,9 @@ public class SV_Office
                     cardLayout.show(cardContainer, "Machine");
                     cardLayout.setVisible("Machine");
                 }
-                if (selection.startsWith("Log"))
+                if (selection.startsWith("Revenue"))
                 {
-                    System.out.println("You have Selected Log");
+                    System.out.println("You have Selected Revenue");
                     cardLayout.show(cardContainer, "Revenue");
                     cardLayout.setVisible("Revenue");
                 }

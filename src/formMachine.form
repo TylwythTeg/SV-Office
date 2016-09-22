@@ -157,7 +157,7 @@
                       </grid>
                     </constraints>
                   </vspacer>
-                  <component id="f6bb7" class="javax.swing.JComboBox" binding="nameFilterTextArea">
+                  <component id="f6bb7" class="javax.swing.JComboBox" binding="typeFilterBox">
                     <constraints>
                       <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
@@ -177,7 +177,7 @@
                       <text value="Filter: Brand"/>
                     </properties>
                   </component>
-                  <component id="5b1ba" class="javax.swing.JComboBox">
+                  <component id="5b1ba" class="javax.swing.JComboBox" binding="brandFilterBox">
                     <constraints>
                       <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
@@ -197,7 +197,7 @@
                       <text value="Filter: Location"/>
                     </properties>
                   </component>
-                  <component id="7a9d3" class="javax.swing.JComboBox">
+                  <component id="7a9d3" class="javax.swing.JComboBox" binding="locationFilterBox">
                     <constraints>
                       <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>

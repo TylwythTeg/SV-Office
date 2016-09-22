@@ -16,7 +16,7 @@ public class MachinePage
     private JPanel panelForTable;
     private JScrollPane rowListScrollPane;
     private JTable mainTable;
-    private JComboBox nameFilterTextArea;
+    private JComboBox typeFilterBox;
     private JPanel tableFieldsPanel;
     private JTextField formTypeField;
     private JTextField formBrandField;
@@ -28,6 +28,8 @@ public class MachinePage
     private JPanel machinePanel;
     private JComboBox locationDropDown;
     private JButton filterButton;
+    private JComboBox brandFilterBox;
+    private JComboBox locationFilterBox;
 
     MachineTableModel machineModel;
 

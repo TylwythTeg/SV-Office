@@ -15,7 +15,7 @@ class TablesListModel extends DefaultListModel
     {
         this.addElement("Accounts " + "(" + accountRows + ")");
         this.addElement("Machines " + "(" + machineRows + ")");
-        this.addElement("Log");
+        this.addElement("Revenue");
         this.addElement("Product");
         this.addElement("Route");
         this.addElement("Employee");

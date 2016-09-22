@@ -15,7 +15,7 @@ public class RevenuePage
     private JPanel panelForTable;
     private JScrollPane rowListScrollPane;
     private JTable mainTable;
-    private JComboBox nameFilterTextArea;
+    private JComboBox accountFilterBox;
     private JButton filterButton;
     private JPanel tableFieldsPanel;
     private JTextField formTypeField;
@@ -24,6 +24,8 @@ public class RevenuePage
     private JButton buttonSave;
     private JButton buttonRevert;
     private JComboBox locationDropDown;
+    private JComboBox sortFilterBox;
+    private JComboBox dateFilterBox;
 
     private AccountDAO accountDAO;
     private MachineDAO machineDAO;
