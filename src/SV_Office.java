@@ -30,14 +30,14 @@ public class SV_Office
 
     public static void main(String[] args)
     {
-        /*try{
+        try{
             UIManager.setLookAndFeel(
                     UIManager.getSystemLookAndFeelClassName());
         }
         catch(Exception exc)
         {
 
-        }*/
+        }
         frame = new JFrame("SV_Office");
         frame.setContentPane(new SV_Office().window);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

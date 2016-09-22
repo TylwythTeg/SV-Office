@@ -22,12 +22,13 @@ public class AccountPage
     private JTextField formNameField;
     private JTextField formAddressField;
     private JLabel labelRevenue;
-    private JScrollPane machineScrollPane;
+    private JScrollPane logScrollPane;
     private JTable machineTable;
     private JButton buttonSave;
     private JButton buttonRevert;
     private JPanel accountPanel;
     private JButton filterButton;
+    private JTable revenueTable;
     AccountTableModel accountModel;
 
     MachineTableModel machinemodel;
