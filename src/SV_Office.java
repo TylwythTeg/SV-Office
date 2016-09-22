@@ -14,13 +14,15 @@ public class SV_Office
     private JPanel cardContainer;
     private static JPanel cardAccountPage;
     private static JPanel cardMachinePage;
+    private static JPanel cardRevenuePage;
     private static AccountPage accountPage;
     private static MachinePage machinePage;
+    private static RevenuePage revenuePage;
 
     private static SimpleCardLayout cardLayout;
 
     private AccountDAO accountDAO;
-    private MachineDAO machineDAO; //
+    private MachineDAO machineDAO;
 
     private TablesListModel tableList;
 
@@ -28,15 +30,20 @@ public class SV_Office
 
     public static void main(String[] args)
     {
+        /*try{
+            UIManager.setLookAndFeel(
+                    UIManager.getSystemLookAndFeelClassName());
+        }
+        catch(Exception exc)
+        {
+
+        }*/
         frame = new JFrame("SV_Office");
         frame.setContentPane(new SV_Office().window);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("SV Office Alpha");
         frame.pack();
         frame.setVisible(true);
-
-
-
     }
 
     public SV_Office()
@@ -72,6 +79,8 @@ public class SV_Office
                 if (selection.startsWith("Log"))
                 {
                     System.out.println("You have Selected Log");
+                    cardLayout.show(cardContainer, "Revenue");
+                    cardLayout.setVisible("Revenue");
                 }
                 if (selection.startsWith("Product"))
                 {
@@ -108,13 +117,16 @@ public class SV_Office
 
         accountPage = new AccountPage();
         machinePage = new MachinePage();
+        revenuePage = new RevenuePage();
         cardAccountPage = accountPage.getCard();
         cardMachinePage = machinePage.getCard();
+        cardRevenuePage = revenuePage.getCard();
 
 
         //add JPanel pages to cardContainer JPanel
         cardContainer.add(cardAccountPage, "Account");
         cardContainer.add(cardMachinePage, "Machine");
+        cardContainer.add(cardRevenuePage, "Revenue");
 
         System.out.println(cardContainer.getComponents());
 

@@ -16,7 +16,7 @@ public class MachinePage
     private JPanel panelForTable;
     private JScrollPane rowListScrollPane;
     private JTable mainTable;
-    private JTextField nameFilterTextArea;
+    private JComboBox nameFilterTextArea;
     private JPanel tableFieldsPanel;
     private JTextField formTypeField;
     private JTextField formBrandField;
@@ -27,9 +27,12 @@ public class MachinePage
     private JTextField formModelField;
     private JPanel machinePanel;
     private JComboBox locationDropDown;
+    private JButton filterButton;
+
+    MachineTableModel machineModel;
+
     private MachineDAO machineDAO;
     private AccountDAO accountDAO;
-    MachineTableModel machineModel;
 
 
 
@@ -233,7 +236,7 @@ public class MachinePage
             return;
         }
 
-        System.out.println("The next line will fail the second trigger (Why trigger twice for Table?");
+        System.out.println("The next line will fail the second trigger (Why trigger twice for Table?)");
         //check nulls
 
         formTypeField.setText(mainTable.getValueAt(mainTable.getSelectedRow(), 1).toString());

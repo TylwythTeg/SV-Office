@@ -27,6 +27,7 @@ public class AccountPage
     private JButton buttonSave;
     private JButton buttonRevert;
     private JPanel accountPanel;
+    private JButton filterButton;
     AccountTableModel accountModel;
 
     MachineTableModel machinemodel;
