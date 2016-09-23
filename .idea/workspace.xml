@@ -2,14 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="216100fd-a58a-481f-9b57-a2d7313516d0" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Screenshots/SV Office Alpha 9-22-16 (Proto Revenue Table).png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jcalendar-1.4.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jgoodies-common-1.2.0.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jgoodies-looks-2.4.1.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/junit-4.6.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/RevenueDAO.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/RevenueLog.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/RevenueTableModel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SV1/AccountPage.class" afterPath="$PROJECT_DIR$/out/production/SV1/AccountPage.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SV1/MachinePage.class" afterPath="$PROJECT_DIR$/out/production/SV1/MachinePage.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SV1/RevenuePage.class" afterPath="$PROJECT_DIR$/out/production/SV1/RevenuePage.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SV1/SV_Office.class" afterPath="$PROJECT_DIR$/out/production/SV1/SV_Office.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MachinePage.java" afterPath="$PROJECT_DIR$/src/MachinePage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SV1.iml" afterPath="$PROJECT_DIR$/SV1.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MachineTableModel.java" afterPath="$PROJECT_DIR$/src/MachineTableModel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/RevenuePage.java" afterPath="$PROJECT_DIR$/src/RevenuePage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SV_Office.form" afterPath="$PROJECT_DIR$/src/SV_Office.form" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SV_Office.java" afterPath="$PROJECT_DIR$/src/SV_Office.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TablesListModel.java" afterPath="$PROJECT_DIR$/src/TablesListModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/formMachine.form" afterPath="$PROJECT_DIR$/src/formMachine.form" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/formRevenue.form" afterPath="$PROJECT_DIR$/src/formRevenue.form" />
     </list>
     <ignored path="SV1.iws" />
@@ -53,25 +63,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="RevenuePage.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RevenuePage.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/RevenuePage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+            <state relative-caret-position="329">
+              <caret line="189" column="49" selection-start-line="189" selection-start-column="49" selection-end-line="189" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#5743#5744#0" expanded="true" />
+                <element signature="e#5775#5776#0" expanded="true" />
+                <element signature="e#5816#5817#0" expanded="true" />
+                <element signature="e#5849#5850#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AccountPage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AccountPage.java">
+      <file leaf-file-name="RevenueLog.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/RevenueLog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="512">
-              <caret line="227" column="0" selection-start-line="227" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RevenueTableModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/RevenueTableModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#793#794#0" expanded="false" />
+                <element signature="e#825#826#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -84,11 +110,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SV_Office.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/SV_Office.java">
+      <file leaf-file-name="AccountPage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AccountPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="174" column="30" selection-start-line="174" selection-start-column="30" selection-end-line="174" selection-end-column="30" />
+            <state relative-caret-position="848">
+              <caret line="207" column="0" selection-start-line="207" selection-start-column="0" selection-end-line="207" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -96,10 +122,80 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SV_Office.form" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SV_Office.form">
-          <provider selected="true" editor-type-id="ui-designer">
-            <state />
+      <file leaf-file-name="RevenueDAO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/RevenueDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="79" column="16" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <marker date="1474601465644" expanded="true" signature="392:409" placeholder="SELECT * FRO... log" />
+                <marker date="1474601465644" expanded="true" signature="1614:1657" placeholder="SELECT name accounts" />
+                <marker date="1474601465644" expanded="true" signature="2151:2244" placeholder="UPDATE set t... " />
+                <marker date="1474601465644" expanded="true" signature="2871:2907" placeholder="INSERT INTO machines... " />
+                <marker date="1474601465644" expanded="true" signature="3199:3259" placeholder="SELECT * FRO... machines" />
+                <marker date="1474601465644" expanded="true" signature="3231:3255" placeholder="SELECT max(m... machines" />
+                <marker date="1474601465644" expanded="true" signature="3231:3258" placeholder="SELECT max(l... log" />
+                <marker date="1474601465644" expanded="true" signature="3568:3585" placeholder="SELECT * FRO... log" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SV_Office.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SV_Office.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="329">
+              <caret line="176" column="52" selection-start-line="176" selection-start-column="52" selection-end-line="176" selection-end-column="52" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Machine.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Machine.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="578">
+              <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MachinePage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MachinePage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="258" column="27" selection-start-line="258" selection-start-column="16" selection-end-line="258" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MachineDAO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MachineDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="107">
+              <caret line="106" column="4" selection-start-line="106" selection-start-column="4" selection-end-line="127" selection-end-column="5" />
+              <folding>
+                <marker date="1474418567763" expanded="true" signature="383:404" placeholder="SELECT * FRO... machine" />
+                <marker date="1474418567763" expanded="true" signature="868:971" placeholder="SELECT * FRO... machine" />
+                <marker date="1474418567763" expanded="true" signature="1873:1894" placeholder="SELECT * FRO... machine" />
+                <marker date="1474418567763" expanded="true" signature="2251:2320" placeholder="INSERT INTO accounts... " />
+                <marker date="1474418567763" expanded="true" signature="2620:2698" placeholder="SELECT * FRO... accounts" />
+                <marker date="1474418567763" expanded="true" signature="2661:2689" placeholder="SELECT max(a... accounts" />
+                <marker date="1474418567763" expanded="true" signature="2661:2697" placeholder="SELECT max(m... machines" />
+                <marker date="1474418567763" expanded="true" signature="3009:3047" placeholder="DELETE FROM " />
+                <marker date="1474418567763" expanded="true" signature="3364:3484" placeholder="UPDATE machi... " />
+                <marker date="1474418567763" expanded="true" signature="4191:4244" placeholder="SELECT missi... machines" />
+                <marker date="1474418567763" expanded="true" signature="4893:4936" placeholder="SELECT name accounts" />
+                <marker date="1474418567763" expanded="true" signature="5487:5527" placeholder="SELECT * FRO... machines" />
+              </folding>
+            </state>
           </provider>
         </entry>
       </file>
@@ -149,18 +245,21 @@
         <option value="$PROJECT_DIR$/src/SV_OfficeAccounts.java" />
         <option value="$PROJECT_DIR$/src/Machine.java" />
         <option value="$PROJECT_DIR$/src/DAO.java" />
-        <option value="$PROJECT_DIR$/src/MachineTableModel.java" />
         <option value="$PROJECT_DIR$/src/MachineDAO.java" />
         <option value="$PROJECT_DIR$/src/AccountDAO.java" />
         <option value="$PROJECT_DIR$/src/AccountPage.java" />
         <option value="$PROJECT_DIR$/src/MachinePage.java" />
-        <option value="$PROJECT_DIR$/src/RevenuePage.java" />
         <option value="$PROJECT_DIR$/src/formAccount.form" />
         <option value="$PROJECT_DIR$/src/TablesListModel.java" />
-        <option value="$PROJECT_DIR$/src/SV_Office.java" />
         <option value="$PROJECT_DIR$/src/formMachine.form" />
-        <option value="$PROJECT_DIR$/src/formRevenue.form" />
         <option value="$PROJECT_DIR$/src/SV_Office.form" />
+        <option value="$PROJECT_DIR$/src/RevenueLog.java" />
+        <option value="$PROJECT_DIR$/src/MachineTableModel.java" />
+        <option value="$PROJECT_DIR$/src/formRevenue.form" />
+        <option value="$PROJECT_DIR$/src/RevenueDAO.java" />
+        <option value="$PROJECT_DIR$/src/RevenueTableModel.java" />
+        <option value="$PROJECT_DIR$/src/SV_Office.java" />
+        <option value="$PROJECT_DIR$/src/RevenuePage.java" />
       </list>
     </option>
   </component>
@@ -253,7 +352,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -286,8 +384,23 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SV1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SV1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Screenshots" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
@@ -306,15 +419,15 @@
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Rob\IdeaProjects\SV1\src" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Rob\IdeaProjects\SV1\Screenshots" />
+      <recent name="C:\Users\Rob\IdeaProjects\SV1\lib" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Rob\IdeaProjects\SV1\Screenshots" />
-      <recent name="C:\Users\Rob\IdeaProjects\SV1\lib" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Rob\IdeaProjects\SV1\src" />
     </key>
   </component>
   <component name="RunManager" selected="Application.SV_Office">
@@ -893,12 +1006,13 @@
       <workItem from="1474416100968" duration="12705000" />
       <workItem from="1474498106825" duration="6730000" />
       <workItem from="1474508883848" duration="1504000" />
-      <workItem from="1474510577915" duration="2311000" />
+      <workItem from="1474510577915" duration="3718000" />
+      <workItem from="1474586008072" duration="14077000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="252770000" />
+    <option name="totallyTimeSpent" value="268254000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
@@ -912,7 +1026,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.50277776" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2594524" sideWeight="0.41319445" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.273794" sideWeight="0.41319445" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -954,21 +1068,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Account.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="46" column="28" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/copyright/first.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Driver.java" />
     <entry file="file://$PROJECT_DIR$/.idea/copyright/first.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1114,100 +1213,11 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Account.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Machine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="85" column="21" selection-start-line="85" selection-start-column="21" selection-end-line="85" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AccountTableModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-381">
-          <caret line="8" column="42" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SV_OfficeAccounts.java" />
-    <entry file="file://$PROJECT_DIR$/src/MachineDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <marker date="1474418567763" expanded="true" signature="383:404" placeholder="SELECT * FRO... machine" />
-            <marker date="1474418567763" expanded="true" signature="868:971" placeholder="SELECT * FRO... machine" />
-            <marker date="1474418567763" expanded="true" signature="1873:1894" placeholder="SELECT * FRO... machine" />
-            <marker date="1474418567763" expanded="true" signature="2251:2320" placeholder="INSERT INTO accounts... " />
-            <marker date="1474418567763" expanded="true" signature="2620:2698" placeholder="SELECT * FRO... accounts" />
-            <marker date="1474418567763" expanded="true" signature="2661:2689" placeholder="SELECT max(a... accounts" />
-            <marker date="1474418567763" expanded="true" signature="2661:2697" placeholder="SELECT max(m... machines" />
-            <marker date="1474418567763" expanded="true" signature="3009:3047" placeholder="DELETE FROM " />
-            <marker date="1474418567763" expanded="true" signature="3364:3484" placeholder="UPDATE machi... " />
-            <marker date="1474418567763" expanded="true" signature="4191:4244" placeholder="SELECT missi... machines" />
-            <marker date="1474418567763" expanded="true" signature="4893:4936" placeholder="SELECT name accounts" />
-            <marker date="1474418567763" expanded="true" signature="5487:5527" placeholder="SELECT * FRO... machines" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AccountDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="142" column="27" selection-start-line="142" selection-start-column="18" selection-end-line="142" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1474422396350" expanded="true" signature="363:385" placeholder="SELECT * FRO... accounts" />
-            <marker date="1474422396350" expanded="true" signature="1067:1089" placeholder="SELECT * FRO... accounts" />
-            <marker date="1474422396350" expanded="true" signature="1403:1476" placeholder="INSERT INTO accounts... " />
-            <marker date="1474422396350" expanded="true" signature="1751:1829" placeholder="SELECT * FRO... accounts" />
-            <marker date="1474422396350" expanded="true" signature="1792:1828" placeholder="SELECT max(a... accounts" />
-            <marker date="1474422396350" expanded="true" signature="2140:2178" placeholder="DELETE FROM " />
-            <marker date="1474422396350" expanded="true" signature="2591:2630" placeholder="SELECT * FRO... account" />
-            <marker date="1474422396350" expanded="true" signature="3575:3664" placeholder="UPDATE accou... " />
-            <marker date="1474422396350" expanded="true" signature="4143:4196" placeholder="SELECT missi... accounts" />
-            <marker date="1474422396350" expanded="true" signature="4597:4662" placeholder="SELECT accou... accounts" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/DAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="537">
           <caret line="33" column="53" selection-start-line="33" selection-start-column="53" selection-end-line="33" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MachineTableModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AccountPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="227" column="0" selection-start-line="227" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MachinePage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="237" column="0" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1246,10 +1256,103 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/RevenuePage.java">
+    <entry file="file://$PROJECT_DIR$/src/Account.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+        <state relative-caret-position="476">
+          <caret line="46" column="5" selection-start-line="4" selection-start-column="4" selection-end-line="46" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AccountDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="114" column="4" selection-start-line="114" selection-start-column="4" selection-end-line="124" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1474422396350" expanded="true" signature="363:385" placeholder="SELECT * FRO... accounts" />
+            <marker date="1474422396350" expanded="true" signature="1067:1089" placeholder="SELECT * FRO... accounts" />
+            <marker date="1474422396350" expanded="true" signature="1403:1476" placeholder="INSERT INTO accounts... " />
+            <marker date="1474422396350" expanded="true" signature="1751:1829" placeholder="SELECT * FRO... accounts" />
+            <marker date="1474422396350" expanded="true" signature="1792:1828" placeholder="SELECT max(a... accounts" />
+            <marker date="1474422396350" expanded="true" signature="2140:2178" placeholder="DELETE FROM " />
+            <marker date="1474422396350" expanded="true" signature="2591:2630" placeholder="SELECT * FRO... account" />
+            <marker date="1474422396350" expanded="true" signature="3575:3664" placeholder="UPDATE accou... " />
+            <marker date="1474422396350" expanded="true" signature="4143:4196" placeholder="SELECT missi... accounts" />
+            <marker date="1474422396350" expanded="true" signature="4597:4662" placeholder="SELECT accou... accounts" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AccountTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MachineTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Machine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MachineDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="106" column="4" selection-start-line="106" selection-start-column="4" selection-end-line="127" selection-end-column="5" />
+          <folding>
+            <marker date="1474418567763" expanded="true" signature="383:404" placeholder="SELECT * FRO... machine" />
+            <marker date="1474418567763" expanded="true" signature="868:971" placeholder="SELECT * FRO... machine" />
+            <marker date="1474418567763" expanded="true" signature="1873:1894" placeholder="SELECT * FRO... machine" />
+            <marker date="1474418567763" expanded="true" signature="2251:2320" placeholder="INSERT INTO accounts... " />
+            <marker date="1474418567763" expanded="true" signature="2620:2698" placeholder="SELECT * FRO... accounts" />
+            <marker date="1474418567763" expanded="true" signature="2661:2689" placeholder="SELECT max(a... accounts" />
+            <marker date="1474418567763" expanded="true" signature="2661:2697" placeholder="SELECT max(m... machines" />
+            <marker date="1474418567763" expanded="true" signature="3009:3047" placeholder="DELETE FROM " />
+            <marker date="1474418567763" expanded="true" signature="3364:3484" placeholder="UPDATE machi... " />
+            <marker date="1474418567763" expanded="true" signature="4191:4244" placeholder="SELECT missi... machines" />
+            <marker date="1474418567763" expanded="true" signature="4893:4936" placeholder="SELECT name accounts" />
+            <marker date="1474418567763" expanded="true" signature="5487:5527" placeholder="SELECT * FRO... machines" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/RevenueDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="79" column="16" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1474601465644" expanded="true" signature="392:409" placeholder="SELECT * FRO... log" />
+            <marker date="1474601465644" expanded="true" signature="1614:1657" placeholder="SELECT name accounts" />
+            <marker date="1474601465644" expanded="true" signature="2151:2244" placeholder="UPDATE set t... " />
+            <marker date="1474601465644" expanded="true" signature="2871:2907" placeholder="INSERT INTO machines... " />
+            <marker date="1474601465644" expanded="true" signature="3199:3259" placeholder="SELECT * FRO... machines" />
+            <marker date="1474601465644" expanded="true" signature="3231:3255" placeholder="SELECT max(m... machines" />
+            <marker date="1474601465644" expanded="true" signature="3231:3258" placeholder="SELECT max(l... log" />
+            <marker date="1474601465644" expanded="true" signature="3568:3585" placeholder="SELECT * FRO... log" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AccountPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="848">
+          <caret line="207" column="0" selection-start-line="207" selection-start-column="0" selection-end-line="207" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1267,12 +1370,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SV_Office.java">
+    <entry file="file://$PROJECT_DIR$/src/RevenueTableModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="174" column="30" selection-start-line="174" selection-start-column="30" selection-end-line="174" selection-end-column="30" />
+        <state relative-caret-position="289">
+          <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#793#794#0" expanded="false" />
+            <element signature="e#825#826#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/RevenueLog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SV_Office.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="176" column="52" selection-start-line="176" selection-start-column="52" selection-end-line="176" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MachinePage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="258" column="27" selection-start-line="258" selection-start-column="16" selection-end-line="258" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/RevenuePage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="189" column="49" selection-start-line="189" selection-start-column="49" selection-end-line="189" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5743#5744#0" expanded="true" />
+            <element signature="e#5775#5776#0" expanded="true" />
+            <element signature="e#5816#5817#0" expanded="true" />
+            <element signature="e#5849#5850#0" expanded="true" />
           </folding>
         </state>
       </provider>

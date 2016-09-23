@@ -177,6 +177,10 @@ public class SV_Office
                         machinePage.setTextFields();
                         machinePage.setDropDown();
                         break;
+                    case "Revenue":
+                        revenuePage.setFields();
+                        revenuePage.setDropDown();
+
 
                 }
 
@@ -195,8 +199,12 @@ public class SV_Office
         machinePage.getSaveButton().addActionListener(actionListener);
         machinePage.getRevertButton().addActionListener(actionListener);
 
+        revenuePage.getNewButton().addActionListener(actionListener);
+        revenuePage.getSaveButton().addActionListener(actionListener);
+
         accountPage.getAccountTable().getSelectionModel().addListSelectionListener(listSelectionListener);
         machinePage.getMachineTable().getSelectionModel().addListSelectionListener(listSelectionListener);
+        revenuePage.getRevenueTable().getSelectionModel().addListSelectionListener(listSelectionListener);
 
         machinePage.getDropDown().addActionListener(actionListener);
 
@@ -232,6 +240,9 @@ public class SV_Office
                 break;
             case "Machine":
                 machinePage.newMachine(tableList);
+                break;
+            case "Revenue":
+                revenuePage.newLog(tableList);
                 break;
         }
     }
@@ -280,6 +291,10 @@ public class SV_Office
             case "Machine":
                 machinePage.save();
                 accountPage.setMachineTable();
+                break;
+            case "Revenue":
+                revenuePage.save();
+                //accountPage.setRevenueTable();
                 break;
         }
     }

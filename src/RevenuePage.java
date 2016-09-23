@@ -1,5 +1,9 @@
 import javax.swing.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import com.toedter.calendar.JDateChooser;
+import java.util.Date;
 
 public class RevenuePage
 {
@@ -18,8 +22,8 @@ public class RevenuePage
     private JComboBox accountFilterBox;
     private JButton filterButton;
     private JPanel tableFieldsPanel;
-    private JTextField formTypeField;
-    private JTextField formBrandField;
+    private JDateChooser formDateField;
+    private JTextField formMoneyField;
     private JLabel labelRevenue;
     private JButton buttonSave;
     private JButton buttonRevert;
@@ -29,6 +33,9 @@ public class RevenuePage
 
     private AccountDAO accountDAO;
     private MachineDAO machineDAO;
+    private RevenueDAO revenueDAO;
+
+    private RevenueTableModel revenueModel;
 
     public RevenuePage()
     {
@@ -38,6 +45,7 @@ public class RevenuePage
         {
             accountDAO = new AccountDAO();
             machineDAO = new MachineDAO();
+            revenueDAO = new RevenueDAO();
         }
         catch (SQLException exc)
         {
@@ -45,8 +53,144 @@ public class RevenuePage
             System.err.println(exc);
         }
 
+        setRevenueTableView();
+        populateDropDown();
 
-        //setRevenueTableView();
+    }
+
+    public void populateDropDown()
+    {
+        List<String> list = new ArrayList<>();
+
+        try
+        {
+            list = accountDAO.getAllAccountNames();
+        }
+        catch(SQLException exc)
+        {
+            System.err.println("Error Populating dropdown");
+            System.err.println(exc);
+        }
+
+        list.add(0, "");
+        locationDropDown.setModel(new DefaultComboBoxModel(list.toArray()));
+    }
+
+    public void setRevenueTableView()
+    {
+        List<RevenueLog> logs;
+        try
+        {
+            logs = revenueDAO.getAllLogs();
+
+            revenueModel = new RevenueTableModel(logs);
+        }
+        catch(SQLException exc)
+        {
+            System.err.println("Error Setting/Updating Main Revenue Table");
+            System.err.println(exc);
+        }
+
+        mainTable.setModel(revenueModel);
+    }
+
+    public void newLog(TablesListModel tableList)
+    {
+        try
+        {
+            RevenueLog log = revenueDAO.newLog();
+            revenueModel.addRow(log);
+            setRevenueTableView();
+
+            tableList.setElementAt("Revenue (" + revenueDAO.getRowCount() + ")",2);
+
+        }
+        catch (SQLException exc)
+        {
+            System.err.println("Error creating new log " + exc);
+            exc.printStackTrace();
+        }
+    }
+
+    public void save()
+    {
+        if (mainTable.getSelectedRow() == -1)
+        {
+            System.out.println("No row selected");
+            return;
+        }
+
+        //for REVENUE
+        //pull text from fields and update in database
+        int accountID = -1;
+
+        int logID = Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 1).toString());
+        Date logDate = formDateField.getDate();
+        Double logMoney = Double.parseDouble(formMoneyField.getText());
+
+
+        String accountName = (String)locationDropDown.getSelectedItem(); //note, don't have two accounts with the same name. But that's a bad idea anyway.
+        try
+        {
+            if(!accountName.isEmpty())
+            {
+                accountID = accountDAO.getIdFromName(accountName);
+                revenueDAO.updateRevenueLog(logID,logDate, logMoney, accountID);
+            }
+            else
+                revenueDAO.updateRevenueLog(logID,logDate,logMoney, null);
+        }
+        catch(SQLException exc)
+        {
+            System.err.println("Unable to update Log in database");
+            System.err.println(exc);
+            exc.printStackTrace();
+        }
+
+        setRevenueTableView();
+    }
+
+    public void setFields()
+    {
+        System.out.println("METHOD LOG Selected Row == " + mainTable.getSelectedRow());
+
+        if(mainTable.getSelectedRow() == -1)
+        {
+            formDateField.setDate(null);
+            formMoneyField.setText("");
+            locationDropDown.setSelectedIndex(0);
+            return;
+        }
+
+        System.out.println("The next line will fail the second trigger (Why trigger twice for Table?)");
+        //check nulls
+
+        formDateField.setDate((Date)mainTable.getValueAt(mainTable.getSelectedRow(), 2));
+
+        System.out.println("sdfdsf" + (Date)mainTable.getValueAt(mainTable.getSelectedRow(), 2));
+
+        formMoneyField.setText(mainTable.getValueAt(mainTable.getSelectedRow(), 3).toString());
+
+    }
+
+    public void setDropDown()
+    {
+        if(mainTable.getSelectedRow() == -1)
+        {
+            formDateField.setDate(null);
+            formMoneyField.setText("");
+            locationDropDown.setSelectedIndex(0);
+            return;
+        }
+
+        System.out.println("setDropDown selectedRow is " + mainTable.getSelectedRow());
+
+        if(mainTable.getValueAt(mainTable.getSelectedRow(),0) == null)
+        {
+            locationDropDown.setSelectedIndex(0);
+            return;
+        }
+        locationDropDown.setSelectedItem(mainTable.getValueAt(mainTable.getSelectedRow(),0));
 
     }
 
@@ -63,6 +207,18 @@ public class RevenuePage
     public JPanel getCard()
     {
         return revenuePanel;
+    }
+    public JButton getNewButton()
+    {
+        return buttonNew;
+    }
+    public JTable getRevenueTable()
+    {
+        return mainTable;
+    }
+    public JButton getSaveButton()
+    {
+        return buttonSave;
     }
 
 }

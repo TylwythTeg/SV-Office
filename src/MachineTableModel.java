@@ -1,6 +1,6 @@
 import java.util.List;
-
 import javax.swing.table.AbstractTableModel;
+import java.sql.SQLException;
 
 class MachineTableModel extends AbstractTableModel
 {
@@ -23,7 +23,7 @@ class MachineTableModel extends AbstractTableModel
         {
             machineDAO = new MachineDAO();
         }
-        catch(Exception exc)
+        catch(SQLException exc)
         {
             System.out.println(exc);
         }
