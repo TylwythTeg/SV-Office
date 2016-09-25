@@ -201,6 +201,7 @@ public class SV_Office
 
         revenuePage.getNewButton().addActionListener(actionListener);
         revenuePage.getSaveButton().addActionListener(actionListener);
+        revenuePage.getRevertButton().addActionListener(actionListener);
 
         accountPage.getAccountTable().getSelectionModel().addListSelectionListener(listSelectionListener);
         machinePage.getMachineTable().getSelectionModel().addListSelectionListener(listSelectionListener);
@@ -274,6 +275,9 @@ public class SV_Office
                 break;
             case "Machine":
                 machinePage.revert();
+                break;
+            case "Revenue":
+                revenuePage.revert();
                 break;
         }
     }

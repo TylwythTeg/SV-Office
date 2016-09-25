@@ -150,6 +150,47 @@ public class RevenuePage
         setRevenueTableView();
     }
 
+    public void revert()
+    {
+        //check if selection row
+        if (mainTable.getSelectedRow() == -1)
+        {
+            System.out.println("No row selected");
+            return;
+        }
+
+        //for RevenueLog
+        //pull fields from database
+        int logID = Integer.parseInt(mainTable.getValueAt(mainTable.getSelectedRow(), 1).toString());
+        Date logDate;
+        Double logMoney;
+        String accountName;
+        try
+        {
+            //Queries database. Would it be more efficient to check values in table?
+            RevenueLog log = revenueDAO.getRevenueLog(logID);
+
+            logDate = (Date)revenueDAO.getDate(logID); //query from id
+            logMoney = Double.parseDouble((revenueDAO.getColumn(logID, "money"))); //query from id
+            accountName = revenueDAO.getAccountName(log);
+        }
+        catch (SQLException exc)
+        {
+            System.out.println("Unable to retrieve log in database " + exc);
+            exc.printStackTrace();
+            return;
+        }
+
+
+        System.out.println("revenue log= " + logDate + " Money= " + logMoney + " ID:" + logID);
+        //set textfields to new strings
+        formDateField.setDate(logDate);
+        formMoneyField.setText(logMoney.toString());
+        locationDropDown.setSelectedItem(accountName);
+
+        System.out.println("Reverted");
+    }
+
     public void setFields()
     {
         System.out.println("METHOD LOG Selected Row == " + mainTable.getSelectedRow());
@@ -164,6 +205,7 @@ public class RevenuePage
 
         System.out.println("The next line will fail the second trigger (Why trigger twice for Table?)");
         //check nulls
+
 
         formDateField.setDate((Date)mainTable.getValueAt(mainTable.getSelectedRow(), 2));
 
@@ -215,6 +257,10 @@ public class RevenuePage
     public JTable getRevenueTable()
     {
         return mainTable;
+    }
+    public JButton getRevertButton()
+    {
+        return buttonRevert;
     }
     public JButton getSaveButton()
     {

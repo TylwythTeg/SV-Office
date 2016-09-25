@@ -109,6 +109,43 @@ public class RevenueDAO extends DAO
         }
     }
 
+    public RevenueLog getRevenueLog(int logID) throws SQLException
+    {
+        String accountName = "";
+
+        try(Statement stmt = connection.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM log WHERE log_id=" + logID))
+        {
+            resultSet.next();
+            RevenueLog log = rowToRevenueLog(resultSet);
+            return log;
+        }
+    }
+
+    public String getColumn(int logID, String column) throws SQLException
+    {
+        try(Statement stmt = connection.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT " + column + " FROM log WHERE log_id=" + logID))
+        {
+            resultSet.next();
+            String value = resultSet.getString(column);
+
+            return value;
+        }
+    }
+
+    public Date getDate(int logID) throws SQLException
+    {
+        try(Statement stmt = connection.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT date FROM log WHERE log_id=" + logID))
+        {
+            resultSet.next();
+            Date value = resultSet.getDate("date");
+
+            return value;
+        }
+    }
+
     public int getRowCount() throws SQLException
     {
         try(Statement stmt = connection.createStatement();
