@@ -205,9 +205,11 @@ public class AccountPage
 
         }
 
-        catch (Exception exc)
+        catch (SQLException exc)
         {
-            System.out.println("Error on search");
+            System.err.println("Error searching for accounts");
+            System.err.println(exc);
+
         }
     }
 
