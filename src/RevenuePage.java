@@ -41,6 +41,8 @@ public class RevenuePage
     {
         mainTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+        //accountFilterBox.setActionCommand
+
         try
         {
             accountDAO = new AccountDAO();
@@ -54,11 +56,11 @@ public class RevenuePage
         }
 
         setRevenueTableView();
-        populateDropDown();
+        populateDropDowns();
 
     }
 
-    public void populateDropDown()
+    public void populateDropDowns()
     {
         List<String> list = new ArrayList<>();
 
@@ -74,6 +76,7 @@ public class RevenuePage
 
         list.add(0, "");
         locationDropDown.setModel(new DefaultComboBoxModel(list.toArray()));
+        accountFilterBox.setModel(new DefaultComboBoxModel(list.toArray()));
     }
 
     public void setRevenueTableView()
@@ -236,6 +239,48 @@ public class RevenuePage
 
     }
 
+    public void filter()
+    {
+        String accountName = "";
+        accountName = (String)accountFilterBox.getSelectedItem();
+
+        System.out.println("Selected item is " + accountName);
+
+        if(accountName == "All (List)")
+        {
+
+        }
+        else if(accountName == "All (Summary)")
+        {
+
+        }
+        else if(!accountName.isEmpty())
+        {
+            List<RevenueLog> logs;
+            int accountID = -1;
+            try
+            {
+                accountID = accountDAO.getIdFromName(accountName);
+                logs = revenueDAO.getLogsFromAccount(accountID);
+            }
+            catch(SQLException exc)
+            {
+                System.err.println(exc);
+                return;
+            }
+
+            revenueModel = new RevenueTableModel(logs);
+            mainTable.setModel(revenueModel);
+
+        }
+        else if(accountName.isEmpty())
+        {
+            setRevenueTableView();
+        }
+
+
+    }
+
 
 
 
@@ -266,5 +311,6 @@ public class RevenuePage
     {
         return buttonSave;
     }
+    public JButton getFilterButton() { return filterButton; }
 
 }

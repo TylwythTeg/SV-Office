@@ -146,6 +146,21 @@ public class RevenueDAO extends DAO
         }
     }
 
+    public List<RevenueLog> getLogsFromAccount(int  accountID) throws SQLException
+    {
+        List<RevenueLog> logs = new ArrayList<>();
+
+        try(Statement stmt = connection.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM log WHERE account_id=" + accountID))
+        {
+            while(resultSet.next())
+                logs.add(rowToRevenueLog(resultSet));
+
+
+            return logs;
+        }
+    }
+
     public int getRowCount() throws SQLException
     {
         try(Statement stmt = connection.createStatement();

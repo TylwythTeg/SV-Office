@@ -156,6 +156,9 @@ public class SV_Office
                     case "Save":
                         save();
                         break;
+                    case "Filter":
+                        filter();
+                        break;
                 }
             }
         };
@@ -202,6 +205,7 @@ public class SV_Office
         revenuePage.getNewButton().addActionListener(actionListener);
         revenuePage.getSaveButton().addActionListener(actionListener);
         revenuePage.getRevertButton().addActionListener(actionListener);
+        revenuePage.getFilterButton().addActionListener(actionListener);
 
         accountPage.getAccountTable().getSelectionModel().addListSelectionListener(listSelectionListener);
         machinePage.getMachineTable().getSelectionModel().addListSelectionListener(listSelectionListener);
@@ -238,6 +242,8 @@ public class SV_Office
         {
             case "Account":
                 accountPage.newAccount(tableList);
+                machinePage.populateDropDown();
+                revenuePage.populateDropDowns();
                 break;
             case "Machine":
                 machinePage.newMachine(tableList);
@@ -291,6 +297,8 @@ public class SV_Office
                 accountPage.save();
                 machinePage.populateDropDown();
                 machinePage.setDropDown();
+                revenuePage.populateDropDowns();
+                revenuePage.setDropDown();
                 break;
             case "Machine":
                 machinePage.save();
@@ -299,6 +307,22 @@ public class SV_Office
             case "Revenue":
                 revenuePage.save();
                 //accountPage.setRevenueTable();
+                break;
+        }
+    }
+
+    public void filter()
+    {
+        System.out.println("check" + cardLayout.getVisible());
+        switch(cardLayout.getVisible())
+        {
+            case "Account":
+
+                break;
+            case "Machine":
+                break;
+            case "Revenue":
+                revenuePage.filter();
                 break;
         }
     }
