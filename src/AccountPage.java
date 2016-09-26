@@ -187,6 +187,30 @@ public class AccountPage
         setAccountTableView();
     }
 
+    public void filter()
+    {
+        try
+        {
+            String name = nameFilterTextArea.getText();
+
+            List<Account> accounts = null;
+
+            if(name!=null && name.trim().length() > 0)
+                accounts = accountDAO.searchAccounts(name);
+            else
+                accounts = accountDAO.getAllAccounts();
+
+            AccountTableModel accountmodel = new AccountTableModel(accounts);
+            mainTable.setModel(accountmodel);
+
+        }
+
+        catch (Exception exc)
+        {
+            System.out.println("Error on search");
+        }
+    }
+
     public void setPanel()
     {
         setTextFields();
@@ -276,6 +300,10 @@ public class AccountPage
     public JButton getDeleteButton()
     {
         return buttonDelete;
+    }
+    public JButton getFilterButton()
+    {
+        return filterButton;
     }
 
 

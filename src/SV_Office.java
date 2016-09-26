@@ -195,6 +195,7 @@ public class SV_Office
         accountPage.getDeleteButton().addActionListener(actionListener);
         accountPage.getSaveButton().addActionListener(actionListener);
         accountPage.getRevertButton().addActionListener(actionListener);
+        accountPage.getFilterButton().addActionListener(actionListener);
 
 
         machinePage.getNewButton().addActionListener(actionListener);
@@ -317,7 +318,7 @@ public class SV_Office
         switch(cardLayout.getVisible())
         {
             case "Account":
-
+                accountPage.filter();
                 break;
             case "Machine":
                 break;

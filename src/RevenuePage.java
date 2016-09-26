@@ -76,6 +76,9 @@ public class RevenuePage
 
         list.add(0, "");
         locationDropDown.setModel(new DefaultComboBoxModel(list.toArray()));
+
+        list.add(1,"All (List)");
+        list.add(2,"All (Summary)");
         accountFilterBox.setModel(new DefaultComboBoxModel(list.toArray()));
     }
 
@@ -248,7 +251,7 @@ public class RevenuePage
 
         if(accountName == "All (List)")
         {
-
+            setRevenueTableView();
         }
         else if(accountName == "All (Summary)")
         {
