@@ -80,6 +80,23 @@ public class RevenuePage
         list.add(1,"All (List)");
         list.add(2,"All (Summary)");
         accountFilterBox.setModel(new DefaultComboBoxModel(list.toArray()));
+
+        //sort drop down
+        List<String> sortList = new ArrayList<>();
+        sortList.add("");
+        sortList.add("Account");
+        sortList.add("Date");
+        sortFilterBox.setModel(new DefaultComboBoxModel(sortList.toArray()));
+
+        //date drop down
+        List<String> dateList = new ArrayList<>();
+        dateList.add("");
+        dateList.add("Day");
+        dateList.add("Week");
+        dateList.add("Month");
+        dateList.add("Year");
+        dateFilterBox.setModel(new DefaultComboBoxModel(dateList.toArray()));
+
     }
 
     public void setRevenueTableView()

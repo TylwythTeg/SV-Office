@@ -55,26 +55,41 @@ public class MachinePage
 
 
         setMachineTableView();
-        populateDropDown();
+        populateDropDowns();
 
     }
 
-    public void populateDropDown()
+    public void populateDropDowns()
     {
         List<String> list = new ArrayList<>();
+        List<String> brandList = new ArrayList<>();
+        List<String> typeList = new ArrayList<>();
+
 
         try
         {
             list = accountDAO.getAllAccountNames();
+            brandList = machineDAO.getAllBrands();
+            typeList = machineDAO.getAllTypes();
         }
         catch(SQLException exc)
         {
-            System.err.println("Error Populating dropdown");
+            System.err.println("Error Populating dropdowns");
             System.err.println(exc);
         }
 
-        list.add(0, "");
+        list.add(0,"");
         locationDropDown.setModel(new DefaultComboBoxModel(list.toArray()));
+        locationFilterBox.setModel(new DefaultComboBoxModel(list.toArray()));
+
+        brandList.add(0,"");
+        brandFilterBox.setModel(new DefaultComboBoxModel(brandList.toArray()));
+
+
+        typeList.add(0,"");
+        typeFilterBox.setModel(new DefaultComboBoxModel(typeList.toArray()));
+
+
     }
 
 

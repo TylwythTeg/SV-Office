@@ -26,6 +26,40 @@ public class MachineDAO extends DAO
 
     }
 
+    public List<String> getAllBrands() throws SQLException
+    {
+        List<String> list = new ArrayList<>();
+
+        try(Statement stmt = connection.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT brand FROM machine"))
+        {
+            while(resultSet.next())
+            {
+
+                if(!list.contains(resultSet.getString("brand")))
+                    list.add(resultSet.getString("brand"));
+            }
+            return list;
+        }
+    }
+
+    public List<String> getAllTypes() throws SQLException
+    {
+        List<String> list = new ArrayList<>();
+
+        try(Statement stmt = connection.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT type FROM machine"))
+        {
+            while(resultSet.next())
+            {
+                if(!list.contains(resultSet.getString("type")))
+                    list.add(resultSet.getString("type"));
+            }
+            return list;
+        }
+
+    }
+
     public List<Machine> getMachinesFromAccountId(int accountId) throws SQLException
     {
 

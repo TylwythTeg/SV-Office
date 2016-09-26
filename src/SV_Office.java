@@ -243,7 +243,7 @@ public class SV_Office
         {
             case "Account":
                 accountPage.newAccount(tableList);
-                machinePage.populateDropDown();
+                machinePage.populateDropDowns();
                 revenuePage.populateDropDowns();
                 break;
             case "Machine":
@@ -296,7 +296,7 @@ public class SV_Office
         {
             case "Account":
                 accountPage.save();
-                machinePage.populateDropDown();
+                machinePage.populateDropDowns();
                 machinePage.setDropDown();
                 revenuePage.populateDropDowns();
                 revenuePage.setDropDown();
