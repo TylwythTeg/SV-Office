@@ -11,10 +11,13 @@ class RevenueTableModel extends AbstractTableModel
 
     private static RevenueDAO revenueDAO;
 
+    private boolean consolidated = false;
+
 
     private String[] columnNames = {"Account", "Id", "Date", "Money"};
 
     private List<RevenueLog> logs;
+    private List<RevenueLog> consolidatedLogs;
 
     public RevenueTableModel(List<RevenueLog> logs)
     {
@@ -65,7 +68,9 @@ class RevenueTableModel extends AbstractTableModel
             case ID_COL:
                 return log.getId();
             case DATE_COL:
-                return log.getDate();
+                if(consolidated == false)
+                    return log.getDate();
+                return log.getYear();
             case MONEY_COL:
                 return log.getMoney();
             default:
@@ -91,5 +96,15 @@ class RevenueTableModel extends AbstractTableModel
     {
         logs.add(log);
         fireTableRowsInserted(logs.size() - 1, logs.size() - 1);
+    }
+
+    public void setConsolidated(boolean bool)
+    {
+        consolidated = bool;
+    }
+
+    public boolean consolidated()
+    {
+        return consolidated;
     }
 }

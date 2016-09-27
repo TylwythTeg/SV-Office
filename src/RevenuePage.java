@@ -268,7 +268,12 @@ public class RevenuePage
 
         if(accountName == "All (List)")
         {
-            setRevenueTableView();
+            //setRevenueTableView();
+            //List<RevenueLog> logs;
+
+            filterAllList();
+
+
         }
         else if(accountName == "All (Summary)")
         {
@@ -297,6 +302,29 @@ public class RevenuePage
         {
             setRevenueTableView();
         }
+
+
+    }
+
+    public void filterAllList()
+    {
+
+
+        List<RevenueLog> logs;
+        try
+        {
+            logs = revenueDAO.getAllLogs();
+            logs = RevenueLog.consolidateByYear(logs);
+        }
+        catch(SQLException exc)
+        {
+            System.err.println(exc);
+            return;
+        }
+
+        revenueModel = new RevenueTableModel(logs);
+        revenueModel.setConsolidated(true);
+        mainTable.setModel(revenueModel);
 
 
     }
