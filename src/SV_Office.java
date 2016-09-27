@@ -202,6 +202,7 @@ public class SV_Office
         machinePage.getDeleteButton().addActionListener(actionListener);
         machinePage.getSaveButton().addActionListener(actionListener);
         machinePage.getRevertButton().addActionListener(actionListener);
+        machinePage.getFilterButton().addActionListener(actionListener);
 
         revenuePage.getNewButton().addActionListener(actionListener);
         revenuePage.getSaveButton().addActionListener(actionListener);
@@ -303,6 +304,7 @@ public class SV_Office
                 break;
             case "Machine":
                 machinePage.save();
+                machinePage.populateDropDowns();
                 accountPage.setMachineTable();
                 break;
             case "Revenue":
@@ -321,6 +323,7 @@ public class SV_Office
                 accountPage.filter();
                 break;
             case "Machine":
+                machinePage.filter();
                 break;
             case "Revenue":
                 revenuePage.filter();

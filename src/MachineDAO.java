@@ -210,4 +210,95 @@ public class MachineDAO extends DAO
             return machine;
         }
     }
+
+    public List<Machine> getMachines(String type, String brand, Integer accountID) throws SQLException
+    {
+        List<Machine> list = new ArrayList<>();
+
+        if(type.isEmpty() && brand.isEmpty() && accountID == null)
+            return getAllMachines();
+
+        String query = "SELECT * FROM machine";
+        if(!type.isEmpty())
+        {
+            query += " WHERE type = ?";
+
+            if(!brand.isEmpty())
+            {
+                query += " AND brand = ?";
+
+                if(accountID != null)
+                {
+                    query += " AND account_id = ?";
+                }
+            }
+        }
+        else if(!brand.isEmpty())
+        {
+            query += " WHERE brand = ?";
+
+            if(accountID != null)
+            {
+                query += " AND account_id = ?";
+            }
+        }
+        else //if type and brand are empty, location must not be
+        {
+            query += " WHERE account_id = ?";
+        }
+
+
+        try(PreparedStatement update = connection.prepareStatement(query))
+        {
+            System.out.println("test");
+            if(!type.isEmpty())
+            {
+
+                update.setString(1,type);
+
+                if(!brand.isEmpty())
+                {
+
+                    update.setString(2,brand);
+
+                    if(accountID != null)
+                    {
+
+                        update.setInt(3,accountID);
+                    }
+                }
+            }
+            else if(!brand.isEmpty())
+            {
+
+                update.setString(1,brand);
+
+                if(accountID != null)
+                {
+
+                    update.setInt(2,accountID);
+                }
+            }
+            else //if type and brand are empty, location must not be
+            {
+
+                update.setInt(1, accountID);
+            }
+
+            //update.executeUpdate();
+            ResultSet resultSet = update.executeQuery();
+            while (resultSet.next())
+            {
+                list.add(rowToMachine(resultSet));
+            }
+            resultSet.close();
+            return list;
+
+        }
+
+
+
+
+        //return list;
+    }
 }

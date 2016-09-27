@@ -239,6 +239,38 @@ public class MachinePage
         System.out.println("Reverted");
     }
 
+    public void filter()
+    {
+        String type = (String)typeFilterBox.getSelectedItem();
+        String brand = (String)brandFilterBox.getSelectedItem();
+        String location = (String)locationFilterBox.getSelectedItem();
+        List<Machine> machines = new ArrayList<>();
+
+        try
+        {
+
+            if(!location.isEmpty())
+            {
+                int accountID = accountDAO.getIdFromName(location);
+                machines = machineDAO.getMachines(type,brand,accountID);
+            }
+            else
+                machines = machineDAO.getMachines(type,brand,null);
+        }
+        catch(SQLException exc)
+        {
+            System.err.println("sdfsf");
+            System.err.println(exc);
+            exc.printStackTrace();
+            return;
+        }
+
+        machineModel = new MachineTableModel(machines);
+        mainTable.setModel(machineModel);
+
+
+    }
+
     public void setTextFields()
     {
         System.out.println("METHODMACHINE Selected Row == " + mainTable.getSelectedRow());
@@ -319,4 +351,5 @@ public class MachinePage
         return mainTable;
     }
     public JComboBox getDropDown() { return locationDropDown; }
+    public JButton getFilterButton() { return filterButton; }
 }

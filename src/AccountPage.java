@@ -271,6 +271,11 @@ public class AccountPage
         }
     }
 
+    public void setRevenueTable()
+    {
+
+    }
+
     public JPanel getCard()
     {
         return accountPanel;
