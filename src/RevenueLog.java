@@ -65,20 +65,79 @@ public class RevenueLog
     public static List<RevenueLog> consolidateByYear(List<RevenueLog> logs)
     {
         List<RevenueLog> newLogs = new ArrayList<>();
-        //RevenueLog prevLog = null;
 
         boolean first = true;
         for(int i = 0;i<logs.size();i++)
         {
             if(first == true)
             {
-                //prevLog = logs.get(i);
                 newLogs.add(logs.get(i));
                 first = false;
                 continue;
             }
 
             if(newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
+                    && newLogs.get(newLogs.size()-1).getAccountId() == logs.get(i).getAccountId())
+            {
+                //merge into new
+                newLogs.get(newLogs.size()-1).setMoney( newLogs.get(newLogs.size()-1).getMoney() + logs.get(i).getMoney() );
+            }
+            else
+            {
+                newLogs.add(logs.get(i));
+            }
+
+        }
+        return newLogs;
+    }
+
+    public static List<RevenueLog> consolidateByMonth(List<RevenueLog> logs)
+    {
+        List<RevenueLog> newLogs = new ArrayList<>();
+
+        boolean first = true;
+        for(int i = 0;i<logs.size();i++)
+        {
+            if(first == true)
+            {
+                newLogs.add(logs.get(i));
+                first = false;
+                continue;
+            }
+
+            if(newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
+                    && newLogs.get(newLogs.size()-1).getMonth() == logs.get(i).getMonth()
+                    && newLogs.get(newLogs.size()-1).getAccountId() == logs.get(i).getAccountId())
+            {
+                //merge into new
+                newLogs.get(newLogs.size()-1).setMoney( newLogs.get(newLogs.size()-1).getMoney() + logs.get(i).getMoney() );
+            }
+            else
+            {
+                newLogs.add(logs.get(i));
+            }
+
+        }
+        return newLogs;
+    }
+
+    public static List<RevenueLog> consolidateByWeek(List<RevenueLog> logs)
+    {
+        List<RevenueLog> newLogs = new ArrayList<>();
+
+        boolean first = true;
+        for(int i = 0;i<logs.size();i++)
+        {
+            if(first == true)
+            {
+                newLogs.add(logs.get(i));
+                first = false;
+                continue;
+            }
+
+            if(newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
+                    && newLogs.get(newLogs.size()-1).getMonth() == logs.get(i).getMonth()
+                    && newLogs.get(newLogs.size()-1).getWeek() == logs.get(i).getWeek()
                     && newLogs.get(newLogs.size()-1).getAccountId() == logs.get(i).getAccountId())
             {
                 //merge into new
@@ -106,6 +165,36 @@ public class RevenueLog
         cal.setTime(date);
         return cal.get(Calendar.MONTH);
     }
+    public int getWeek()
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal.get(Calendar.WEEK_OF_YEAR);
+    }
+    public String getFirstDayOfWeek()
+    {
+        Calendar cal = Calendar.getInstance();
+        //cal.setTime(date);
+        cal.setTime(firstDayOfWeek(date));
+        return this.monthString(cal.get(Calendar.MONTH)) + " " +  cal.get(Calendar.DAY_OF_MONTH) + ", " +  cal.get(Calendar.YEAR);
+    }
+    public Date firstDayOfWeek(Date date)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+
+        if( cal.get(Calendar.DAY_OF_WEEK) == 1)
+            return date;
+
+        int adder = cal.get(Calendar.DAY_OF_WEEK) -1;
+        cal.add(Calendar.DAY_OF_YEAR, -adder);
+
+        Date newDate = cal.getTime();
+
+        return newDate;
+
+    }
+
     public int getDay()
     {
         Calendar cal = Calendar.getInstance();

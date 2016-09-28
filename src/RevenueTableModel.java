@@ -1,6 +1,8 @@
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import java.sql.SQLException;
+import java.util.Date;
+import java.util.*;
 
 class RevenueTableModel extends AbstractTableModel
 {
@@ -11,7 +13,8 @@ class RevenueTableModel extends AbstractTableModel
 
     private static RevenueDAO revenueDAO;
 
-    private boolean consolidated = false;
+    //private boolean consolidated = false;
+    private Consolidated consolidated = Consolidated.NONE;
 
 
     private String[] columnNames = {"Account", "Id", "Date", "Money"};
@@ -68,9 +71,17 @@ class RevenueTableModel extends AbstractTableModel
             case ID_COL:
                 return log.getId();
             case DATE_COL:
-                if(consolidated == false)
-                    return log.getDate();
-                return log.getYear();
+                if(consolidated == Consolidated.YEAR)
+                    return log.getYear();
+                if(consolidated == Consolidated.MONTH)
+                    return log.monthString(log.getMonth()) + " " + log.getYear();
+                if(consolidated == Consolidated.WEEK)
+                {
+                    System.out.println("WEEK OF " + log.getFirstDayOfWeek());
+                    return "Week of " + log.getFirstDayOfWeek();
+                }
+
+                return log.getDate();
             case MONEY_COL:
                 return log.getMoney();
             default:
@@ -98,12 +109,12 @@ class RevenueTableModel extends AbstractTableModel
         fireTableRowsInserted(logs.size() - 1, logs.size() - 1);
     }
 
-    public void setConsolidated(boolean bool)
+    public void setConsolidated(Consolidated con)
     {
-        consolidated = bool;
+        consolidated = con;
     }
 
-    public boolean consolidated()
+    public Consolidated consolidated()
     {
         return consolidated;
     }

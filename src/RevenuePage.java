@@ -314,7 +314,32 @@ public class RevenuePage
         try
         {
             logs = revenueDAO.getAllLogs();
-            logs = RevenueLog.consolidateByYear(logs);
+
+            switch((String)dateFilterBox.getSelectedItem())
+            {
+                case "Year":
+                    logs = RevenueLog.consolidateByYear(logs);
+                    revenueModel = new RevenueTableModel(logs);
+                    revenueModel.setConsolidated(Consolidated.YEAR);
+                    break;
+                case "Month":
+                    logs = RevenueLog.consolidateByMonth(logs);
+                    revenueModel = new RevenueTableModel(logs);
+                    revenueModel.setConsolidated(Consolidated.MONTH);
+                    break;
+                case "Week":
+                    System.out.println("inhere");
+                    logs = RevenueLog.consolidateByWeek(logs);
+                    revenueModel = new RevenueTableModel(logs);
+                    revenueModel.setConsolidated(Consolidated.WEEK);
+                    break;
+                case "Date":
+                case "":
+                    revenueModel = new RevenueTableModel(logs);
+                    revenueModel.setConsolidated(Consolidated.NONE);
+
+            }
+
         }
         catch(SQLException exc)
         {
@@ -322,8 +347,7 @@ public class RevenuePage
             return;
         }
 
-        revenueModel = new RevenueTableModel(logs);
-        revenueModel.setConsolidated(true);
+
         mainTable.setModel(revenueModel);
 
 
