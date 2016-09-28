@@ -106,6 +106,22 @@ public class RevenueLog
                 continue;
             }
 
+            if(mode == "listbydate")
+            {
+                if( newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
+                        && newLogs.get(newLogs.size()-1).getMonth() == logs.get(i).getMonth()
+                        && newLogs.get(newLogs.size()-1).getAccountId() == logs.get(i).getAccountId())
+                {
+                    newLogs.get(newLogs.size()-1).setMoney( newLogs.get(newLogs.size()-1).getMoney() + logs.get(i).getMoney() );
+                }
+                else
+                {
+                    newLogs.add(logs.get(i));
+                }
+
+                continue;
+            }
+
             if( ( newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
                     && newLogs.get(newLogs.size()-1).getMonth() == logs.get(i).getMonth()
                     && newLogs.get(newLogs.size()-1).getAccountId() == logs.get(i).getAccountId())

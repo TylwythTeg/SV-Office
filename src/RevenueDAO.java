@@ -33,6 +33,10 @@ public class RevenueDAO extends DAO
 
         if(sort == "date")
             sort = " ORDER BY date";
+        else if(sort == "Month")
+        {
+            sort = " ORDER BY MONTH(date), account_id";
+        }
         else sort = "";
 
         try (Statement stmt = connection.createStatement();
@@ -41,7 +45,7 @@ public class RevenueDAO extends DAO
             while(resultSet.next())
             {
                 RevenueLog log = rowToRevenueLog(resultSet);
-                System.out.println(log);
+                //System.err.println("HEY HEY HEY" + log + log.getAccountId());
                 list.add(log);
             }
             return list;

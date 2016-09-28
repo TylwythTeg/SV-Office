@@ -77,16 +77,18 @@ public class RevenuePage
         list.add(0, "");
         locationDropDown.setModel(new DefaultComboBoxModel(list.toArray()));
 
-        list.add(1,"All (List)");
+        list.remove(0);
+        list.add(0,"All (By Account)");
+        list.add(1,"All (By Date)");
         list.add(2,"All (Summary)");
         accountFilterBox.setModel(new DefaultComboBoxModel(list.toArray()));
 
         //sort drop down
-        List<String> sortList = new ArrayList<>();
-        sortList.add("");
-        sortList.add("Account");
-        sortList.add("Date");
-        sortFilterBox.setModel(new DefaultComboBoxModel(sortList.toArray()));
+        //List<String> sortList = new ArrayList<>();
+        //sortList.add("");
+        //sortList.add("Account");
+        //sortList.add("Date");
+        //sortFilterBox.setModel(new DefaultComboBoxModel(sortList.toArray()));
 
         //date drop down
         List<String> dateList = new ArrayList<>();
@@ -266,7 +268,7 @@ public class RevenuePage
 
         System.out.println("Selected item is " + accountName);
 
-        if(accountName == "All (List)")
+        if(accountName == "All (By Account)")
         {
             //setRevenueTableView();
             //List<RevenueLog> logs;
@@ -275,13 +277,17 @@ public class RevenuePage
 
 
         }
+        else if(accountName == "All (By Date)")
+        {
+            filterAll("listbydate");
+        }
         else if(accountName == "All (Summary)")
         {
             filterAll("compact");
         }
         else if(!accountName.isEmpty())
         {
-            List<RevenueLog> logs;
+            /*List<RevenueLog> logs;
             int accountID = -1;
             try
             {
@@ -295,9 +301,12 @@ public class RevenuePage
             }
 
             revenueModel = new RevenueTableModel(logs);
-            mainTable.setModel(revenueModel);
+            mainTable.setModel(revenueModel);*/
+
+            filterAll("list");
 
         }
+        //else if(f)
         else if(accountName.isEmpty())
         {
             setRevenueTableView();
@@ -308,6 +317,10 @@ public class RevenuePage
 
     public void filterAll(String mode)
     {
+
+        String accountName = "";
+        accountName = (String)accountFilterBox.getSelectedItem();
+        int accountID = -1;
 
 
         List<RevenueLog> logs;
@@ -320,6 +333,11 @@ public class RevenuePage
                 case "Year":
                     if(mode == "compact")
                         logs = revenueDAO.getAllLogs("date");
+                    else if(!accountName.isEmpty() && accountName != "All (By Account)" && accountName != "All (By Date")
+                    {
+                        accountID = accountDAO.getIdFromName(accountName);
+                        logs = revenueDAO.getLogsFromAccount(accountID);
+                    }
                     logs = RevenueLog.consolidateByYear(logs, mode);
                     revenueModel = new RevenueTableModel(logs);
                     revenueModel.setAccountListType(mode);
@@ -328,6 +346,13 @@ public class RevenuePage
                 case "Month":
                     if(mode == "compact")
                         logs = revenueDAO.getAllLogs("date");
+                    else if(mode == "listbydate")
+                        logs = revenueDAO.getAllLogs("Month");
+                    else if(!accountName.isEmpty() && accountName != "All (By Account)" && accountName != "All (By Date")
+                    {
+                        accountID = accountDAO.getIdFromName(accountName);
+                        logs = revenueDAO.getLogsFromAccount(accountID);
+                    }
                     logs = RevenueLog.consolidateByMonth(logs, mode);
                     revenueModel = new RevenueTableModel(logs);
                     revenueModel.setAccountListType(mode);
@@ -336,6 +361,11 @@ public class RevenuePage
                 case "Week":
                     if(mode == "compact")
                         logs = revenueDAO.getAllLogs("date");
+                    else if(!accountName.isEmpty() && accountName != "All (By Account)" && accountName != "All (By Date")
+                    {
+                        accountID = accountDAO.getIdFromName(accountName);
+                        logs = revenueDAO.getLogsFromAccount(accountID);
+                    }
                     logs = RevenueLog.consolidateByWeek(logs ,mode);
                     revenueModel = new RevenueTableModel(logs);
                     revenueModel.setAccountListType(mode);
@@ -349,6 +379,11 @@ public class RevenuePage
                         logs = revenueDAO.getAllLogs("date");
                         logs = RevenueLog.consolidateByDay(logs,mode);
                     }
+                    else if(!accountName.isEmpty() && (accountName != "All (By Account)" && accountName != "All (By Date"))
+                    {
+                        accountID = accountDAO.getIdFromName(accountName);
+                        logs = revenueDAO.getLogsFromAccount(accountID);
+                    }
 
                     revenueModel = new RevenueTableModel(logs);
                     revenueModel.setAccountListType(mode);
@@ -360,6 +395,7 @@ public class RevenuePage
         catch(SQLException exc)
         {
             System.err.println(exc);
+            exc.printStackTrace();
             return;
         }
 
