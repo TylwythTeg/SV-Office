@@ -62,7 +62,7 @@ public class RevenueLog
 
 
 
-    public static List<RevenueLog> consolidateByYear(List<RevenueLog> logs)
+    public static List<RevenueLog> consolidateByYear(List<RevenueLog> logs, String mode)
     {
         List<RevenueLog> newLogs = new ArrayList<>();
 
@@ -76,8 +76,9 @@ public class RevenueLog
                 continue;
             }
 
-            if(newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
-                    && newLogs.get(newLogs.size()-1).getAccountId() == logs.get(i).getAccountId())
+            if( (newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
+                    && newLogs.get(newLogs.size()-1).getAccountId() == logs.get(i).getAccountId() )
+                    || (newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()) && mode == "compact")
             {
                 //merge into new
                 newLogs.get(newLogs.size()-1).setMoney( newLogs.get(newLogs.size()-1).getMoney() + logs.get(i).getMoney() );
@@ -91,7 +92,7 @@ public class RevenueLog
         return newLogs;
     }
 
-    public static List<RevenueLog> consolidateByMonth(List<RevenueLog> logs)
+    public static List<RevenueLog> consolidateByMonth(List<RevenueLog> logs, String mode)
     {
         List<RevenueLog> newLogs = new ArrayList<>();
 
@@ -105,9 +106,12 @@ public class RevenueLog
                 continue;
             }
 
-            if(newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
+            if( ( newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
                     && newLogs.get(newLogs.size()-1).getMonth() == logs.get(i).getMonth()
                     && newLogs.get(newLogs.size()-1).getAccountId() == logs.get(i).getAccountId())
+                    || (newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
+                    && newLogs.get(newLogs.size()-1).getMonth() == logs.get(i).getMonth()
+                    && mode == "compact"))
             {
                 //merge into new
                 newLogs.get(newLogs.size()-1).setMoney( newLogs.get(newLogs.size()-1).getMoney() + logs.get(i).getMoney() );
@@ -121,7 +125,7 @@ public class RevenueLog
         return newLogs;
     }
 
-    public static List<RevenueLog> consolidateByWeek(List<RevenueLog> logs)
+    public static List<RevenueLog> consolidateByWeek(List<RevenueLog> logs, String mode)
     {
         List<RevenueLog> newLogs = new ArrayList<>();
 
@@ -135,10 +139,48 @@ public class RevenueLog
                 continue;
             }
 
-            if(newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
-                    && newLogs.get(newLogs.size()-1).getMonth() == logs.get(i).getMonth()
+            if( (newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
+                    //&& newLogs.get(newLogs.size()-1).getMonth() == logs.get(i).getMonth()
                     && newLogs.get(newLogs.size()-1).getWeek() == logs.get(i).getWeek()
                     && newLogs.get(newLogs.size()-1).getAccountId() == logs.get(i).getAccountId())
+                    || (newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
+                        && newLogs.get(newLogs.size()-1).getWeek() == logs.get(i).getWeek()
+                        && mode == "compact"))
+            {
+                //merge into new
+                newLogs.get(newLogs.size()-1).setMoney( newLogs.get(newLogs.size()-1).getMoney() + logs.get(i).getMoney() );
+            }
+            else
+            {
+                newLogs.add(logs.get(i));
+            }
+
+        }
+        return newLogs;
+    }
+
+    public static List<RevenueLog> consolidateByDay(List<RevenueLog> logs, String mode)
+    {
+        List<RevenueLog> newLogs = new ArrayList<>();
+
+        boolean first = true;
+        for(int i = 0;i<logs.size();i++)
+        {
+            if(first == true)
+            {
+                newLogs.add(logs.get(i));
+                first = false;
+                continue;
+            }
+
+            if( (newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
+                    && newLogs.get(newLogs.size()-1).getMonth() == logs.get(i).getMonth()
+                    && newLogs.get(newLogs.size()-1).getDay() == logs.get(i).getDay()
+                    && newLogs.get(newLogs.size()-1).getAccountId() == logs.get(i).getAccountId())
+                    || (newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
+                    && newLogs.get(newLogs.size()-1).getMonth() == logs.get(i).getMonth()
+                    && newLogs.get(newLogs.size()-1).getDay() == logs.get(i).getDay()
+                    && mode == "compact"))
             {
                 //merge into new
                 newLogs.get(newLogs.size()-1).setMoney( newLogs.get(newLogs.size()-1).getMoney() + logs.get(i).getMoney() );

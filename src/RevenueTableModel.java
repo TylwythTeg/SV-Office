@@ -15,6 +15,7 @@ class RevenueTableModel extends AbstractTableModel
 
     //private boolean consolidated = false;
     private Consolidated consolidated = Consolidated.NONE;
+    private String accountListType = "list";
 
 
     private String[] columnNames = {"Account", "Id", "Date", "Money"};
@@ -67,6 +68,8 @@ class RevenueTableModel extends AbstractTableModel
         switch(col)
         {
             case ACCOUNT_COL:
+                if(this.accountListType() == "compact")
+                    return "All";
                 return revenueDAO.getAccountName(log);
             case ID_COL:
                 return log.getId();
@@ -117,5 +120,14 @@ class RevenueTableModel extends AbstractTableModel
     public Consolidated consolidated()
     {
         return consolidated;
+    }
+
+    public void setAccountListType(String str)
+    {
+        accountListType = str;
+    }
+    public String accountListType()
+    {
+        return accountListType;
     }
 }

@@ -14,7 +14,29 @@ public class RevenueDAO extends DAO
         List<RevenueLog> list = new ArrayList<>();
 
         try (Statement stmt = connection.createStatement();
-             ResultSet resultSet = stmt.executeQuery("SELECT * FROM log"))
+             ResultSet resultSet = stmt.executeQuery("SELECT * FROM log ORDER BY account_id, date"))
+        {
+            while(resultSet.next())
+            {
+                RevenueLog log = rowToRevenueLog(resultSet);
+                System.out.println(log);
+                list.add(log);
+            }
+            return list;
+        }
+
+    }
+
+    public List<RevenueLog> getAllLogs(String sort) throws SQLException
+    {
+        List<RevenueLog> list = new ArrayList<>();
+
+        if(sort == "date")
+            sort = " ORDER BY date";
+        else sort = "";
+
+        try (Statement stmt = connection.createStatement();
+             ResultSet resultSet = stmt.executeQuery("SELECT * FROM log" + sort))
         {
             while(resultSet.next())
             {

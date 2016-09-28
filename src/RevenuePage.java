@@ -271,13 +271,13 @@ public class RevenuePage
             //setRevenueTableView();
             //List<RevenueLog> logs;
 
-            filterAllList();
+            filterAll("list");
 
 
         }
         else if(accountName == "All (Summary)")
         {
-
+            filterAll("compact");
         }
         else if(!accountName.isEmpty())
         {
@@ -306,7 +306,7 @@ public class RevenuePage
 
     }
 
-    public void filterAllList()
+    public void filterAll(String mode)
     {
 
 
@@ -318,24 +318,40 @@ public class RevenuePage
             switch((String)dateFilterBox.getSelectedItem())
             {
                 case "Year":
-                    logs = RevenueLog.consolidateByYear(logs);
+                    if(mode == "compact")
+                        logs = revenueDAO.getAllLogs("date");
+                    logs = RevenueLog.consolidateByYear(logs, mode);
                     revenueModel = new RevenueTableModel(logs);
+                    revenueModel.setAccountListType(mode);
                     revenueModel.setConsolidated(Consolidated.YEAR);
                     break;
                 case "Month":
-                    logs = RevenueLog.consolidateByMonth(logs);
+                    if(mode == "compact")
+                        logs = revenueDAO.getAllLogs("date");
+                    logs = RevenueLog.consolidateByMonth(logs, mode);
                     revenueModel = new RevenueTableModel(logs);
+                    revenueModel.setAccountListType(mode);
                     revenueModel.setConsolidated(Consolidated.MONTH);
                     break;
                 case "Week":
-                    System.out.println("inhere");
-                    logs = RevenueLog.consolidateByWeek(logs);
+                    if(mode == "compact")
+                        logs = revenueDAO.getAllLogs("date");
+                    logs = RevenueLog.consolidateByWeek(logs ,mode);
                     revenueModel = new RevenueTableModel(logs);
+                    revenueModel.setAccountListType(mode);
                     revenueModel.setConsolidated(Consolidated.WEEK);
                     break;
-                case "Date":
+                case "Day":
                 case "":
+                default:
+                    if(mode == "compact")
+                    {
+                        logs = revenueDAO.getAllLogs("date");
+                        logs = RevenueLog.consolidateByDay(logs,mode);
+                    }
+
                     revenueModel = new RevenueTableModel(logs);
+                    revenueModel.setAccountListType(mode);
                     revenueModel.setConsolidated(Consolidated.NONE);
 
             }
