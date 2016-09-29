@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="216100fd-a58a-481f-9b57-a2d7313516d0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SV1/RevenuePage.class" afterPath="$PROJECT_DIR$/out/production/SV1/RevenuePage.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AccountPage.java" afterPath="$PROJECT_DIR$/src/AccountPage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MachinePage.java" afterPath="$PROJECT_DIR$/src/MachinePage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/RevenueDAO.java" afterPath="$PROJECT_DIR$/src/RevenueDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/RevenueLog.java" afterPath="$PROJECT_DIR$/src/RevenueLog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/RevenuePage.java" afterPath="$PROJECT_DIR$/src/RevenuePage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/formAccount.form" afterPath="$PROJECT_DIR$/src/formAccount.form" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/formMachine.form" afterPath="$PROJECT_DIR$/src/formMachine.form" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/formRevenue.form" afterPath="$PROJECT_DIR$/src/formRevenue.form" />
     </list>
     <ignored path="SV1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,8 +56,8 @@
       <file leaf-file-name="RevenuePage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/RevenuePage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="82" column="36" selection-start-line="82" selection-start-column="36" selection-end-line="82" selection-end-column="36" />
+            <state relative-caret-position="119">
+              <caret line="210" column="5" selection-start-line="210" selection-start-column="5" selection-end-line="210" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -61,7 +68,7 @@
       <file leaf-file-name="AccountDAO.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AccountDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
+            <state relative-caret-position="501">
               <caret line="162" column="0" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
               <folding>
                 <marker date="1474422396350" expanded="true" signature="363:385" placeholder="SELECT * FRO... accounts" />
@@ -82,8 +89,8 @@
       <file leaf-file-name="RevenueTableModel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/RevenueTableModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="68" column="9" selection-start-line="68" selection-start-column="9" selection-end-line="68" selection-end-column="9" />
+            <state relative-caret-position="195">
+              <caret line="73" column="24" selection-start-line="73" selection-start-column="24" selection-end-line="73" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -91,34 +98,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="formRevenue.form" pinned="false" current-in-tab="false">
+      <file leaf-file-name="formRevenue.form" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/formRevenue.form">
           <provider selected="true" editor-type-id="ui-designer">
             <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RevenueDAO.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RevenueDAO.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/RevenueDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2514">
-              <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+            <state relative-caret-position="425">
+              <caret line="37" column="31" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1475043349826" expanded="true" signature="392:409" placeholder="SELECT * FRO... log" />
-                <marker date="1475043349826" expanded="true" signature="392:435" placeholder="SELECT * FRO... log" />
-                <marker date="1475043349826" expanded="true" signature="1131:1148" placeholder="SELECT * FRO... log" />
-                <marker date="1475043349826" expanded="true" signature="1131:1156" placeholder="SELECT * FRO... log" />
-                <marker date="1475043349826" expanded="true" signature="2399:2442" placeholder="SELECT name accounts" />
-                <marker date="1475043349826" expanded="true" signature="2936:3029" placeholder="UPDATE log s... " />
-                <marker date="1475043349826" expanded="true" signature="3656:3692" placeholder="INSERT INTO log... " />
-                <marker date="1475043349826" expanded="true" signature="3984:4044" placeholder="SELECT * FRO... log" />
-                <marker date="1475043349826" expanded="true" signature="4016:4043" placeholder="SELECT max(l... log" />
-                <marker date="1475043349826" expanded="true" signature="4405:4436" placeholder="SELECT * FRO... log" />
-                <marker date="1475043349826" expanded="true" signature="4778:4822" placeholder="SELECT missi... log" />
-                <marker date="1475043349826" expanded="true" signature="5147:5181" placeholder="SELECT date log" />
-                <marker date="1475043349826" expanded="true" signature="5582:5617" placeholder="SELECT * FRO... log" />
-                <marker date="1475043349826" expanded="true" signature="5944:5961" placeholder="SELECT * FRO... log" />
+                <marker date="1475107538827" expanded="true" signature="392:409" placeholder="SELECT * FRO... log" />
+                <marker date="1475107538827" expanded="true" signature="392:435" placeholder="SELECT * FRO... log" />
+                <marker date="1475107538827" expanded="true" signature="1302:1319" placeholder="SELECT * FRO... log" />
+                <marker date="1475107538827" expanded="true" signature="1302:1327" placeholder="SELECT * FRO... log" />
+                <marker date="1475107538827" expanded="true" signature="2570:2613" placeholder="SELECT name accounts" />
+                <marker date="1475107538827" expanded="true" signature="3107:3200" placeholder="UPDATE log s... " />
+                <marker date="1475107538827" expanded="true" signature="3827:3863" placeholder="INSERT INTO log... " />
+                <marker date="1475107538827" expanded="true" signature="4155:4215" placeholder="SELECT * FRO... log" />
+                <marker date="1475107538827" expanded="true" signature="4187:4214" placeholder="SELECT max(l... log" />
+                <marker date="1475107538827" expanded="true" signature="4576:4607" placeholder="SELECT * FRO... log" />
+                <marker date="1475107538827" expanded="true" signature="4949:4993" placeholder="SELECT missi... log" />
+                <marker date="1475107538827" expanded="true" signature="5318:5352" placeholder="SELECT date log" />
+                <marker date="1475107538827" expanded="true" signature="5753:5788" placeholder="SELECT * FRO... log" />
+                <marker date="1475107538827" expanded="true" signature="6115:6132" placeholder="SELECT * FRO... log" />
               </folding>
             </state>
           </provider>
@@ -127,7 +134,7 @@
       <file leaf-file-name="SV_Office.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SV_Office.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3111">
+            <state relative-caret-position="399">
               <caret line="315" column="0" selection-start-line="315" selection-start-column="0" selection-end-line="316" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -139,8 +146,8 @@
       <file leaf-file-name="RevenueLog.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/RevenueLog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2171">
-              <caret line="121" column="25" selection-start-line="121" selection-start-column="25" selection-end-line="121" selection-end-column="25" />
+            <state relative-caret-position="-594">
+              <caret line="219" column="13" selection-start-line="219" selection-start-column="13" selection-end-line="219" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -196,9 +203,7 @@
         <option value="$PROJECT_DIR$/src/Machine.java" />
         <option value="$PROJECT_DIR$/src/DAO.java" />
         <option value="$PROJECT_DIR$/src/AccountDAO.java" />
-        <option value="$PROJECT_DIR$/src/formAccount.form" />
         <option value="$PROJECT_DIR$/src/TablesListModel.java" />
-        <option value="$PROJECT_DIR$/src/formMachine.form" />
         <option value="$PROJECT_DIR$/src/SV_Office.form" />
         <option value="$PROJECT_DIR$/src/MachineTableModel.java" />
         <option value="$PROJECT_DIR$/src/AccountPage.java" />
@@ -208,9 +213,11 @@
         <option value="$PROJECT_DIR$/src/Consolidated.java" />
         <option value="$PROJECT_DIR$/src/RevenueTableModel.java" />
         <option value="$PROJECT_DIR$/src/RevenueLog.java" />
-        <option value="$PROJECT_DIR$/src/formRevenue.form" />
-        <option value="$PROJECT_DIR$/src/RevenuePage.java" />
         <option value="$PROJECT_DIR$/src/RevenueDAO.java" />
+        <option value="$PROJECT_DIR$/src/RevenuePage.java" />
+        <option value="$PROJECT_DIR$/src/formAccount.form" />
+        <option value="$PROJECT_DIR$/src/formMachine.form" />
+        <option value="$PROJECT_DIR$/src/formRevenue.form" />
       </list>
     </option>
   </component>
@@ -303,6 +310,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -351,8 +360,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -964,18 +971,19 @@
       <workItem from="1474857978335" duration="3597000" />
       <workItem from="1474936047169" duration="13298000" />
       <workItem from="1475012931510" duration="16899000" />
-      <workItem from="1475040448566" duration="2911000" />
+      <workItem from="1475040448566" duration="3040000" />
+      <workItem from="1475104863491" duration="3207000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="318202000" />
+    <option name="totallyTimeSpent" value="321538000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08888889" sideWeight="0.47304347" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08888889" sideWeight="0.47304347" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18644068" sideWeight="0.4173611" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1071,11 +1079,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="15" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="FIRST">
           <first_editor relative-caret-position="34">
@@ -1086,6 +1089,11 @@
       </provider>
       <provider editor-type-id="MarkdownFxPreviewEditor">
         <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="15" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DeleteCheck.form" />
@@ -1159,28 +1167,6 @@
         <state relative-caret-position="323">
           <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/formAccount.form">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/formMachine.form">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SV_Office.form">
@@ -1270,9 +1256,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/SV_Office.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="315" column="0" selection-start-line="315" selection-start-column="0" selection-end-line="316" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AccountDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
+        <state relative-caret-position="501">
           <caret line="162" column="0" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
           <folding>
             <marker date="1474422396350" expanded="true" signature="363:385" placeholder="SELECT * FRO... accounts" />
@@ -1289,30 +1285,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/RevenueTableModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="68" column="9" selection-start-line="68" selection-start-column="9" selection-end-line="68" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SV_Office.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3111">
-          <caret line="315" column="0" selection-start-line="315" selection-start-column="0" selection-end-line="316" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/RevenueLog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2171">
-          <caret line="121" column="25" selection-start-line="121" selection-start-column="25" selection-end-line="121" selection-end-column="25" />
+        <state relative-caret-position="-594">
+          <caret line="219" column="13" selection-start-line="219" selection-start-column="13" selection-end-line="219" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1321,12 +1297,68 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/RevenuePage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="82" column="36" selection-start-line="82" selection-start-column="36" selection-end-line="82" selection-end-column="36" />
+        <state relative-caret-position="119">
+          <caret line="210" column="5" selection-start-line="210" selection-start-column="5" selection-end-line="210" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/RevenueDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="37" column="31" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1475107538827" expanded="true" signature="392:409" placeholder="SELECT * FRO... log" />
+            <marker date="1475107538827" expanded="true" signature="392:435" placeholder="SELECT * FRO... log" />
+            <marker date="1475107538827" expanded="true" signature="1302:1319" placeholder="SELECT * FRO... log" />
+            <marker date="1475107538827" expanded="true" signature="1302:1327" placeholder="SELECT * FRO... log" />
+            <marker date="1475107538827" expanded="true" signature="2570:2613" placeholder="SELECT name accounts" />
+            <marker date="1475107538827" expanded="true" signature="3107:3200" placeholder="UPDATE log s... " />
+            <marker date="1475107538827" expanded="true" signature="3827:3863" placeholder="INSERT INTO log... " />
+            <marker date="1475107538827" expanded="true" signature="4155:4215" placeholder="SELECT * FRO... log" />
+            <marker date="1475107538827" expanded="true" signature="4187:4214" placeholder="SELECT max(l... log" />
+            <marker date="1475107538827" expanded="true" signature="4576:4607" placeholder="SELECT * FRO... log" />
+            <marker date="1475107538827" expanded="true" signature="4949:4993" placeholder="SELECT missi... log" />
+            <marker date="1475107538827" expanded="true" signature="5318:5352" placeholder="SELECT date log" />
+            <marker date="1475107538827" expanded="true" signature="5753:5788" placeholder="SELECT * FRO... log" />
+            <marker date="1475107538827" expanded="true" signature="6115:6132" placeholder="SELECT * FRO... log" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/formAccount.form">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/RevenueTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="73" column="24" selection-start-line="73" selection-start-column="24" selection-end-line="73" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/formMachine.form">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/formRevenue.form">
@@ -1338,30 +1370,6 @@
       </provider>
       <provider selected="true" editor-type-id="ui-designer">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RevenueDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2514">
-          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1475043349826" expanded="true" signature="392:409" placeholder="SELECT * FRO... log" />
-            <marker date="1475043349826" expanded="true" signature="392:435" placeholder="SELECT * FRO... log" />
-            <marker date="1475043349826" expanded="true" signature="1131:1148" placeholder="SELECT * FRO... log" />
-            <marker date="1475043349826" expanded="true" signature="1131:1156" placeholder="SELECT * FRO... log" />
-            <marker date="1475043349826" expanded="true" signature="2399:2442" placeholder="SELECT name accounts" />
-            <marker date="1475043349826" expanded="true" signature="2936:3029" placeholder="UPDATE log s... " />
-            <marker date="1475043349826" expanded="true" signature="3656:3692" placeholder="INSERT INTO log... " />
-            <marker date="1475043349826" expanded="true" signature="3984:4044" placeholder="SELECT * FRO... log" />
-            <marker date="1475043349826" expanded="true" signature="4016:4043" placeholder="SELECT max(l... log" />
-            <marker date="1475043349826" expanded="true" signature="4405:4436" placeholder="SELECT * FRO... log" />
-            <marker date="1475043349826" expanded="true" signature="4778:4822" placeholder="SELECT missi... log" />
-            <marker date="1475043349826" expanded="true" signature="5147:5181" placeholder="SELECT date log" />
-            <marker date="1475043349826" expanded="true" signature="5582:5617" placeholder="SELECT * FRO... log" />
-            <marker date="1475043349826" expanded="true" signature="5944:5961" placeholder="SELECT * FRO... log" />
-          </folding>
-        </state>
       </provider>
     </entry>
   </component>

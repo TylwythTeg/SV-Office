@@ -20,7 +20,6 @@ public class MachinePage
     private JPanel tableFieldsPanel;
     private JTextField formTypeField;
     private JTextField formBrandField;
-    private JLabel labelRevenue;
     private JButton buttonSave;
     private JButton buttonRevert; ///////////////
     private JTextField formAssetField;

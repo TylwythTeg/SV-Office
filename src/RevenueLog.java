@@ -76,7 +76,22 @@ public class RevenueLog
                 continue;
             }
 
-            if( (newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
+            if(mode == "listbydate")
+            {
+                if( newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
+                        && newLogs.get(newLogs.size()-1).getAccountId() == logs.get(i).getAccountId())
+                {
+                    newLogs.get(newLogs.size()-1).setMoney( newLogs.get(newLogs.size()-1).getMoney() + logs.get(i).getMoney() );
+                }
+                else
+                {
+                    newLogs.add(logs.get(i));
+                }
+
+                continue;
+            }
+
+            else if( (newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
                     && newLogs.get(newLogs.size()-1).getAccountId() == logs.get(i).getAccountId() )
                     || (newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()) && mode == "compact")
             {
@@ -122,7 +137,7 @@ public class RevenueLog
                 continue;
             }
 
-            if( ( newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
+            else if( ( newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
                     && newLogs.get(newLogs.size()-1).getMonth() == logs.get(i).getMonth()
                     && newLogs.get(newLogs.size()-1).getAccountId() == logs.get(i).getAccountId())
                     || (newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
@@ -154,8 +169,23 @@ public class RevenueLog
                 first = false;
                 continue;
             }
+            if(mode == "listbydate")
+            {
+                if( newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
+                        && newLogs.get(newLogs.size()-1).getWeek() == logs.get(i).getWeek()
+                        && newLogs.get(newLogs.size()-1).getAccountId() == logs.get(i).getAccountId())
+                {
+                    newLogs.get(newLogs.size()-1).setMoney( newLogs.get(newLogs.size()-1).getMoney() + logs.get(i).getMoney() );
+                }
+                else
+                {
+                    newLogs.add(logs.get(i));
+                }
 
-            if( (newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
+                continue;
+            }
+
+            else if( (newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
                     //&& newLogs.get(newLogs.size()-1).getMonth() == logs.get(i).getMonth()
                     && newLogs.get(newLogs.size()-1).getWeek() == logs.get(i).getWeek()
                     && newLogs.get(newLogs.size()-1).getAccountId() == logs.get(i).getAccountId())
@@ -186,6 +216,22 @@ public class RevenueLog
             {
                 newLogs.add(logs.get(i));
                 first = false;
+                continue;
+            }
+            if(mode == "listbydate")
+            {
+                if( newLogs.get(newLogs.size()-1).getYear() == logs.get(i).getYear()
+                        && newLogs.get(newLogs.size()-1).getMonth() == logs.get(i).getMonth()
+                        && newLogs.get(newLogs.size()-1).getDay() == logs.get(i).getDay()
+                        && newLogs.get(newLogs.size()-1).getAccountId() == logs.get(i).getAccountId())
+                {
+                    newLogs.get(newLogs.size()-1).setMoney( newLogs.get(newLogs.size()-1).getMoney() + logs.get(i).getMoney() );
+                }
+                else
+                {
+                    newLogs.add(logs.get(i));
+                }
+
                 continue;
             }
 

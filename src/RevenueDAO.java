@@ -31,12 +31,14 @@ public class RevenueDAO extends DAO
     {
         List<RevenueLog> list = new ArrayList<>();
 
-        if(sort == "date")
+        if(sort == "date" || sort == "Day")
             sort = " ORDER BY date";
         else if(sort == "Month")
-        {
             sort = " ORDER BY MONTH(date), account_id";
-        }
+        else if(sort == "Year")
+            sort = " ORDER BY YEAR(date), account_id";
+        else if(sort == "Week")
+            sort = " ORDER BY WEEK(date), account_id";
         else sort = "";
 
         try (Statement stmt = connection.createStatement();

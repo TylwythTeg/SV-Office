@@ -24,7 +24,6 @@ public class RevenuePage
     private JPanel tableFieldsPanel;
     private JDateChooser formDateField;
     private JTextField formMoneyField;
-    private JLabel labelRevenue;
     private JButton buttonSave;
     private JButton buttonRevert;
     private JComboBox locationDropDown;
@@ -83,16 +82,8 @@ public class RevenuePage
         list.add(2,"All (Summary)");
         accountFilterBox.setModel(new DefaultComboBoxModel(list.toArray()));
 
-        //sort drop down
-        //List<String> sortList = new ArrayList<>();
-        //sortList.add("");
-        //sortList.add("Account");
-        //sortList.add("Date");
-        //sortFilterBox.setModel(new DefaultComboBoxModel(sortList.toArray()));
-
         //date drop down
         List<String> dateList = new ArrayList<>();
-        dateList.add("");
         dateList.add("Day");
         dateList.add("Week");
         dateList.add("Month");
@@ -333,7 +324,9 @@ public class RevenuePage
                 case "Year":
                     if(mode == "compact")
                         logs = revenueDAO.getAllLogs("date");
-                    else if(!accountName.isEmpty() && accountName != "All (By Account)" && accountName != "All (By Date")
+                    else if(mode == "listbydate")
+                        logs = revenueDAO.getAllLogs("Year");
+                    else if(!accountName.isEmpty() && accountName != "All (By Account)" && accountName != "All (By Date)")
                     {
                         accountID = accountDAO.getIdFromName(accountName);
                         logs = revenueDAO.getLogsFromAccount(accountID);
@@ -348,7 +341,7 @@ public class RevenuePage
                         logs = revenueDAO.getAllLogs("date");
                     else if(mode == "listbydate")
                         logs = revenueDAO.getAllLogs("Month");
-                    else if(!accountName.isEmpty() && accountName != "All (By Account)" && accountName != "All (By Date")
+                    else if(!accountName.isEmpty() && accountName != "All (By Account)" && accountName != "All (By Date)")
                     {
                         accountID = accountDAO.getIdFromName(accountName);
                         logs = revenueDAO.getLogsFromAccount(accountID);
@@ -361,7 +354,9 @@ public class RevenuePage
                 case "Week":
                     if(mode == "compact")
                         logs = revenueDAO.getAllLogs("date");
-                    else if(!accountName.isEmpty() && accountName != "All (By Account)" && accountName != "All (By Date")
+                    else if(mode == "listbydate")
+                        logs = revenueDAO.getAllLogs("Week");
+                    else if(!accountName.isEmpty() && accountName != "All (By Account)" && accountName != "All (By Date)")
                     {
                         accountID = accountDAO.getIdFromName(accountName);
                         logs = revenueDAO.getLogsFromAccount(accountID);
@@ -379,7 +374,9 @@ public class RevenuePage
                         logs = revenueDAO.getAllLogs("date");
                         logs = RevenueLog.consolidateByDay(logs,mode);
                     }
-                    else if(!accountName.isEmpty() && (accountName != "All (By Account)" && accountName != "All (By Date"))
+                    else if(mode == "listbydate")
+                        logs = revenueDAO.getAllLogs("Day");
+                    else if(!accountName.isEmpty() && (accountName != "All (By Account)" && accountName != "All (By Date)"))
                     {
                         accountID = accountDAO.getIdFromName(accountName);
                         logs = revenueDAO.getLogsFromAccount(accountID);

@@ -21,7 +21,6 @@ public class AccountPage
     private JPanel tableFieldsPanel;
     private JTextField formNameField;
     private JTextField formAddressField;
-    private JLabel labelRevenue;
     private JScrollPane logScrollPane;
     private JTable machineTable;
     private JButton buttonSave;
